@@ -25,6 +25,7 @@ public class Ugentopoly extends Application {
         stage.setOnCloseRequest(e -> dice.close());
         stage.setScene(scene);
         stage.show();
+        //test
     }
 
     public static void main(String[] args) {
