@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane fx:id="bord" prefHeight="845.0" prefWidth="845.0" stylesheets="@ugentopoly.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ugent.objprog.ugentopoly.UgentopolyController">
+   <center>
+      <AnchorPane id="center" fx:id="center" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <AnchorPane fx:id="top" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <AnchorPane fx:id="left" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="220.0" prefWidth="150.0">
+               <children>
+                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="55.0">
+                     <children>
+                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Vermeylen" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Bertha" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Pane prefHeight="55.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0">
+                     <children>
+                        <Label prefHeight="55.0" prefWidth="150.0" text="Kans" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="165.0">
+                     <children>
+                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Fabiola" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="220.0">
+               <children>
+                  <Label prefHeight="55.0" prefWidth="150.0" text="Resto (De Brug)" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding></Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="275.0">
+               <children>
+                  <Label prefHeight="55.0" prefWidth="150.0" text="GAS-boet (wildplassen)" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding></Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="330.0">
+               <children>
+                  <Label prefHeight="55.0" prefWidth="150.0" text="Blok A" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding></Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="385.0">
+               <children>
+                  <Label prefHeight="55.0" prefWidth="150.0" text="Algemeen (Fonds)" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding></Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="440.0">
+               <children>
+                  <Label prefHeight="55.0" prefWidth="150.0" text="S22" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding></Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane fx:id="right" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <AnchorPane fx:id="bottom" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

@@ -1,0 +1,12 @@
+BorderPane {
+    -fx-background-color: AQUA;
+    -fx-font-family: Helvetica;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+#center {
+    -fx-background-color: RED;
+}
+Pane {
+    -fx-background-color: GREEN;
+}
