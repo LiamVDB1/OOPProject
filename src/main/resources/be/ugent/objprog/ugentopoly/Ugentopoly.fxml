@@ -16,20 +16,21 @@
    <left>
       <AnchorPane fx:id="left" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="220.0" prefWidth="150.0">
+            <AnchorPane id="zone2" prefHeight="220.0" prefWidth="150.0">
                <children>
-                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="55.0">
+                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Vermeylen" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Bertha" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
+                        <Pane prefHeight="55.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="55.0">
                      <children>
-                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Bertha" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Vermeylen" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
@@ -53,6 +54,7 @@
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
+                        <Pane prefHeight="55.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -73,25 +75,33 @@
                      </padding></Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="330.0">
+            <AnchorPane id="zone1" layoutY="330.0">
                <children>
-                  <Label prefHeight="55.0" prefWidth="150.0" text="Blok A" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding></Label>
+                  <AnchorPane prefHeight="55.0" prefWidth="150.0">
+                     <children>
+                        <Label prefHeight="55.0" prefWidth="150.0" text="Blok A" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="110.0" maxHeight="55.0" prefHeight="55.0" prefWidth="150.0">
+                     <children>
+                        <Label prefHeight="55.0" prefWidth="150.0" text="S22" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="385.0">
                <children>
                   <Label prefHeight="55.0" prefWidth="150.0" text="Algemeen (Fonds)" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding></Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="440.0">
-               <children>
-                  <Label prefHeight="55.0" prefWidth="150.0" text="S22" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <padding>
                         <Insets left="20.0" right="20.0" />
                      </padding></Label>

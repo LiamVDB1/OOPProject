@@ -5,8 +5,11 @@ BorderPane {
     -fx-font-weight: bold;
 }
 #center {
-    -fx-background-color: RED;
+    -fx-background-color: rgb(255, 0, 0, 0.6);
 }
-Pane {
-    -fx-background-color: GREEN;
+#zone1 Pane {
+    -fx-background-color: BROWN;
+}
+#zone2 Pane {
+    -fx-background-color: BLUE;
 }
