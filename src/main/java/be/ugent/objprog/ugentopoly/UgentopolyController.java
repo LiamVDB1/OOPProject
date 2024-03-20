@@ -31,4 +31,6 @@ public class UgentopolyController{
         }
     } */
 
+
+    //Bord: 148 Lengte, 61 breedte
 }

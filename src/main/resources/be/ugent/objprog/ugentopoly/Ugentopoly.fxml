@@ -1,119 +1,358 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 
 <BorderPane fx:id="bord" prefHeight="845.0" prefWidth="845.0" stylesheets="@ugentopoly.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ugent.objprog.ugentopoly.UgentopolyController">
-   <center>
-      <AnchorPane id="center" fx:id="center" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
    <top>
-      <AnchorPane fx:id="top" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </top>
-   <left>
-      <AnchorPane fx:id="left" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+      <GridPane gridLinesVisible="true" prefHeight="148.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" prefWidth="148" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+            <ColumnConstraints hgrow="NEVER" prefWidth="148" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints prefHeight="150.0" vgrow="NEVER" />
+        </rowConstraints>
          <children>
-            <AnchorPane id="zone2" prefHeight="220.0" prefWidth="150.0">
+            <AnchorPane prefHeight="148.0" prefWidth="148.0">
                <children>
-                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Bertha" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane prefHeight="55.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="55.0">
-                     <children>
-                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Vermeylen" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane prefHeight="55.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0">
-                     <children>
-                        <Label prefHeight="55.0" prefWidth="150.0" text="Kans" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="165.0">
-                     <children>
-                        <Label prefHeight="55.0" prefWidth="150.0" text="Home Fabiola" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane prefHeight="55.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                  <ImageView fitHeight="133.0" fitWidth="67.0" layoutX="54.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" rotate="135.0">
+                     <image>
+                        <Image url="@assets/jail.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="6.0" layoutY="37.0" rotate="135.0" text="De Overpooort" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="220.0">
+            <AnchorPane prefHeight="148.0" prefWidth="148.0" GridPane.columnIndex="10">
                <children>
-                  <Label prefHeight="55.0" prefWidth="150.0" text="Resto (De Brug)" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding></Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="275.0">
-               <children>
-                  <Label prefHeight="55.0" prefWidth="150.0" text="GAS-boet (wildplassen)" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding></Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane id="zone1" layoutY="330.0">
-               <children>
-                  <AnchorPane prefHeight="55.0" prefWidth="150.0">
-                     <children>
-                        <Label prefHeight="55.0" prefWidth="150.0" text="Blok A" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutY="110.0" maxHeight="55.0" prefHeight="55.0" prefWidth="150.0">
-                     <children>
-                        <Label prefHeight="55.0" prefWidth="150.0" text="S22" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="55.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="385.0">
-               <children>
-                  <Label prefHeight="55.0" prefWidth="150.0" text="Algemeen (Fonds)" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding></Label>
+                  <ImageView fitHeight="91.0" fitWidth="89.0" layoutX="18.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" rotate="225.0">
+                     <image>
+                        <Image url="@assets/free_parking.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="48.0" layoutY="24.0" prefWidth="100.0" rotate="225.0" text="Academisch kwartiertje" textAlignment="CENTER" wrapText="true" />
                </children>
             </AnchorPane>
          </children>
-      </AnchorPane>
+      </GridPane>
+   </top>
+   <center>
+      <StackPane BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane id="center" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="549.0" fitWidth="549.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@assets/fake-play-money-background-free-vector.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="274.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" rotate="35.0">
+                     <image>
+                        <Image url="@assets/Mr-Monopoly.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="549.0" fitWidth="549.0" layoutX="-1.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" rotate="35.0" AnchorPane.bottomAnchor="230.80403900146484" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="228.0">
+                     <image>
+                        <Image url="@assets/logo.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </center>
+   <left>
+      <GridPane gridLinesVisible="true" prefWidth="148.0" BorderPane.alignment="CENTER">
+          <columnConstraints>
+              <ColumnConstraints hgrow="NEVER" prefWidth="148" />
+          </columnConstraints>
+          <rowConstraints>
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+          </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Home Bertha" textAlignment="CENTER" wrapText="true">
+               <GridPane.margin>
+                  <Insets right="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Home Vermeylen" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Kans" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Home Fabiola" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Resto De Brug" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="60.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="GAS-boete wildplassen" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="60.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Blok A" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Algemeen Fonds" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets left="70.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="S22" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets right="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+               <GridPane.margin>
+                  <Insets left="123.0" />
+               </GridPane.margin></Pane>
+            <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="123.0" />
+               </GridPane.margin></Pane>
+            <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="123.0" />
+               </GridPane.margin></Pane>
+            <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="123.0" />
+               </GridPane.margin></Pane>
+            <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="123.0" />
+               </GridPane.margin></Pane>
+            <ImageView fitHeight="46.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@assets/chance.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@assets/railway.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+               <image>
+                  <Image url="@assets/tax.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@assets/chest.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </ImageView>
+         </children>
+      </GridPane>
    </left>
    <right>
-      <AnchorPane fx:id="right" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+      <GridPane gridLinesVisible="true" prefWidth="148.0" BorderPane.alignment="CENTER">
+          <columnConstraints>
+              <ColumnConstraints hgrow="NEVER" prefWidth="148" />
+          </columnConstraints>
+          <rowConstraints>
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+              <RowConstraints prefHeight="61" vgrow="NEVER" />
+          </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Dunant" textAlignment="CENTER" wrapText="true">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Kans" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="30.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Coupure" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Ledeganck" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Resto Boudewijn" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets right="60.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Blandijn" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Plateau" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Technicum" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Pane maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone5">
+               <GridPane.margin>
+                  <Insets right="123.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone5" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="123.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone5" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="123.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone6" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets right="123.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone6" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="123.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone6" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets right="123.0" />
+               </GridPane.margin>
+            </Pane>
+            <ImageView fitHeight="46.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@assets/railway.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@assets/chance.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="52.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@assets/utility2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
    </right>
    <bottom>
-      <AnchorPane fx:id="bottom" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+      <GridPane gridLinesVisible="true" prefHeight="148.0" BorderPane.alignment="CENTER">
+          <columnConstraints>
+              <ColumnConstraints hgrow="NEVER" prefWidth="148" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="61" />
+              <ColumnConstraints hgrow="NEVER" prefWidth="148" />
+          </columnConstraints>
+          <rowConstraints>
+              <RowConstraints prefHeight="150.0" vgrow="NEVER" />
+          </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="148.0" prefWidth="148.0">
+               <children>
+                  <ImageView fitHeight="148.0" fitWidth="133.0" layoutX="-45.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                     <image>
+                        <Image url="@assets/start-arrow.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="142.0" fitWidth="99.0" layoutX="38.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="38.0">
+                     <image>
+                        <Image url="@assets/start.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="148.0" prefWidth="148.0" GridPane.columnIndex="10">
+               <children>
+                  <ImageView fitHeight="78.0" fitWidth="60.0" layoutX="42.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0">
+                     <image>
+                        <Image url="@assets/go_to_jail.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="-9.0" layoutY="33.0" rotate="-45.0" text="Ga direct naar" />
+                  <Label layoutX="63.0" layoutY="95.0" rotate="-45.0" text="De Overpoort" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
    </bottom>
 </BorderPane>

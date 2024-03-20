@@ -1,15 +1,24 @@
 BorderPane {
-    -fx-background-color: AQUA;
+    -fx-background-color: #00ffd0;
     -fx-font-family: Helvetica;
     -fx-font-size: 14;
     -fx-font-weight: bold;
 }
+.zone1 {
+    -fx-background-color: saddlebrown;
+}
+.zone2 {
+    -fx-background-color: #00d9ff;
+}
+.zone5 {
+    -fx-background-color: RED;
+}
+.zone6 {
+    -fx-background-color: YELLOW;
+}
+.upsideDown {
+    -fx-rotate: 180;
+}
 #center {
-    -fx-background-color: rgb(255, 0, 0, 0.6);
-}
-#zone1 Pane {
-    -fx-background-color: BROWN;
-}
-#zone2 Pane {
-    -fx-background-color: BLUE;
+    -fx-background-color: rgba(0, 255, 13, 0.7);
 }
