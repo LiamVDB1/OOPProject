@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +16,7 @@
 
 <BorderPane fx:id="bord" prefHeight="845.0" prefWidth="845.0" stylesheets="@ugentopoly.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ugent.objprog.ugentopoly.UgentopolyController">
    <top>
-      <GridPane gridLinesVisible="true" prefHeight="148.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="top" gridLinesVisible="true" prefHeight="148.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="NEVER" prefWidth="148" />
             <ColumnConstraints hgrow="NEVER" prefWidth="61" />
@@ -33,37 +34,104 @@
           <RowConstraints prefHeight="150.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <AnchorPane prefHeight="148.0" prefWidth="148.0">
+            <AnchorPane prefHeight="148.0" prefWidth="148.0" styleClass="tile">
                <children>
                   <ImageView fitHeight="133.0" fitWidth="67.0" layoutX="54.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" rotate="135.0">
                      <image>
                         <Image url="@assets/jail.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="6.0" layoutY="37.0" rotate="135.0" text="De Overpooort" />
+                  <Label fx:id="jail" layoutX="6.0" layoutY="37.0" rotate="135.0" text="Label" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="148.0" prefWidth="148.0" GridPane.columnIndex="10">
+            <AnchorPane prefHeight="148.0" prefWidth="148.0" styleClass="tile" GridPane.columnIndex="10">
                <children>
                   <ImageView fitHeight="91.0" fitWidth="89.0" layoutX="18.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" rotate="225.0">
                      <image>
                         <Image url="@assets/free_parking.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="48.0" layoutY="24.0" prefWidth="100.0" rotate="225.0" text="Academisch kwartiertje" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="freeparking" layoutX="48.0" layoutY="24.0" prefWidth="100.0" rotate="225.0" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="street06" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane fx:id="street06" prefHeight="25.0" prefWidth="61.0" styleClass="zone3" AnchorPane.bottomAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="3">
+               <children>
+                  <Label fx:id="street07" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone3" AnchorPane.bottomAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="4">
+               <children>
+                  <Label fx:id="street08" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone3" AnchorPane.bottomAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="6">
+               <children>
+                  <Label fx:id="street09" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone4" AnchorPane.bottomAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="8">
+               <children>
+                  <Label fx:id="street10" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane fx:id="street10" prefHeight="25.0" prefWidth="61.0" styleClass="zone4" AnchorPane.bottomAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="9">
+               <children>
+                  <Label fx:id="street11" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone4" AnchorPane.bottomAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="5">
+               <children>
+                  <Label fx:id="railway2" alignment="CENTER" layoutX="-14.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="83.0" rotate="90.0" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
+                  <ImageView fitHeight="46.0" fitWidth="148.0" layoutX="8.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="15.0">
+                     <image>
+                        <Image url="@assets/railway.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="7">
+               <children>
+                  <Label fx:id="chest" alignment="CENTER" layoutX="-9.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="78.0" rotate="90.0" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
+                  <ImageView fitHeight="41.0" fitWidth="148.0" layoutX="4.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" AnchorPane.topAnchor="15.0">
+                     <image>
+                        <Image url="@assets/chest.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="2">
+               <children>
+                  <ImageView fx:id="utility1" fitHeight="61.0" fitWidth="138.0" layoutX="-37.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" AnchorPane.leftAnchor="-37.0" AnchorPane.rightAnchor="0.0">
+                     <image>
+                        <Image url="@assets/utility1.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
       </GridPane>
    </top>
    <center>
-      <StackPane BorderPane.alignment="CENTER">
+      <StackPane fx:id="center" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane id="center" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="549.0" fitWidth="549.0" pickOnBounds="true">
                      <image>
-                        <Image url="@assets/fake-play-money-background-free-vector.jpg" />
+                        <Image url="@assets/moneyBackground.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="274.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" rotate="35.0">
@@ -85,7 +153,7 @@
       </StackPane>
    </center>
    <left>
-      <GridPane gridLinesVisible="true" prefWidth="148.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="left" gridLinesVisible="true" prefWidth="148.0" BorderPane.alignment="CENTER">
           <columnConstraints>
               <ColumnConstraints hgrow="NEVER" prefWidth="148" />
           </columnConstraints>
@@ -101,43 +169,67 @@
               <RowConstraints prefHeight="61" vgrow="NEVER" />
           </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Home Bertha" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="street05" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true">
                <GridPane.margin>
                   <Insets right="25.0" />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Home Vermeylen" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
+            <Label fx:id="street04" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="25.0" />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Kans" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin></Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Home Fabiola" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets right="25.0" />
-               </GridPane.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Resto De Brug" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets left="60.0" />
-               </GridPane.margin></Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="GAS-boete wildplassen" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets left="60.0" />
-               </GridPane.margin></Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Blok A" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="6">
+            <AnchorPane styleClass="tile" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="chance" alignment="CENTER" layoutX="10.0" prefHeight="61.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" />
+                  <ImageView fitHeight="46.0" fitWidth="30.0" layoutY="7.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="7.5">
+                     <image>
+                        <Image url="@assets/chance.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="street03" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="25.0" />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Algemeen Fonds" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="7">
+            <AnchorPane maxHeight="61.0" maxWidth="148.0" styleClass="tile" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="railway1" alignment="CENTER" layoutX="45.0" prefHeight="61.0" prefWidth="83.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="0.0" />
+                  <ImageView fitHeight="46.0" fitWidth="148.0" layoutY="7.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="7.5">
+                     <image>
+                        <Image url="@assets/railway.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane styleClass="tile" GridPane.rowIndex="5">
+               <children>
+                  <Label fx:id="tax1" alignment="CENTER" layoutX="45.0" prefHeight="61.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="0.0" />
+                  <ImageView fitHeight="46.0" fitWidth="148.0" layoutY="7.5" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0">
+                     <image>
+                        <Image url="@assets/tax.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="street02" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="6">
                <GridPane.margin>
-                  <Insets left="70.0" />
-               </GridPane.margin></Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="S22" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="8">
+                  <Insets right="25.0" />
+               </GridPane.margin>
+            </Label>
+            <AnchorPane styleClass="tile" GridPane.rowIndex="7">
+               <children>
+                  <Label fx:id="chest" alignment="CENTER" layoutX="55.0" prefHeight="61.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0" />
+                  <ImageView fitHeight="41.0" fitWidth="148.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@assets/chest.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="street01" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets right="25.0" />
                </GridPane.margin>
@@ -145,60 +237,33 @@
             <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
                <GridPane.margin>
                   <Insets left="123.0" />
-               </GridPane.margin></Pane>
+               </GridPane.margin>
+            </Pane>
             <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="123.0" />
-               </GridPane.margin></Pane>
+               </GridPane.margin>
+            </Pane>
             <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="123.0" />
-               </GridPane.margin></Pane>
+               </GridPane.margin>
+            </Pane>
             <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="123.0" />
-               </GridPane.margin></Pane>
+               </GridPane.margin>
+            </Pane>
             <Pane prefHeight="61.0" prefWidth="25.0" styleClass="zone1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets left="123.0" />
-               </GridPane.margin></Pane>
-            <ImageView fitHeight="46.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-               <image>
-                  <Image url="@assets/chance.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="20.0" />
                </GridPane.margin>
-            </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
-               <image>
-                  <Image url="@assets/railway.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="15.0" />
-               </GridPane.margin>
-            </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets left="15.0" />
-               </GridPane.margin>
-               <image>
-                  <Image url="@assets/tax.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="41.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
-               <image>
-                  <Image url="@assets/chest.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="15.0" />
-               </GridPane.margin>
-            </ImageView>
+            </Pane>
          </children>
       </GridPane>
    </left>
    <right>
-      <GridPane gridLinesVisible="true" prefWidth="148.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="right" gridLinesVisible="true" prefWidth="148.0" BorderPane.alignment="CENTER">
           <columnConstraints>
               <ColumnConstraints hgrow="NEVER" prefWidth="148" />
           </columnConstraints>
@@ -214,45 +279,79 @@
               <RowConstraints prefHeight="61" vgrow="NEVER" />
           </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Dunant" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="street12" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Label" textAlignment="CENTER" wrapText="true">
                <GridPane.margin>
                   <Insets left="25.0" />
                </GridPane.margin>
+               <styleClass>
+                  <String fx:value="upsideDown" />
+                  <String fx:value="tile" />
+               </styleClass>
             </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Kans" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="30.0" />
-               </GridPane.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Coupure" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="25.0" />
-               </GridPane.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Ledeganck" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="25.0" />
-               </GridPane.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Resto Boudewijn" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets right="60.0" />
-               </GridPane.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Blandijn" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="5">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="148.0" styleClass="tile" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="chance" alignment="CENTER" layoutX="118.0" layoutY="61.0" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                  <ImageView fitHeight="46.0" fitWidth="30.0" layoutY="7.5" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="7.5">
+                     <image>
+                        <Image url="@assets/chance.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="street13" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="25.0" />
                </GridPane.margin>
+               <styleClass>
+                  <String fx:value="upsideDown" />
+                  <String fx:value="tile" />
+               </styleClass>
             </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Plateau" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="6">
+            <Label fx:id="street14" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="25.0" />
                </GridPane.margin>
+               <styleClass>
+                  <String fx:value="upsideDown" />
+                  <String fx:value="tile" />
+               </styleClass>
             </Label>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Technicum" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="8">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="148.0" styleClass="tile" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="railway3" alignment="CENTER" layoutX="1.0" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="0.0" />
+                  <ImageView fitHeight="46.0" fitWidth="148.0" layoutY="7.5" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="7.5">
+                     <image>
+                        <Image url="@assets/railway.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="street15" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="25.0" />
                </GridPane.margin>
+               <styleClass>
+                  <String fx:value="upsideDown" />
+                  <String fx:value="tile" />
+               </styleClass>
+            </Label>
+            <Label fx:id="street16" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+               <styleClass>
+                  <String fx:value="upsideDown" />
+                  <String fx:value="tile" />
+               </styleClass>
+            </Label>
+            <Label fx:id="street17" alignment="CENTER" prefHeight="61.0" prefWidth="148.0" text="Label" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+               <styleClass>
+                  <String fx:value="upsideDown" />
+                  <String fx:value="tile" />
+               </styleClass>
             </Label>
             <Pane maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone5">
                <GridPane.margin>
@@ -284,32 +383,20 @@
                   <Insets right="123.0" />
                </GridPane.margin>
             </Pane>
-            <ImageView fitHeight="46.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
-               <image>
-                  <Image url="@assets/railway.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets right="15.0" />
-               </GridPane.margin>
-            </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <image>
-                  <Image url="@assets/chance.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </ImageView>
-            <ImageView fitHeight="52.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" GridPane.halignment="CENTER" GridPane.rowIndex="7">
-               <image>
-                  <Image url="@assets/utility2.png" />
-               </image>
-            </ImageView>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="148.0" styleClass="tile" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+               <children>
+                  <ImageView fx:id="utility2" fitHeight="51.0" fitWidth="148.0" layoutX="21.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <image>
+                        <Image url="@assets/utility2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </GridPane>
    </right>
    <bottom>
-      <GridPane gridLinesVisible="true" prefHeight="148.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="bottom" gridLinesVisible="true" prefHeight="148.0" BorderPane.alignment="CENTER">
           <columnConstraints>
               <ColumnConstraints hgrow="NEVER" prefWidth="148" />
               <ColumnConstraints hgrow="NEVER" prefWidth="61" />
@@ -327,7 +414,7 @@
               <RowConstraints prefHeight="150.0" vgrow="NEVER" />
           </rowConstraints>
          <children>
-            <AnchorPane prefHeight="148.0" prefWidth="148.0">
+            <AnchorPane prefHeight="148.0" prefWidth="148.0" styleClass="tile">
                <children>
                   <ImageView fitHeight="148.0" fitWidth="133.0" layoutX="-45.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                      <image>
@@ -341,15 +428,84 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="148.0" prefWidth="148.0" GridPane.columnIndex="10">
+            <AnchorPane prefHeight="148.0" prefWidth="148.0" styleClass="tile" GridPane.columnIndex="10">
                <children>
-                  <ImageView fitHeight="78.0" fitWidth="60.0" layoutX="42.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0">
+                  <ImageView fitHeight="87.0" fitWidth="63.0" layoutX="20.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0">
                      <image>
                         <Image url="@assets/go_to_jail.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="-9.0" layoutY="33.0" rotate="-45.0" text="Ga direct naar" />
-                  <Label layoutX="63.0" layoutY="95.0" rotate="-45.0" text="De Overpoort" />
+                  <Label fx:id="gotojail" layoutX="44.0" layoutY="79.0" prefWidth="100.0" rotate="-45.0" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="street22" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone8" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="3">
+               <children>
+                  <Label fx:id="street21" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone8" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="6">
+               <children>
+                  <Label fx:id="street20" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone7" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="8">
+               <children>
+                  <Label fx:id="street19" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone7" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="9">
+               <children>
+                  <Label fx:id="street18" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Pane prefHeight="25.0" prefWidth="61.0" styleClass="zone7" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="2">
+               <children>
+                  <Label fx:id="tax2" alignment="CENTER" layoutX="-13.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="88.0" rotate="270.0" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <ImageView fitHeight="46.0" fitWidth="148.0" layoutX="9.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                     <image>
+                        <Image url="@assets/tax.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="4">
+               <children>
+                  <Label fx:id="chance" alignment="CENTER" layoutX="-28.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="118.0" rotate="270.0" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <ImageView fitHeight="46.0" fitWidth="30.0" layoutX="19.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" AnchorPane.bottomAnchor="15.0">
+                     <image>
+                        <Image url="@assets/chance.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="5">
+               <children>
+                  <Label fx:id="railway4" alignment="CENTER" layoutX="-11.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="83.0" rotate="270.0" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <ImageView fitHeight="46.0" fitWidth="148.0" layoutX="8.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5">
+                     <image>
+                        <Image url="@assets/railway.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="7">
+               <children>
+                  <Label fx:id="chest" alignment="CENTER" layoutX="-8.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="78.0" rotate="270.0" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <ImageView fitHeight="41.0" fitWidth="148.0" layoutX="4.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" AnchorPane.bottomAnchor="15.0">
+                     <image>
+                        <Image url="@assets/chest.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

@@ -2,35 +2,72 @@ package be.ugent.objprog.ugentopoly;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.Node;
+
+import org.jdom2.Document;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.List;
 
 public class UgentopolyController{
 
     @FXML BorderPane bord;
-    @FXML AnchorPane top;
-    @FXML AnchorPane left;
-    @FXML AnchorPane center;
-    @FXML AnchorPane  right;
-    @FXML AnchorPane bottom;
+    @FXML GridPane top;
+    @FXML GridPane left;
+    @FXML StackPane center;
+    @FXML GridPane  right;
+    @FXML GridPane bottom;
 
-
-    /** Niet geHardCode AnchorPanes.
-     public void initialize(){
-        for (int i = 0; i < 9; i ++) {
-            AnchorPane anchorPane = new AnchorPane();
-            anchorPane.setPrefSize(150, 55);
-
-            Double pos = i* 55.0;
-
-            AnchorPane.setTopAnchor(anchorPane,  pos);
-            anchorPane.setStyle("-fx-background-color: GREEN");
-
-            right(moet ook voor left, top en bottom.).getChildren().add(anchorPane);
+    public void initialize() {
+        //Properties File inladen + Labels instellen
+        try (InputStream input = UgentopolyController.class.getResourceAsStream("ugentopoly.deel1.properties")){
+            Properties properties = new Properties();
+            properties.load(input);
+            gridLabelFiller(left, properties);
+            gridLabelFiller(right, properties);
+            gridLabelFiller(top, properties);
+            gridLabelFiller(bottom, properties);
+        } catch (IOException ex ){
+            System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
         }
-    } */
 
+        //XML File inladen
+        try (InputStream input = UgentopolyController.class.getResourceAsStream("ugentopoly.deel1.xml")) {
+            Document document = new SAXBuilder().build(input);
+        } catch (IOException ex) {
+            System.err.println("Error Loading the XML file - ugentopoly.deel1.xml");
+        } catch (JDOMException JE){
+            System.err.println("JDOMException - ugentopoly.deel1.xml");
+        }
 
-    //Bord: 148 Lengte, 61 breedte
+    }
+
+    public void gridLabelFiller(GridPane grid, Properties properties){
+        for (Node node : grid.getChildren()){
+            if (node instanceof Label && node.getId() != null){
+                Label label = (Label) node;
+                label.setText(properties.getProperty("tile." + label.getId()));
+            } else if (node instanceof Parent){
+                Parent parent = (Parent) node;
+                for (Node child: parent.getChildrenUnmodifiable()){
+                    if (child instanceof Label && child.getId() != null){
+                        Label label = (Label) child;
+                        label.setText(properties.getProperty("tile." + label.getId()));
+                    }
+                }
+            }
+        }
+    }
 }
