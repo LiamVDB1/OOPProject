@@ -9,4 +9,5 @@ public class Railway extends Tile{
         this.rent = rent;
     }
 
+
 }

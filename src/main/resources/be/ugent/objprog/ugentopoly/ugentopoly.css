@@ -1,39 +1,39 @@
 BorderPane {
-    -fx-background-color: #00ffd0;
+    -fx-background-color: rgb(89, 202, 187);
     -fx-font-family: Helvetica;
-    -fx-font-size: 14;
+    -fx-font-size: 13;
     -fx-font-weight: bold;
 }
-.zone1 {
-    -fx-background-color: #8b4513;
-}
-.zone2 {
-    -fx-background-color: #87cefa;
-}
-.zone3 {
-    -fx-background-color: #9932cc;
-}
-.zone4 {
-    -fx-background-color: #ff8c00;
-}
-.zone5 {
-    -fx-background-color: #ff0000;
-}
-.zone6 {
-    -fx-background-color: #ffff00;
-}
-.zone7 {
-    -fx-background-color: #006400;
-}
-.zone8 {
-    -fx-background-color: #000080
+.cardShow {
+    -fx-font-size: 15;
 }
 .upsideDown {
     -fx-rotate: 180;
 }
-#center {
-    -fx-background-color: rgba(0, 255, 13, 0.7);
-}
 .tile:hover {
     -fx-background-color: rgba(253, 75, 75, 0.75);
+    -fx-font-size: 14;
+}
+#center {
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+#temp {
+    -fx-background-color: rgb(89, 202, 187);
+    -fx-background-radius: 10;
+
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-border-radius: 8;
+}
+
+#temp2 {
+    -fx-background-color: rgb(255, 255, 255);
+
+    -fx-border-color: black;
+    -fx-border-width: 2.5;
+}
+
+.invisble {
+    -fx-opacity: 0;
 }

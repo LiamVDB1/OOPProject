@@ -3,6 +3,7 @@ package be.ugent.objprog.ugentopoly;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -27,18 +28,11 @@ public class UgentopolyController{
     @FXML GridPane  right;
     @FXML GridPane bottom;
 
+    @FXML AnchorPane card;
+
     public void initialize() {
         //Bord initaliseren
         board = new Board(this.borderPane, this.top, this.left, this.center, this.right, this.bottom);
-
-        //Properties File inladen + Labels instellen
-        try (InputStream input = UgentopolyController.class.getResourceAsStream("ugentopoly.deel1.properties")){
-            Properties properties = new Properties();
-            properties.load(input);
-            board.gridLabelFiller(properties);
-        } catch (IOException ex ){
-            System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
-        }
 
         //XML File inladen
         try (InputStream input = UgentopolyController.class.getResourceAsStream("ugentopoly.deel1.xml")) {
@@ -63,6 +57,18 @@ public class UgentopolyController{
         } catch (JDOMException JE){
             System.err.println("JDOMException - ugentopoly.deel1.xml");
         }
+
+        //Properties File inladen + Labels instellen
+        try (InputStream input = UgentopolyController.class.getResourceAsStream("ugentopoly.deel1.properties")){
+            Properties properties = new Properties();
+            properties.load(input);
+            board.gridLabelFiller(properties);
+        } catch (IOException ex ){
+            System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
+        }
+
+        //Card inladen
+        card.getChildren().add(new RailwayCard(null));
     }
 
 }

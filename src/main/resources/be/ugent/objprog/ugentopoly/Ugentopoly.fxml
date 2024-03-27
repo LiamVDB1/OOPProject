@@ -31,7 +31,7 @@
             <ColumnConstraints hgrow="NEVER" prefWidth="148" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints prefHeight="150.0" vgrow="NEVER" />
+          <RowConstraints prefHeight="148.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
             <AnchorPane prefHeight="148.0" prefWidth="148.0" styleClass="tile">
@@ -57,37 +57,37 @@
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="Textstreet06" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet06" prefHeight="25.0" prefWidth="61.0" styleClass="zone3" AnchorPane.bottomAnchor="0.0" />
+                  <Pane fx:id="Colorstreet06" prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="3">
                <children>
                   <Label fx:id="Textstreet07" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet07" prefHeight="25.0" prefWidth="61.0" styleClass="zone3" AnchorPane.bottomAnchor="0.0" />
+                  <Pane fx:id="Colorstreet07" prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="4">
                <children>
                   <Label fx:id="Textstreet08" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet08" prefHeight="25.0" prefWidth="61.0" styleClass="zone3" AnchorPane.bottomAnchor="0.0" />
+                  <Pane fx:id="Colorstreet08" prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="6">
                <children>
                   <Label fx:id="Textstreet09" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet09" prefHeight="25.0" prefWidth="61.0" styleClass="zone4" AnchorPane.bottomAnchor="0.0" />
+                  <Pane fx:id="Colorstreet09" prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="8">
                <children>
                   <Label fx:id="Textstreet10" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet10" prefHeight="25.0" prefWidth="61.0" styleClass="zone4" AnchorPane.bottomAnchor="0.0" />
+                  <Pane fx:id="Colorstreet10" prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="9">
                <children>
                   <Label fx:id="Textstreet11" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet11" prefHeight="25.0" prefWidth="61.0" styleClass="zone4" AnchorPane.bottomAnchor="0.0" />
+                  <Pane fx:id="Colorstreet11" prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="5">
@@ -125,15 +125,18 @@
       </GridPane>
    </top>
    <center>
-      <StackPane fx:id="center" BorderPane.alignment="CENTER">
+      <StackPane id="center" fx:id="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="549.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="center" prefHeight="200.0" prefWidth="200.0">
+            <ImageView fitHeight="547.0" fitWidth="547.0" pickOnBounds="true">
+               <image>
+                  <Image url="@assets/moneyBackground.jpg" />
+               </image>
+               <StackPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </StackPane.margin>
+            </ImageView>
+            <AnchorPane prefHeight="549.0" prefWidth="549.0" styleClass="invisble">
                <children>
-                  <ImageView fitHeight="549.0" fitWidth="549.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@assets/moneyBackground.jpg" />
-                     </image>
-                  </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="274.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" rotate="35.0">
                      <image>
                         <Image url="@assets/Mr-Monopoly.png" />
@@ -147,6 +150,28 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="549.0">
+               <children>
+                  <ImageView fitWidth="90.0" layoutX="230.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0">
+                     <image>
+                        <Image url="@assets/Mr-Monopoly.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="549.0" fitWidth="500.0" layoutX="25.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/logo.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ImageView>
+                  <AnchorPane id="temp" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="200.0" AnchorPane.bottomAnchor="124.5" AnchorPane.leftAnchor="174.5" AnchorPane.rightAnchor="174.5" AnchorPane.topAnchor="124.5">
+                     <children>
+                        <AnchorPane id="temp2" fx:id="card" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="180.0" styleClass="cardShow" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
@@ -234,27 +259,27 @@
                   <Insets right="25.0" />
                </GridPane.margin>
             </Label>
-            <Pane fx:id="Colorstreet05" prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+            <Pane fx:id="Colorstreet05" prefHeight="61.0" prefWidth="25.0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
                <GridPane.margin>
                   <Insets left="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet04" prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Pane fx:id="Colorstreet04" prefHeight="61.0" prefWidth="25.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet03" prefHeight="61.0" prefWidth="25.0" styleClass="zone2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Pane fx:id="Colorstreet03" prefHeight="61.0" prefWidth="25.0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet02" prefHeight="61.0" prefWidth="25.0" styleClass="zone1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+            <Pane fx:id="Colorstreet02" prefHeight="61.0" prefWidth="25.0" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet01" prefHeight="61.0" prefWidth="25.0" styleClass="zone1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+            <Pane fx:id="Colorstreet01" prefHeight="61.0" prefWidth="25.0" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets left="123.0" />
                </GridPane.margin>
@@ -353,32 +378,32 @@
                   <String fx:value="tile" />
                </styleClass>
             </Label>
-            <Pane fx:id="Colorstreet12" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone5">
+            <Pane fx:id="Colorstreet12" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0">
                <GridPane.margin>
                   <Insets right="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet13" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone5" GridPane.rowIndex="2">
+            <Pane fx:id="Colorstreet13" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet14" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone5" GridPane.rowIndex="3">
+            <Pane fx:id="Colorstreet14" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet15" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone6" GridPane.rowIndex="5">
+            <Pane fx:id="Colorstreet15" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet16" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone6" GridPane.rowIndex="6">
+            <Pane fx:id="Colorstreet16" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets right="123.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="Colorstreet17" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" styleClass="zone6" GridPane.rowIndex="8">
+            <Pane fx:id="Colorstreet17" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets right="123.0" />
                </GridPane.margin>
@@ -411,7 +436,7 @@
               <ColumnConstraints hgrow="NEVER" prefWidth="148" />
           </columnConstraints>
           <rowConstraints>
-              <RowConstraints prefHeight="150.0" vgrow="NEVER" />
+              <RowConstraints prefHeight="148.0" vgrow="NEVER" />
           </rowConstraints>
          <children>
             <AnchorPane prefHeight="148.0" prefWidth="148.0" styleClass="tile">
@@ -441,31 +466,31 @@
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="Textstreet22" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet22" prefHeight="25.0" prefWidth="61.0" styleClass="zone8" AnchorPane.topAnchor="0.0" />
+                  <Pane fx:id="Colorstreet22" prefHeight="25.0" prefWidth="61.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="3">
                <children>
                   <Label fx:id="Textstreet21" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet21" prefHeight="25.0" prefWidth="61.0" styleClass="zone8" AnchorPane.topAnchor="0.0" />
+                  <Pane fx:id="Colorstreet21" prefHeight="25.0" prefWidth="61.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="6">
                <children>
                   <Label fx:id="Textstreet20" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet20" prefHeight="25.0" prefWidth="61.0" styleClass="zone7" AnchorPane.topAnchor="0.0" />
+                  <Pane fx:id="Colorstreet20" prefHeight="25.0" prefWidth="61.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="8">
                <children>
                   <Label fx:id="Textstreet19" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet19" prefHeight="25.0" prefWidth="61.0" styleClass="zone7" AnchorPane.topAnchor="0.0" />
+                  <Pane fx:id="Colorstreet19" prefHeight="25.0" prefWidth="61.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="9">
                <children>
                   <Label fx:id="Textstreet18" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet18" prefHeight="25.0" prefWidth="61.0" styleClass="zone7" AnchorPane.topAnchor="0.0" />
+                  <Pane fx:id="Colorstreet18" prefHeight="25.0" prefWidth="61.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="61.0" styleClass="tile" GridPane.columnIndex="2">

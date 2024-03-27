@@ -4,27 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Area {
-    private int pos;
+    private String id;
     private String color;
-    private List<Street> streets;
-    private int housePrice;
 
-    public Area(int pos, String color, int housePrice) {
-        this.pos = pos;
+    public Area(String id, String color) {
+        this.id = id;
         this.color = color;
-        this.housePrice = housePrice;
-        streets = new ArrayList<>();
     }
 
-    public void addStreet(Street street) {
-        streets.add(street);
+    public String getColor(){
+        return color;
     }
-    public List<Street> getStreets() {
-        return null;
-    }
-
-    public int getHousePrice() {
-        return 0;
-    }
-
 }
