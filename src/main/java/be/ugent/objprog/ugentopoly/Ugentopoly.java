@@ -13,11 +13,11 @@ import java.io.IOException;
 public class Ugentopoly extends Application {
     @Override
     public void start(Stage stage) throws IOException{
-        final Dice dice = new Dice();
+        //final Dice dice = new Dice();
 
-        Button btn = new Button();
-        btn.setText("Rol dobbelstenen");
-        btn.setOnAction(event -> dice.roll(t -> System.out.println("Klaar met rollen")));
+        //Button btn = new Button();
+        //btn.setText("Rol dobbelstenen");
+        //btn.setOnAction(event -> dice.roll(t -> System.out.println("Klaar met rollen")));
 
         FXMLLoader fxmlLoader = new FXMLLoader(Ugentopoly.class.getResource("Ugentopoly.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
