@@ -8,4 +8,12 @@ public abstract class Tile {
         this.position = position;
         this.id = id;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

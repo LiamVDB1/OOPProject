@@ -18,7 +18,13 @@ public class RailwayCard extends TileCard{
     }
 
     public void initalizeUI(){
-        ImageView image = makeImage();
+        ImageView image = makeImage("railway.png");
+
+        image.setFitWidth(100);
+        AnchorPane.setTopAnchor(image, 20.0);
+        AnchorPane.setLeftAnchor(image, 37.5);
+        AnchorPane.setRightAnchor(image, 37.5);
+
         //Label naam = everyLabel(railway.getId());
         Label naam = everyLabel("Rtest");
         AnchorPane.setTopAnchor(naam, 140.0);
@@ -29,28 +35,6 @@ public class RailwayCard extends TileCard{
 
 
         this.getChildren().addAll(image, naam, kostprijs);
-    }
-
-    private ImageView makeImage(){
-        try (InputStream input = getClass().getResourceAsStream("assets/railway.png")){
-            if (input == null) {throw new NullPointerException();}
-            Image image = new Image(input);
-            ImageView imageView = new ImageView(image);
-
-            imageView.setPreserveRatio(true);
-            imageView.setFitWidth(100);
-
-            AnchorPane.setTopAnchor(imageView, 20.0);
-            AnchorPane.setLeftAnchor(imageView, 37.5);
-            AnchorPane.setRightAnchor(imageView, 37.5);
-
-            return imageView;
-        } catch (IOException e) {
-            System.err.println("Error railway.png not in assets folder");
-        } catch (NullPointerException e){
-            System.err.println("Error railway.png not found in asserts folder");
-        }
-        return null;
     }
 
 }

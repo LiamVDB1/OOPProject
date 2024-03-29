@@ -5,7 +5,7 @@ BorderPane {
     -fx-font-weight: bold;
 }
 .cardShow {
-    -fx-font-size: 15;
+    -fx-font-size: 16;
 }
 .upsideDown {
     -fx-rotate: 180;

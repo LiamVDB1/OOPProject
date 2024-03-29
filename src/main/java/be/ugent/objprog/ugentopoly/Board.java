@@ -60,18 +60,18 @@ public class Board {
     }
     private void fillProperties(GridPane grid, Properties properties){
         for (Node node : grid.getChildren()) {
-            if (node instanceof Label label && node.getId() != null) {
+            if (node instanceof Label label && node.getId() != null && node.getId().startsWith("Text")){
                 label.setText(idToProperty.get("tile." + label.getId().substring(4)));
 
-            } else if (node instanceof Pane pane && pane.getId() != null){
+            } else if (node instanceof Pane pane && pane.getId() != null && pane.getId().startsWith("Color")){
                 String id = "tile." + pane.getId().substring(5);
                 Area area = idToStreet.get(id).getArea();
                 pane.setStyle("-fx-background-color: " + area.getColor() + ";");
             } else if (node instanceof Parent parent) {
                 for (Node child : parent.getChildrenUnmodifiable()) {
-                    if (child instanceof Label label && child.getId() != null) {
+                    if (child instanceof Label label && child.getId() != null && child.getId().startsWith("Text")){
                         label.setText(idToProperty.get("tile." + label.getId().substring(4)));
-                    } else if (child instanceof Pane pane && pane.getId() != null) {
+                    } else if (child instanceof Pane pane && pane.getId() != null && pane.getId().startsWith("Color")){
                         String id = "tile." + pane.getId().substring(5);
                         Area area = idToStreet.get(id).getArea();
                         pane.setStyle("-fx-background-color: " + area.getColor() + ";");
