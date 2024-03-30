@@ -6,4 +6,13 @@ public class Utility extends Tile{
         super(position, id);
         this.cost = cost;
     }
+
+    @Override
+    public TileCard getCard() {
+        return new UtilityCard(this);
+    }
+
+    public int getCost(){
+        return cost;
+    }
 }

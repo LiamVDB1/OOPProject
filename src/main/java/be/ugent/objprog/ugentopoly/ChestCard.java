@@ -21,8 +21,7 @@ public class ChestCard extends TileCard{
         AnchorPane.setLeftAnchor(image, 25.0);
         AnchorPane.setRightAnchor(image, 25.0);
 
-        //Label name = everyLabel(chest.getId());
-        Label name = everyLabel("Chest");
+        Label name = everyLabel(chest.getText());
         AnchorPane.setTopAnchor(name, 180.0);
 
         this.getChildren().addAll(image, name);

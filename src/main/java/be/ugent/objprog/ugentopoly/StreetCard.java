@@ -22,17 +22,14 @@ public class StreetCard extends TileCard{
         Pane colorPane = makeColorPane();
 
         // Labels maken
-        //Label name = everyLabel(street.getId());
-        Label name = everyLabel("Test");
-        AnchorPane.setTopAnchor(name, 70.0);
+        Label name = everyLabel(street.getText());
+        AnchorPane.setTopAnchor(name, 80.0);
 
-        //Label kostPrijs = everyLabel("KostPrijs: € " + street.getKostPrijs());
-        Label kostPrijs = everyLabel("KostPrijs: € 100");
-        AnchorPane.setTopAnchor(kostPrijs, 140.0);
+        Label kostPrijs = everyLabel("KostPrijs: € " + street.getCost());
+        AnchorPane.setTopAnchor(kostPrijs, 150.0);
 
-        //Label huur = everyLabel("Huur: € "+ street.getHuur());
-        Label huur = everyLabel("Huur: 10");
-        AnchorPane.setTopAnchor(huur, 190.0);
+        Label huur = everyLabel("Huur: € "+ street.getRent());
+        AnchorPane.setTopAnchor(huur, 200.0);
 
         this.getChildren().addAll(colorPane, name, kostPrijs, huur);
     }
@@ -46,8 +43,7 @@ public class StreetCard extends TileCard{
         AnchorPane.setLeftAnchor(colorPane, 0.0);
         AnchorPane.setRightAnchor(colorPane, 0.0);
 
-        //colorPane.setStyle("-fx-background-color: " + street.getColor() + ";");
-        colorPane.setStyle("-fx-background-color: " + " #ff0000" + ";");
+        colorPane.setStyle("-fx-background-color: " + street.getColor() + ";");
         return colorPane;
     }
 }

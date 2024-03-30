@@ -1,8 +1,10 @@
 package be.ugent.objprog.ugentopoly;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
@@ -28,11 +30,14 @@ public class UgentopolyController{
     @FXML GridPane  right;
     @FXML GridPane bottom;
 
-    @FXML AnchorPane card;
+    @FXML AnchorPane cardPane;
+
+    @FXML AnchorPane tileShow;
+    @FXML AnchorPane boardShow;
 
     public void initialize() {
         //Bord initaliseren
-        board = new Board(this.borderPane, this.top, this.left, this.center, this.right, this.bottom);
+        board = new Board(this.borderPane, this.top, this.left, this.center, this.right, this.bottom, this.cardPane, this.boardShow, this.tileShow);
 
         //XML File inladen
         try (InputStream input = UgentopolyController.class.getResourceAsStream("ugentopoly.deel1.xml")) {
@@ -66,9 +71,17 @@ public class UgentopolyController{
         } catch (IOException ex ){
             System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
         }
-
-        //Card inladen
-        card.getChildren().add(new RailwayCard(null));
     }
 
+    @FXML
+    public void handle(MouseEvent event){
+        if (event.getSource() instanceof AnchorPane ap){
+            board.showTile(ap.getId());
+        }
+    }
+
+    @FXML
+    public void toBoard(MouseEvent event){
+        board.showBoard();
+    }
 }

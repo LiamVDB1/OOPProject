@@ -9,5 +9,16 @@ public class Railway extends Tile{
         this.rent = rent;
     }
 
+    public int getCost(){
+        return cost;
+    }
 
+    public int getRent(){
+        return rent;
+    }
+
+    @Override
+    public TileCard getCard() {
+        return new RailwayCard(this);
+    }
 }

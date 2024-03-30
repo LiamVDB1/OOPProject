@@ -25,16 +25,16 @@ public class RailwayCard extends TileCard{
         AnchorPane.setLeftAnchor(image, 37.5);
         AnchorPane.setRightAnchor(image, 37.5);
 
-        //Label naam = everyLabel(railway.getId());
-        Label naam = everyLabel("Rtest");
+        Label naam = everyLabel(railway.getText());
         AnchorPane.setTopAnchor(naam, 140.0);
 
-        //Label kostprijs = everyLabel("Kostprijs: € " + railway.getCost());
-        Label kostprijs = everyLabel("Kostprijs: € " + 100);
-        AnchorPane.setTopAnchor(kostprijs, 200.0);
+        Label kostprijs = everyLabel("Kostprijs: € " + railway.getCost());
+        AnchorPane.setTopAnchor(kostprijs, 225.0);
 
+        Label huur = everyLabel("Huur: € " + railway.getRent());
+        AnchorPane.setTopAnchor(huur, 190.0);
 
-        this.getChildren().addAll(image, naam, kostprijs);
+        this.getChildren().addAll(image, naam, huur, kostprijs);
     }
 
 }

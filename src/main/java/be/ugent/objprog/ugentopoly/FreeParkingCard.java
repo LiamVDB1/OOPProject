@@ -23,7 +23,7 @@ public class FreeParkingCard extends TileCard{
 
         //Label name = everyLabel(freeParking.getId());
         Label name = everyLabel("Free Parking");
-        AnchorPane.setTopAnchor(name, 180.0);
+        AnchorPane.setTopAnchor(name, 190.0);
 
         this.getChildren().addAll(image, name);
     }

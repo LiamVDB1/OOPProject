@@ -20,8 +20,7 @@ public class JailCard extends TileCard{
         AnchorPane.setLeftAnchor(image, 30.0);
         AnchorPane.setRightAnchor(image, 20.0);
 
-        //Label naam = everyLabel(jail.getId());
-        Label naam = everyLabel("Jail");
+        Label naam = everyLabel(jail.getText());
         AnchorPane.setTopAnchor(naam, 220.0);
 
         this.getChildren().addAll(image, naam);

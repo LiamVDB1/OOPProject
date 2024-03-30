@@ -6,4 +6,13 @@ public class Tax extends Tile{
         super(position, id);
         this.amount = amount;
     }
+
+    public int getAmount(){
+        return amount;
+    }
+
+    @Override
+    public TileCard getCard() {
+        return new TaxCard(this);
+    }
 }

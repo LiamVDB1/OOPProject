@@ -20,9 +20,11 @@ public class TaxCard extends TileCard{
         AnchorPane.setLeftAnchor(image, 25.0);
         AnchorPane.setRightAnchor(image, 25.0);
 
-        //Label name = everyLabel(tax.getId());
-        Label name = everyLabel("Tax");
+        Label name = everyLabel(tax.getText());
         AnchorPane.setTopAnchor(name, 190.0);
+
+        Label cost = everyLabel("Amount: € " + tax.getAmount());
+        AnchorPane.setTopAnchor(cost, 225.0);
 
         this.getChildren().addAll(image, name);
     }

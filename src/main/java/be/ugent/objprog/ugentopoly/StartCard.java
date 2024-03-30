@@ -20,8 +20,7 @@ public class StartCard extends TileCard{
         AnchorPane.setLeftAnchor(image, 25.0);
         AnchorPane.setRightAnchor(image, 25.0);
 
-        //Label name = everyLabel(start.getId());
-        Label name = everyLabel("Start");
+        Label name = everyLabel(start.getText());
         AnchorPane.setTopAnchor(name, 210.0);
 
         this.getChildren().addAll(image, name);

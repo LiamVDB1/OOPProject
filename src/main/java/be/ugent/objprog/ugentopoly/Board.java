@@ -3,10 +3,7 @@ package be.ugent.objprog.ugentopoly;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import org.jdom2.DataConversionException;
 import org.jdom2.Element;
 
@@ -21,9 +18,16 @@ public class Board {
     private GridPane right;
     private GridPane bottom;
 
-    //id naar Property mappen en id naar Tile mappen
+    private AnchorPane cardPane;
+
+    private AnchorPane boardShow;
+    private AnchorPane tileShow;
+    private boolean tilesShown;
+
+    //id naar Property, Tile en Street mappen
     private Map<String, String> idToProperty;
     private Map<String, Street> idToStreet;
+    private Map<String, Tile> idToTile;
 
     //Settings van het bord bijhouden
     private int startBalance;
@@ -33,17 +37,25 @@ public class Board {
     private Area[] areas;
     private Tile[] tiles;
 
-    public Board(BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom) {
+    public Board(BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow){
         this.board = board;
         this.top = top;
         this.left = left;
         this.center = center;
         this.right = right;
         this.bottom = bottom;
+
+        this.cardPane = cardPane;
+        this.boardShow = boardShow;
+        this.tileShow = tileShow;
+
         idToProperty = new HashMap<>();
         idToStreet = new HashMap<>();
+        idToTile = new HashMap<>();
         areas = new Area[8];
         tiles = new Tile[40];
+
+        tilesShown = false;
     }
 
     public void setBalSal(int balance, int salary){
@@ -60,14 +72,7 @@ public class Board {
     }
     private void fillProperties(GridPane grid, Properties properties){
         for (Node node : grid.getChildren()) {
-            if (node instanceof Label label && node.getId() != null && node.getId().startsWith("Text")){
-                label.setText(idToProperty.get("tile." + label.getId().substring(4)));
-
-            } else if (node instanceof Pane pane && pane.getId() != null && pane.getId().startsWith("Color")){
-                String id = "tile." + pane.getId().substring(5);
-                Area area = idToStreet.get(id).getArea();
-                pane.setStyle("-fx-background-color: " + area.getColor() + ";");
-            } else if (node instanceof Parent parent) {
+            if (node instanceof Parent parent) {
                 for (Node child : parent.getChildrenUnmodifiable()) {
                     if (child instanceof Label label && child.getId() != null && child.getId().startsWith("Text")){
                         label.setText(idToProperty.get("tile." + label.getId().substring(4)));
@@ -85,6 +90,16 @@ public class Board {
             if (key.startsWith("tile.")){
                 idToProperty.put(key, properties.getProperty(key));
             }
+        }
+        tileFill();
+    }
+
+    private void tileFill(){
+        for (int i = 0; i < tiles.length; i++){
+            if (tiles[i] != null){
+                tiles[i].setText(idToProperty.get(tiles[i].getId()));
+            }
+            idToTile.put(tiles[i].getId(), tiles[i]);
         }
     }
 
@@ -139,6 +154,35 @@ public class Board {
                 } catch (DataConversionException e) {
                     System.err.println("Error in XML File, position is not Integer");
                 }
+            }
+        }
+    }
+
+    public void showTile(String id){
+        Tile tile = idToTile.get("tile." + id);
+        if (tile != null){
+            cardPane.getChildren().clear();
+            cardPane.getChildren().add(tile.getCard());
+        }
+        swapPanes(true);
+    }
+
+    public void showBoard(){
+        swapPanes(false);
+    }
+
+    public void swapPanes(boolean to_tile){
+        if (tilesShown){
+            if (! to_tile){
+                tileShow.getStyleClass().add("invisble");
+                boardShow.getStyleClass().remove("invisble");
+                tilesShown = false;
+            }
+        } else {
+            if (to_tile) {
+                tileShow.getStyleClass().remove("invisble");
+                boardShow.getStyleClass().add("invisble");
+                tilesShown = true;
             }
         }
     }

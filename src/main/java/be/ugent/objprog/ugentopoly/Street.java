@@ -19,4 +19,17 @@ public class Street extends Tile {
     public String getColor(){
         return getArea().getColor();
     }
+
+    public int getCost(){
+        return cost;
+    }
+
+    public int getRent(){
+        return rent;
+    }
+
+    @Override
+    public TileCard getCard() {
+        return new StreetCard(this);
+    }
 }
