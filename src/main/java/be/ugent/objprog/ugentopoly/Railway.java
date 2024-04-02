@@ -18,7 +18,7 @@ public class Railway extends Tile{
     }
 
     @Override
-    public TileCard getCard() {
-        return new RailwayCard(this);
+    public TileMidCard getMidCard() {
+        return new RailwayMidCard(this);
     }
 }

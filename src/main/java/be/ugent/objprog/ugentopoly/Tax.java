@@ -12,7 +12,7 @@ public class Tax extends Tile{
     }
 
     @Override
-    public TileCard getCard() {
-        return new TaxCard(this);
+    public TileMidCard getMidCard() {
+        return new TaxMidCard(this);
     }
 }

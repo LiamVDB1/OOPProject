@@ -6,7 +6,7 @@ public class GoToJail extends Tile{
     }
 
     @Override
-    public TileCard getCard() {
-        return new GoToJailCard(this);
+    public TileMidCard getMidCard() {
+        return new GoToJailMidCard(this);
     }
 }

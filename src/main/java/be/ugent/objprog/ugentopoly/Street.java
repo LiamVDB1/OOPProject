@@ -29,7 +29,7 @@ public class Street extends Tile {
     }
 
     @Override
-    public TileCard getCard() {
-        return new StreetCard(this);
+    public TileMidCard getMidCard() {
+        return new StreetMidCard(this);
     }
 }

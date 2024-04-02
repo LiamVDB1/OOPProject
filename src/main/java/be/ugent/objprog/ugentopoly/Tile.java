@@ -21,5 +21,7 @@ public abstract class Tile {
     public void setText(String text){ this.text = text; }
     public String getText(){ return text;}
 
-    public abstract TileCard getCard();
+    public abstract TileMidCard getMidCard();
+
+    //public abstract TileCard getCard();
 }

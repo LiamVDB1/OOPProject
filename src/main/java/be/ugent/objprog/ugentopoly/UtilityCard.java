@@ -1,39 +1,26 @@
 package be.ugent.objprog.ugentopoly;
 
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.Group;
 
 public class UtilityCard extends TileCard{
     Utility utility;
-    char utilityNr;
-    public UtilityCard(Utility utility){
-        super();
+    int nr;
+    public UtilityCard(Utility utility, GridPane parent, int pos, boolean vertical, boolean LT){
+        super(parent, pos, vertical, LT);
         this.utility = utility;
-        this.utilityNr = utility.getId().charAt(utility.getId().length() - 1);
+        this.nr = utility.getNr();
         initializeUI();
     }
 
     public void initializeUI(){
-        ImageView image = null;
-        if (utilityNr == '1'){
-            image = makeImage("utility1.png");
-            AnchorPane.setTopAnchor(image, 60.0);
+        Group image = null;
+        if (nr == 1) {
+            image = MakeImage("utility1.png", 33, 5.7);
         } else {
-            image = makeImage("utility2.png");
-            AnchorPane.setTopAnchor(image, 40.0);
+            image = MakeImage("utility2.png", 51, 20.5);
         }
 
-        image.setFitWidth(150);
-        AnchorPane.setLeftAnchor(image, 12.5);
-        AnchorPane.setRightAnchor(image, 12.5);
-
-        Label name = everyLabel(utility.getText());
-        AnchorPane.setTopAnchor(name, 170.0);
-
-        Label cost = everyLabel("Amount: € " + utility.getCost());
-        AnchorPane.setTopAnchor(cost, 215.0);
-
-        this.getChildren().addAll(image, name, cost);
+        this.getChildren().addAll(image);
     }
 }

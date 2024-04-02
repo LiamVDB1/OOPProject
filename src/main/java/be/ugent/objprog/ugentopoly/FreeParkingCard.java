@@ -1,29 +1,20 @@
 package be.ugent.objprog.ugentopoly;
 
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.Group;
 
-public class FreeParkingCard extends TileCard{
+public class FreeParkingCard extends CornerTileCard{
     FreeParking freeParking;
-
-    public FreeParkingCard(FreeParking freeParking){
-        super();
+    public FreeParkingCard(FreeParking freeParking, GridPane parent, int pos){
+        super(parent, pos);
         this.freeParking = freeParking;
         initializeUI();
     }
 
     public void initializeUI(){
-        ImageView image = makeImage("free_parking.png");
+        Group image = MakeImage("free_parking.png", , 30.0);
 
-        image.setFitWidth(125);
-        AnchorPane.setTopAnchor(image, 30.0);
-        AnchorPane.setLeftAnchor(image, 25.0);
-        AnchorPane.setRightAnchor(image, 25.0);
-
-        //Label name = everyLabel(freeParking.getId());
-        Label name = everyLabel("Free Parking");
-        AnchorPane.setTopAnchor(name, 190.0);
+        Group name = MakeName("Free Parking", 125, 190, 0.0, 30.0);
 
         this.getChildren().addAll(image, name);
     }

@@ -6,7 +6,7 @@ public class Start extends Tile {
     }
 
     @Override
-    public TileCard getCard() {
-        return new StartCard(this);
+    public TileMidCard getMidCard() {
+        return new StartMidCard(this);
     }
 }

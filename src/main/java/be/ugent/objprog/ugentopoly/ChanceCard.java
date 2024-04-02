@@ -1,27 +1,21 @@
 package be.ugent.objprog.ugentopoly;
 
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Group;
+import javafx.scene.layout.GridPane;
 
 public class ChanceCard extends TileCard{
     Chance chance;
-    public ChanceCard(Chance chance){
-        super();
+
+    public ChanceCard(Chance chance, GridPane parent, int pos, boolean vertical, boolean LT){
+        super(parent, pos, vertical, LT);
         this.chance = chance;
         initializeUI();
     }
 
     public void initializeUI(){
-        ImageView image = makeImage("chance.png");
+        Group image = MakeImage("chance.png", 46, 30.0);
 
-        image.setFitWidth(75);
-        AnchorPane.setTopAnchor(image, 30.0);
-        AnchorPane.setLeftAnchor(image, 50.0);
-        AnchorPane.setRightAnchor(image, 50.0);
-
-        Label name = everyLabel(chance.getText());
-        AnchorPane.setTopAnchor(name, 200.0);
+        Group name = MakeName("Kans", 118, 61, 0.0, 30.0);
 
         this.getChildren().addAll(image, name);
     }

@@ -6,7 +6,7 @@ public class Chance extends Tile{
     }
 
     @Override
-    public TileCard getCard() {
-        return new ChanceCard(this);
+    public TileMidCard getMidCard() {
+        return new ChanceMidCard(this);
     }
 }

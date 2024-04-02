@@ -6,7 +6,7 @@ public class FreeParking extends Tile{
     }
 
     @Override
-    public TileCard getCard() {
-        return new FreeParkingCard(this);
+    public TileMidCard getMidCard() {
+        return new FreeParkingMidCard(this);
     }
 }

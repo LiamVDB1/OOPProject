@@ -4,9 +4,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
 
-public class GoToJailCard extends TileCard{
+public class GoToJailMidCard extends TileMidCard {
     GoToJail goToJail;
-    public GoToJailCard(GoToJail goToJail){
+    public GoToJailMidCard(GoToJail goToJail){
         super();
         this.goToJail = goToJail;
         initializeUI();

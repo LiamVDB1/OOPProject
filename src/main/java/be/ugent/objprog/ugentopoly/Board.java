@@ -162,7 +162,7 @@ public class Board {
         Tile tile = idToTile.get("tile." + id);
         if (tile != null){
             cardPane.getChildren().clear();
-            cardPane.getChildren().add(tile.getCard());
+            cardPane.getChildren().add(tile.getMidCard());
         }
         swapPanes(true);
     }

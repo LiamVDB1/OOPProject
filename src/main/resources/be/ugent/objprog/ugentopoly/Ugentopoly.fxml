@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.TextFlow?>
 
 <BorderPane fx:id="borderPane" prefHeight="845.0" prefWidth="845.0" stylesheets="@ugentopoly.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ugent.objprog.ugentopoly.UgentopolyController">
    <top>
@@ -36,7 +37,7 @@
          <children>
             <AnchorPane fx:id="jail" onMouseClicked="#handle" prefHeight="148.0" prefWidth="148.0" styleClass="tile">
                <children>
-                  <ImageView fitHeight="133.0" fitWidth="67.0" layoutX="54.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" rotate="135.0">
+                  <ImageView fitHeight="86.0" layoutX="54.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" rotate="135.0">
                      <image>
                         <Image url="@assets/jail.png" />
                      </image>
@@ -52,12 +53,6 @@
                      </image>
                   </ImageView>
                   <Label fx:id="Textfreeparking" layoutX="48.0" layoutY="24.0" prefWidth="100.0" rotate="225.0" text="Label" textAlignment="CENTER" wrapText="true" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="street06" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handle" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="1">
-               <children>
-                  <Label fx:id="Textstreet06" alignment="CENTER" layoutX="-31.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="90.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet06" prefHeight="25.0" prefWidth="61.0" AnchorPane.bottomAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="street07" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handle" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="3">
@@ -121,6 +116,10 @@
                   </ImageView>
                </children>
             </AnchorPane>
+            <AnchorPane prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="1">
+               <children>
+                  <TextFlow prefHeight="123.0" prefWidth="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
          </children>
       </GridPane>
    </top>
@@ -196,10 +195,12 @@
          <children>
             <AnchorPane fx:id="street05" onMouseClicked="#handle" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="Textstreet05" alignment="CENTER" prefHeight="61.0" prefWidth="123.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0" />
-                  <Pane fx:id="Colorstreet05" prefHeight="61.0" prefWidth="25.0" AnchorPane.rightAnchor="0.0" />
-               </children>
-            </AnchorPane>
+                  <ImageView fx:id="utility11" fitHeight="33.342" fitWidth="138.0" layoutX="10.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0027008056640625" AnchorPane.topAnchor="13.0">
+                     <image>
+                        <Image url="@assets/utility1.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
             <AnchorPane fx:id="street04" onMouseClicked="#handle" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="Textstreet04" alignment="CENTER" prefHeight="61.0" prefWidth="123.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0" />
@@ -251,7 +252,7 @@
             <AnchorPane fx:id="chest" onMouseClicked="#handle" styleClass="tile" GridPane.rowIndex="7">
                <children>
                   <Label fx:id="Textchest" alignment="CENTER" layoutX="55.0" prefHeight="61.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0" />
-                  <ImageView fitHeight="41.0" fitWidth="148.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
+                  <ImageView fitHeight="41.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
                      <image>
                         <Image url="@assets/chest.png" />
                      </image>
@@ -284,17 +285,7 @@
               <RowConstraints prefHeight="61" vgrow="NEVER" />
           </rowConstraints>
          <children>
-            <AnchorPane fx:id="street12" onMouseClicked="#handle" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="Textstreet12" alignment="CENTER" prefHeight="61.0" prefWidth="123.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <styleClass>
-                        <String fx:value="upsideDown" />
-                        <String fx:value="tile" />
-                     </styleClass>
-                  </Label>
-                  <Pane fx:id="Colorstreet12" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <AnchorPane fx:id="street12" onMouseClicked="#handle" prefHeight="200.0" prefWidth="200.0" />
             <AnchorPane fx:id="chance" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handle" prefHeight="61.0" prefWidth="148.0" styleClass="tile" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="Textchance" alignment="CENTER" layoutX="118.0" layoutY="61.0" prefHeight="61.0" prefWidth="148.0" styleClass="upsideDown" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
@@ -348,20 +339,15 @@
                   <Pane fx:id="Colorstreet15" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="street16" onMouseClicked="#handle" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+            <AnchorPane fx:id="street16" onMouseClicked="#handle" prefHeight="200.0" prefWidth="200.0" styleClass="upsideDown" GridPane.rowIndex="6">
                <children>
-                  <Label fx:id="Textstreet16" alignment="CENTER" prefHeight="61.0" prefWidth="123.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <styleClass>
-                        <String fx:value="upsideDown" />
-                        <String fx:value="tile" />
-                     </styleClass>
-                  </Label>
+                  <Label fx:id="Textstreet16" alignment="CENTER" prefHeight="61.0" prefWidth="123.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <Pane fx:id="Colorstreet16" maxWidth="25.0" prefHeight="61.0" prefWidth="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="utility2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handle" prefHeight="61.0" prefWidth="148.0" styleClass="tile" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                <children>
-                  <ImageView fitHeight="51.0" fitWidth="148.0" layoutX="21.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <ImageView fitHeight="51.0" fitWidth="107.0" layoutX="21.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="upsideDown" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.5" AnchorPane.rightAnchor="20.5" AnchorPane.topAnchor="5.0">
                      <image>
                         <Image url="@assets/utility2.png" />
                      </image>
@@ -425,12 +411,7 @@
                   <Label fx:id="Textgotojail" layoutX="44.0" layoutY="79.0" prefWidth="100.0" rotate="-45.0" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="street22" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handle" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="1">
-               <children>
-                  <Label fx:id="Textstreet22" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />
-                  <Pane fx:id="Colorstreet22" prefHeight="25.0" prefWidth="61.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <AnchorPane fx:id="street22" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handle" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="1" />
             <AnchorPane fx:id="street21" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handle" prefHeight="148.0" prefWidth="61.0" GridPane.columnIndex="3">
                <children>
                   <Label fx:id="Textstreet21" alignment="CENTER" layoutX="-31.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="123.0" rotate="270.0" styleClass="tile" text="Label" textAlignment="CENTER" wrapText="true" />

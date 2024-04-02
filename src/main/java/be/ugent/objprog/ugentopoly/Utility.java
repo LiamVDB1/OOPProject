@@ -8,11 +8,15 @@ public class Utility extends Tile{
     }
 
     @Override
-    public TileCard getCard() {
-        return new UtilityCard(this);
+    public TileMidCard getMidCard() {
+        return new UtilityMidCard(this);
     }
 
     public int getCost(){
         return cost;
+    }
+
+    public int getNr(){
+        return Integer.parseInt(id.substring(id.length() - 1));
     }
 }

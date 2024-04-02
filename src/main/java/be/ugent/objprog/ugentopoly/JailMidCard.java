@@ -4,9 +4,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class JailCard extends TileCard{
+public class JailMidCard extends TileMidCard {
     private Jail jail;
-    public JailCard(Jail jail){
+    public JailMidCard(Jail jail){
         super();
         this.jail = jail;
         initializeUI();

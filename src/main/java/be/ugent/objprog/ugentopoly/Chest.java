@@ -6,7 +6,7 @@ public class Chest extends Tile{
     }
 
     @Override
-    public TileCard getCard() {
-        return new ChestCard(this);
+    public TileMidCard getMidCard() {
+        return new ChestMidCard(this);
     }
 }

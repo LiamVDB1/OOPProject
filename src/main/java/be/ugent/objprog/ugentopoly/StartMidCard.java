@@ -3,10 +3,10 @@ package be.ugent.objprog.ugentopoly;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-public class StartCard extends TileCard{
+public class StartMidCard extends TileMidCard {
     Start start;
 
-    public StartCard(Start start){
+    public StartMidCard(Start start){
         super();
         this.start = start;
         initializeUI();
