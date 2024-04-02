@@ -5,17 +5,23 @@ import javafx.scene.Group;
 
 public class FreeParkingCard extends CornerTileCard{
     FreeParking freeParking;
-    public FreeParkingCard(FreeParking freeParking, GridPane parent, int pos){
-        super(parent, pos);
+    int rot;
+    public FreeParkingCard(FreeParking freeParking, GridPane parent, int gridPos){
+        super(parent, gridPos);
         this.freeParking = freeParking;
+        //this.pos = freeParking.getPos();
+        this.pos = 20;
+        this.rot = rotCorner.get(pos);
         initializeUI();
     }
 
     public void initializeUI(){
-        //Group image = MakeImage("free_parking.png", , 30.0);
+        Group image = MakeImage("free_parking.png", 80,45);
 
-        //Group name = MakeName("Free Parking", 125, 190, 0.0, 30.0);
+        Group name = MakeName("Academisch kwartiertje", 90, 45);
 
-        //this.getChildren().addAll(image, name);
+        this.setRotate(rot);
+
+        this.getChildren().addAll(image, name);
     }
 }

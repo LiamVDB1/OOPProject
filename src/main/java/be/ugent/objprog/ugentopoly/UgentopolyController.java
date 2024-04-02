@@ -72,11 +72,6 @@ public class UgentopolyController{
             System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
         }
 
-        //TEMP
-        new StreetCard(null, top, 1, false, true);
-        new StreetCard(null, left, 0, true, true);
-        new StreetCard(null, right, 0, true, false);
-        new StreetCard(null, bottom, 1, false, false);
     }
 
     @FXML

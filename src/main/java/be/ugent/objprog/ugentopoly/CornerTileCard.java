@@ -24,11 +24,17 @@ public abstract class CornerTileCard extends AnchorPane {
         this.pos = pos;
         this.setPrefSize(148, 148);
 
+        if (Parent.getId().equals("top") || Parent.getId().equals("bottom")){
+            Parent.add(this, pos, 0);
+        } else {
+            Parent.add(this, 0, pos);
+        }
+
         rotCorner = Map.of(
-                0, 45,
-                10, 135,
-                20, 225,
-                30, 315
+                0, 0,
+                10, 90,
+                20, 180,
+                30, 270
         );
     }
 
@@ -63,24 +69,22 @@ public abstract class CornerTileCard extends AnchorPane {
 
 
     //Double in plaats van double om null te kunnen gebruiken.
-    protected Group MakeName(String text, int width, int height, Double topAnchor, Double leftAnchor, Double rightAnchor, Double bottomAnchor, int rotate){
+    protected Group MakeName(String text, int width, int rotate){
         Label name = everyLabel(text);
         Group nameGroup = new Group(name);
 
-        name.setPrefSize(width, height);
+        name.setPrefWidth(width);
 
         name.setRotate(rotate);
 
-        AnchorPane.setTopAnchor(nameGroup, topAnchor);
-        AnchorPane.setLeftAnchor(nameGroup, leftAnchor);
-        AnchorPane.setRightAnchor(nameGroup, rightAnchor);
-        AnchorPane.setBottomAnchor(nameGroup, bottomAnchor);
+        AnchorPane.setLeftAnchor(nameGroup, 0.0);
+        AnchorPane.setBottomAnchor(nameGroup, 0.0);
 
         return nameGroup;
 
     }
 
-    protected Group MakeImage(String fileName, int fitHeight, Double topAnchor, Double leftAnchor, Double rightAnchor, Double bottomAnchor, int rotate){
+    protected Group MakeImage(String fileName, int fitHeight, int rotate){
         ImageView image = everyImage(fileName);
 
         Group imageGroup = new Group(image);
@@ -89,10 +93,8 @@ public abstract class CornerTileCard extends AnchorPane {
 
         image.setFitHeight(fitHeight);
 
-        AnchorPane.setTopAnchor(imageGroup, topAnchor);
-        AnchorPane.setLeftAnchor(imageGroup, leftAnchor);
-        AnchorPane.setRightAnchor(imageGroup, rightAnchor);
-        AnchorPane.setBottomAnchor(imageGroup, bottomAnchor);
+        AnchorPane.setTopAnchor(imageGroup, 0.0);
+        AnchorPane.setRightAnchor(imageGroup, 0.0);
 
         return imageGroup;
     }
