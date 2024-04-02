@@ -12,10 +12,10 @@ public class FreeParkingCard extends CornerTileCard{
     }
 
     public void initializeUI(){
-        Group image = MakeImage("free_parking.png", , 30.0);
+        //Group image = MakeImage("free_parking.png", , 30.0);
 
-        Group name = MakeName("Free Parking", 125, 190, 0.0, 30.0);
+        //Group name = MakeName("Free Parking", 125, 190, 0.0, 30.0);
 
-        this.getChildren().addAll(image, name);
+        //this.getChildren().addAll(image, name);
     }
 }
