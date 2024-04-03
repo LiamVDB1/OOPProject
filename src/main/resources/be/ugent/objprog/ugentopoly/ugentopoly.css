@@ -7,12 +7,8 @@ BorderPane {
 .cardShow {
     -fx-font-size: 16;
 }
-.upsideDown {
-    -fx-rotate: 180;
-}
 .tile:hover {
     -fx-background-color: rgba(253, 75, 75, 0.75);
-    -fx-font-size: 14;
 }
 #center {
     -fx-border-color: black;

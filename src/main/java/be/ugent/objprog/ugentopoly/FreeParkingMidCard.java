@@ -21,8 +21,7 @@ public class FreeParkingMidCard extends TileMidCard {
         AnchorPane.setLeftAnchor(image, 25.0);
         AnchorPane.setRightAnchor(image, 25.0);
 
-        //Label name = everyLabel(freeParking.getId());
-        Label name = everyLabel("Free Parking");
+        Label name = everyLabel(freeParking.getText());
         AnchorPane.setTopAnchor(name, 190.0);
 
         this.getChildren().addAll(image, name);

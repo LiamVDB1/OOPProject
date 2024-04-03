@@ -1,15 +1,11 @@
 package be.ugent.objprog.ugentopoly;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.Node;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -67,19 +63,20 @@ public class UgentopolyController{
         try (InputStream input = UgentopolyController.class.getResourceAsStream("ugentopoly.deel1.properties")){
             Properties properties = new Properties();
             properties.load(input);
-            board.gridLabelFiller(properties);
+            board.propertySetup(properties);
         } catch (IOException ex ){
             System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
         }
 
+        board.boardFiller();
     }
 
-    @FXML
+    /*@FXML
     public void handle(MouseEvent event){
         if (event.getSource() instanceof AnchorPane ap){
             board.showTile(ap.getId());
         }
-    }
+    }*/
 
     @FXML
     public void toBoard(){

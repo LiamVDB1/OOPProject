@@ -1,8 +1,5 @@
 package be.ugent.objprog.ugentopoly;
 
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import org.jdom2.DataConversionException;
 import org.jdom2.Element;
@@ -24,11 +21,6 @@ public class Board {
     private AnchorPane tileShow;
     private boolean tilesShown;
 
-    //id naar Property, Tile en Street mappen
-    private Map<String, String> idToProperty;
-    private Map<String, Street> idToStreet;
-    private Map<String, Tile> idToTile;
-
     //Settings van het bord bijhouden
     private int startBalance;
     private int startSalary;
@@ -36,6 +28,10 @@ public class Board {
     //Areas en Tiles bijhouden, met posities.
     private Area[] areas;
     private Tile[] tiles;
+
+    private Tile prevTile;
+
+    private Map<Integer, GridPane> posToParent;
 
     public Board(BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow){
         this.board = board;
@@ -49,13 +45,27 @@ public class Board {
         this.boardShow = boardShow;
         this.tileShow = tileShow;
 
-        idToProperty = new HashMap<>();
-        idToStreet = new HashMap<>();
-        idToTile = new HashMap<>();
+        this.prevTile = null;
+
         areas = new Area[8];
         tiles = new Tile[40];
 
         tilesShown = false;
+
+        posToParent = new HashMap<>();
+        for (int i = 0; i < 40; i++){
+            if (i == 0){
+                posToParent.put(i, bottom);
+            } else if (i < 10){
+                posToParent.put(i, left);
+            } else if (i < 21){
+                posToParent.put(i, top);
+            } else if (i < 30){
+                posToParent.put(i, right);
+            } else {
+                posToParent.put(i, bottom);
+            }
+        }
     }
 
     public void setBalSal(int balance, int salary){
@@ -63,43 +73,9 @@ public class Board {
         startSalary = salary;
     }
 
-    public void gridLabelFiller(Properties properties){
-        propertyFill(properties);
-        fillProperties(left, properties);
-        fillProperties(right, properties);
-        fillProperties(top, properties);
-        fillProperties(bottom, properties);
-    }
-    private void fillProperties(GridPane grid, Properties properties){
-        for (Node node : grid.getChildren()) {
-            if (node instanceof Parent parent) {
-                for (Node child : parent.getChildrenUnmodifiable()) {
-                    if (child instanceof Label label && child.getId() != null && child.getId().startsWith("Text")){
-                        label.setText(idToProperty.get("tile." + label.getId().substring(4)));
-                    } else if (child instanceof Pane pane && pane.getId() != null && pane.getId().startsWith("Color")){
-                        String id = "tile." + pane.getId().substring(5);
-                        Area area = idToStreet.get(id).getArea();
-                        pane.setStyle("-fx-background-color: " + area.getColor() + ";");
-                    }
-                }
-            }
-        }
-    }
-    private void propertyFill(Properties properties){
-        for (String key : properties.stringPropertyNames()){
-            if (key.startsWith("tile.")){
-                idToProperty.put(key, properties.getProperty(key));
-            }
-        }
-        tileFill();
-    }
-
-    private void tileFill(){
-        for (int i = 0; i < tiles.length; i++){
-            if (tiles[i] != null){
-                tiles[i].setText(idToProperty.get(tiles[i].getId()));
-            }
-            idToTile.put(tiles[i].getId(), tiles[i]);
+    public void propertySetup(Properties properties){
+        for (Tile tile : tiles){
+            tile.setText(properties.getProperty(tile.getId()));
         }
     }
 
@@ -138,16 +114,12 @@ public class Board {
                 "area8", areas[7]
         );
         List<Element> children = streets.getChildren("tile");
-        for (int i = 0; i < children.size(); i++) {
-            Element child = children.get(i);
+        for (Element child : children) {
             String type = child.getAttributeValue("type");
 
             TileFactory factory = factories.get(type);
             if (factory != null) {
-                Tile tile = factory.createTile(child, areaMap);
-                if (type.equals("STREET")){
-                    idToStreet.put(child.getAttributeValue("id"), (Street) tile);
-                }
+                Tile tile = factory.createTile(child, areaMap, posToParent, this);
                 try {
                     int position = child.getAttribute("position").getIntValue();
                     this.tiles[position] = tile;
@@ -158,17 +130,44 @@ public class Board {
         }
     }
 
-    public void showTile(String id){
-        Tile tile = idToTile.get("tile." + id);
-        if (tile != null){
-            cardPane.getChildren().clear();
-            cardPane.getChildren().add(tile.getMidCard());
+    public void boardFiller(){
+        tiles[0].setGridPos(0);
+        tiles[0].makeCard();
+        for (int i = 0; i < 9; i ++){
+            tiles[i + 1].setGridPos(8 - i);
+            tiles[i + 1].makeCard();
         }
-        swapPanes(true);
+        for (int i = 0; i < 11; i ++){
+            tiles[i + 10].setGridPos(i);
+            tiles[i + 10].makeCard();
+        }
+        for (int i = 8; i >= 0; i --){
+            tiles[i + 21].setGridPos(i);
+            tiles[i + 21].makeCard();
+        }
+        for (int i =0; i < 10; i ++){
+            tiles[i + 30].setGridPos(10 - i);
+            tiles[i + 30].makeCard();
+        }
+    }
+
+    public void showTile(Tile tile){
+        if (tile != null){
+            if (tile == prevTile){
+                showBoard();
+                prevTile = null;
+            } else {
+                cardPane.getChildren().clear();
+                cardPane.getChildren().add(tile.getMidCard());
+                swapPanes(true);
+                prevTile = tile;
+            }
+        }
     }
 
     public void showBoard(){
         swapPanes(false);
+        prevTile = null;
     }
 
     public void swapPanes(boolean to_tile){

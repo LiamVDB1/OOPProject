@@ -5,15 +5,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-public class StartCard extends CornerTileCard{
+public class StartCard extends TileCardCorner {
     Start start;
     int rot;
     public StartCard(Start start, GridPane parent, int gridPos){
         super(parent, gridPos);
         this.start = start;
-        //this.pos = start.getPos();
-        this.pos = 0;
+        this.pos = start.getPosition();
         this.rot = rotCorner.get(pos);
+        this.setOnMouseClicked(event -> this.start.getBord().showTile(start));
         initializeUI();
     }
 

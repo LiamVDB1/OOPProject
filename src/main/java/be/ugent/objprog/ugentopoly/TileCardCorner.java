@@ -12,22 +12,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
-public abstract class CornerTileCard extends AnchorPane {
+public abstract class TileCardCorner extends AnchorPane implements TileCard {
     protected GridPane Parent;
     protected int pos;
     protected Map<Integer, Integer> rotCorner;
 
     //LT is Left of Top. Deze zijn de standaarden.
-    public CornerTileCard(GridPane Parent, int pos) {
+    public TileCardCorner(GridPane Parent, int gridPos) {
         super();
         this.Parent = Parent;
-        this.pos = pos;
+        this.pos = gridPos;
         this.setPrefSize(148, 148);
+        this.getStyleClass().add("tile");
+
 
         if (Parent.getId().equals("top") || Parent.getId().equals("bottom")){
-            Parent.add(this, pos, 0);
+            Parent.add(this, gridPos, 0);
         } else {
-            Parent.add(this, 0, pos);
+            Parent.add(this, 0, gridPos);
         }
 
         rotCorner = Map.of(

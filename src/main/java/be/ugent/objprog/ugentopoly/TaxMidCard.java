@@ -21,7 +21,7 @@ public class TaxMidCard extends TileMidCard {
         AnchorPane.setRightAnchor(image, 25.0);
 
         Label name = everyLabel(tax.getText());
-        AnchorPane.setTopAnchor(name, 190.0);
+        AnchorPane.setTopAnchor(name, 175.0);
 
         Label cost = everyLabel("Amount: € " + tax.getAmount());
         AnchorPane.setTopAnchor(cost, 225.0);

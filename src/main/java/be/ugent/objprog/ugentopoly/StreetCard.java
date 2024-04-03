@@ -5,18 +5,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-public class StreetCard extends TileCard{
+public class StreetCard extends TileCardNormal {
     private Street street;
     public StreetCard(Street street, GridPane parent, int pos, boolean vertical, boolean LT){
         super(parent, pos, vertical, LT);
         this.street = street;
+        this.setOnMouseClicked(event -> this.street.getBord().showTile(street));
         initializeUI();
     }
     public void initializeUI(){
         Pane colorPane = makeColorPane();
 
         //Group name = makeName(street.getText(), 123, 61, 25.0, vertical);
-        Group name = MakeName("BLABLABALBALBAALBAL", 123, 61, 25.0, 0.0);
+        Group name = MakeName(street.getText(), 123, 61, 25.0, 0.0);
 
         this.getChildren().addAll(colorPane, name);
     }
@@ -38,8 +39,7 @@ public class StreetCard extends TileCard{
         }
 
 
-        //colorPane.setStyle("-fx-background-color: " + street.getColor() + ";");
-        colorPane.setStyle("-fx-background-color: " + "#9932cc" +  ";");
+        colorPane.setStyle("-fx-background-color: " + street.getColor() + ";");
         return colorPane;
     }
 }

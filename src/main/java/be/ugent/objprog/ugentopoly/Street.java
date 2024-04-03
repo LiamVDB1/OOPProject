@@ -1,12 +1,14 @@
 package be.ugent.objprog.ugentopoly;
 
+import javafx.scene.layout.GridPane;
+
 public class Street extends Tile {
     private int cost;
     private int rent;
     private Area area;
 
-    public Street(int position, String id, int cost,Area area,  int rent){
-        super(position, id);
+    public Street(int position, String id, int cost, Area area, int rent, GridPane Parent, Board bord){
+        super(position, id, Parent, bord);
         this.cost = cost;
         this.area = area;
         this.rent = rent;
@@ -31,5 +33,10 @@ public class Street extends Tile {
     @Override
     public TileMidCard getMidCard() {
         return new StreetMidCard(this);
+    }
+
+    @Override
+    public TileCard makeCard() {
+        return new StreetCard(this, Parent, gridPos, vertical, LT);
     }
 }

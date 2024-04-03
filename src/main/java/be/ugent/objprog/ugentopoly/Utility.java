@@ -1,9 +1,11 @@
 package be.ugent.objprog.ugentopoly;
 
+import javafx.scene.layout.GridPane;
+
 public class Utility extends Tile{
     int cost;
-    public Utility(int position, String id, int cost){
-        super(position, id);
+    public Utility(int position, String id, int cost, GridPane Parent, Board bord){
+        super(position, id, Parent, bord);
         this.cost = cost;
     }
 
@@ -18,5 +20,10 @@ public class Utility extends Tile{
 
     public int getNr(){
         return Integer.parseInt(id.substring(id.length() - 1));
+    }
+
+    @Override
+    public TileCard makeCard() {
+        return new UtilityCard(this, Parent, gridPos, vertical, LT);
     }
 }
