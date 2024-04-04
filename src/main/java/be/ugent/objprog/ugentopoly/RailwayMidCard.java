@@ -25,10 +25,10 @@ public class RailwayMidCard extends TileMidCard {
         AnchorPane.setTopAnchor(naam, 140.0);
 
         Label kostprijs = everyLabel("Kostprijs: € " + railway.getCost());
-        AnchorPane.setTopAnchor(kostprijs, 225.0);
+        AnchorPane.setTopAnchor(kostprijs, 190.0);
 
         Label huur = everyLabel("Huur: € " + railway.getRent());
-        AnchorPane.setTopAnchor(huur, 190.0);
+        AnchorPane.setTopAnchor(huur, 225.0);
 
         this.getChildren().addAll(image, naam, huur, kostprijs);
     }

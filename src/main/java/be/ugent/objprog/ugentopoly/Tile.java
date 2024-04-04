@@ -13,6 +13,8 @@ public abstract class Tile {
 
     protected Board bord;
 
+    protected TileCard card;
+
     GridPane Parent;
 
     public Tile(int position, String id, GridPane Parent, Board bord){
@@ -42,6 +44,10 @@ public abstract class Tile {
     public abstract TileMidCard getMidCard();
 
     public abstract TileCard makeCard();
+
+    public TileCard getCard(){
+        return card;
+    }
 
     public Board getBord(){
         return bord;

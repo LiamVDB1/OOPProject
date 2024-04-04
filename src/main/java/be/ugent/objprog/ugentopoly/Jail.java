@@ -14,6 +14,8 @@ public class Jail extends Tile{
 
     @Override
     public TileCard makeCard() {
-        return new JailCard(this, Parent, gridPos);
+        TileCard card = new JailCard(this, Parent, gridPos);
+        this.card = card;
+        return card;
     }
 }

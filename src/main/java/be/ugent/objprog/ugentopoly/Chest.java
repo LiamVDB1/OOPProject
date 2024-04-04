@@ -14,6 +14,8 @@ public class Chest extends Tile{
 
     @Override
     public TileCard makeCard() {
-        return new ChestCard(this, Parent, gridPos,vertical, LT);
+        TileCard card = new ChestCard(this, Parent, gridPos,vertical, LT);
+        this.card = card;
+        return card;
     }
 }

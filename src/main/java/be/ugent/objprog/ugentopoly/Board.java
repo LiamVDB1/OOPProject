@@ -152,6 +152,9 @@ public class Board {
     }
 
     public void showTile(Tile tile){
+        if (prevTile != null){
+            prevTile.getCard().getStyleClass().remove("selected");
+        }
         if (tile != null){
             if (tile == prevTile){
                 showBoard();
@@ -160,12 +163,17 @@ public class Board {
                 cardPane.getChildren().clear();
                 cardPane.getChildren().add(tile.getMidCard());
                 swapPanes(true);
+
+                tile.getCard().getStyleClass().add("selected");
                 prevTile = tile;
             }
         }
     }
 
     public void showBoard(){
+        if (prevTile != null){
+            prevTile.getCard().getStyleClass().remove("selected");
+        }
         swapPanes(false);
         prevTile = null;
     }

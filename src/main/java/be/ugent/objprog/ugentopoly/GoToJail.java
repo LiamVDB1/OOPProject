@@ -14,6 +14,8 @@ public class GoToJail extends Tile{
 
     @Override
     public TileCard makeCard() {
-        return new GoToJailCard(this, Parent, gridPos);
+        TileCard card = new GoToJailCard(this, Parent, gridPos);
+        this.card = card;
+        return card;
     }
 }

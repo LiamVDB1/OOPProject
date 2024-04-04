@@ -37,6 +37,8 @@ public class Street extends Tile {
 
     @Override
     public TileCard makeCard() {
-        return new StreetCard(this, Parent, gridPos, vertical, LT);
+        TileCard card =  new StreetCard(this, Parent, gridPos, vertical, LT);
+        this.card = card;
+        return card;
     }
 }

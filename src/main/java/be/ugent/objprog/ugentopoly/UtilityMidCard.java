@@ -31,7 +31,7 @@ public class UtilityMidCard extends TileMidCard {
         Label name = everyLabel(utility.getText());
         AnchorPane.setTopAnchor(name, 170.0);
 
-        Label cost = everyLabel("Amount: € " + utility.getCost());
+        Label cost = everyLabel("Kostprijs: € " + utility.getCost());
         AnchorPane.setTopAnchor(cost, 215.0);
 
         this.getChildren().addAll(image, name, cost);

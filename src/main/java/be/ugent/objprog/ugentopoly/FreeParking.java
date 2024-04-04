@@ -14,6 +14,8 @@ public class FreeParking extends Tile{
 
     @Override
     public TileCard makeCard() {
-        return new FreeParkingCard(this, Parent, gridPos);
+        TileCard card = new FreeParkingCard(this, Parent, gridPos);
+        this.card = card;
+        return card;
     }
 }

@@ -24,6 +24,8 @@ public class Utility extends Tile{
 
     @Override
     public TileCard makeCard() {
-        return new UtilityCard(this, Parent, gridPos, vertical, LT);
+        TileCard card =  new UtilityCard(this, Parent, gridPos, vertical, LT);
+        this.card = card;
+        return card;
     }
 }

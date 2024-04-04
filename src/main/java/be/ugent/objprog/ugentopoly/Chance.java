@@ -15,6 +15,8 @@ public class Chance extends Tile{
 
     @Override
     public TileCard makeCard() {
-        return new ChanceCard(this, Parent, gridPos,vertical, LT);
+        TileCard card = new ChanceCard(this, Parent, gridPos,vertical, LT);
+        this.card = card;
+        return card;
     }
 }

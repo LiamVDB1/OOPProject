@@ -14,6 +14,8 @@ public class Start extends Tile {
 
     @Override
     public TileCard makeCard() {
-        return new StartCard(this, Parent, gridPos);
+        TileCard card =  new StartCard(this, Parent, gridPos);
+        this.card = card;
+        return card;
     }
 }
