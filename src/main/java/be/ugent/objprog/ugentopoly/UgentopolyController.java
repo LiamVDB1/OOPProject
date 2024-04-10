@@ -1,7 +1,6 @@
 package be.ugent.objprog.ugentopoly;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
@@ -45,7 +44,7 @@ public class UgentopolyController{
             //Settings instellen
             int balance = root.getChild("settings").getAttribute("balance").getIntValue();
             int salary = root.getChild("settings").getAttribute("start").getIntValue();
-            board.setBalSal(balance, salary);
+            board.setBalanceAndSalary(balance, salary);
 
             //Areas instellen
             board.setAreas(root.getChild("areas"));
@@ -53,10 +52,8 @@ public class UgentopolyController{
             //Tiles instellen
             board.setTiles(root.getChild("tiles"));
 
-        } catch (IOException ex) {
-            System.err.println("Error Loading the XML file - ugentopoly.deel1.xml");
-        } catch (JDOMException JE){
-            System.err.println("JDOMException - ugentopoly.deel1.xml");
+        } catch (IOException ex) { System.err.println("Error Loading the XML file - ugentopoly.deel1.xml");
+        } catch (JDOMException JE){ System.err.println("JDOMException - ugentopoly.deel1.xml");
         }
 
         //Properties File inladen + Labels instellen
@@ -64,19 +61,11 @@ public class UgentopolyController{
             Properties properties = new Properties();
             properties.load(input);
             board.propertySetup(properties);
-        } catch (IOException ex ){
-            System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
+        } catch (IOException ex ){ System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
         }
 
         board.boardFiller();
     }
-
-    /*@FXML
-    public void handle(MouseEvent event){
-        if (event.getSource() instanceof AnchorPane ap){
-            board.showTile(ap.getId());
-        }
-    }*/
 
     @FXML
     public void toBoard(){

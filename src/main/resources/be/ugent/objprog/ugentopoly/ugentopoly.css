@@ -19,7 +19,7 @@ BorderPane {
     -fx-border-color: black;
     -fx-border-width: 1;
 }
-#temp {
+#cardContainerBorder {
     -fx-background-color: rgb(89, 202, 187);
     -fx-background-radius: 10;
 
@@ -28,13 +28,13 @@ BorderPane {
     -fx-border-radius: 8;
 }
 
-#temp2 {
+#cardContainer {
     -fx-background-color: rgb(255, 255, 255);
 
     -fx-border-color: black;
     -fx-border-width: 2.5;
 }
 
-.invisble {
+.invisible {
     -fx-opacity: 0;
 }
