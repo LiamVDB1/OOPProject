@@ -17,6 +17,8 @@ public class StreetCard extends TileCardNormal {
     public void initializeUI(){
         Pane colorPane = makeColorPane();
 
+        String text = street.getText();
+
         Group name = makeName(street.getText(), 123, 61, 25.0, 0.0);
 
         this.getChildren().addAll(colorPane, name);

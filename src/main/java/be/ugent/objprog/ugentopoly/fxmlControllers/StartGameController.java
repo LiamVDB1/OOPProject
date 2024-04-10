@@ -5,20 +5,20 @@ import javafx.fxml.FXML;
 
 public class StartGameController {
 
-    private Board board;
+    private BoardModel boardModel;
 
-    public void setBoard(Board board) {
-        this.board = board;
+    public void setBoard(BoardModel boardModel) {
+        this.boardModel = boardModel;
     }
 
     @FXML
     public void spelerToevoegen(){
-        new SpelerCreator(board);
+        new SpelerCreator(boardModel);
     }
 
     @FXML
     public void startSpel(){
-        board.startSpel();
+        boardModel.startSpel();
     }
 
 }

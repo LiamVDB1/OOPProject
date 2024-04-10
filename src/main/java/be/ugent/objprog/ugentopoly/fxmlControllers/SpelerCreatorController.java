@@ -2,14 +2,13 @@ package be.ugent.objprog.ugentopoly.fxmlControllers;
 
 import be.ugent.objprog.ugentopoly.*;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class SpelerCreatorController {
-    private Board board;
+    private BoardModel boardModel;
 
     @FXML TextField naam;
     @FXML ComboBox<ChoiceItem> pionChoice;
@@ -32,8 +31,8 @@ public class SpelerCreatorController {
         pionChoice.setValue(pionChoice.getItems().get(0));
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
+    public void setBoard(BoardModel boardModel) {
+        this.boardModel = boardModel;
     }
 
     private void setupComboBox(){

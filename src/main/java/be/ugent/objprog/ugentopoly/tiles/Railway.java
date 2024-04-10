@@ -4,17 +4,15 @@ import be.ugent.objprog.ugentopoly.layout.tileCards.RailwayCard;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.RailwayMidCard;
 import be.ugent.objprog.ugentopoly.Card;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
-import be.ugent.objprog.ugentopoly.Board;
+import be.ugent.objprog.ugentopoly.BoardModel;
 
 public class Railway extends Tile{
     private int cost;
     private int rent;
-    public Railway(int position, String id, int cost, int rent, Board bord){
+    public Railway(int position, String id, int cost, int rent, BoardModel bord){
         super(position, id, bord);
         this.cost = cost;
         this.rent = rent;
-        Card card =  new RailwayCard(this, vertical, LT);
-        this.card = card;
     }
 
     public int getCost(){
@@ -26,7 +24,8 @@ public class Railway extends Tile{
     }
 
     @Override
-    public TileMidCard getMidCard() {
-        return new RailwayMidCard(this);
+    public void initializeCards() {
+        this.card = new RailwayCard(this, vertical, LT);
+        this.midCard = new RailwayMidCard(this);
     }
 }

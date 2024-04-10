@@ -18,7 +18,7 @@ public class BoardView implements InvalidationListener {
     private final GridPane left;
     private final StackPane center;
     private final GridPane right;
-    private final GridPane bottom;
+    private final GridPane bottom
     */
     private final AnchorPane cardPane;
     private final AnchorPane boardShow;

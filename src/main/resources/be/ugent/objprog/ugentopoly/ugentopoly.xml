@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<board>
+<boardModel>
     <settings balance="1500" start="200"/>
 
     <areas>
@@ -77,4 +77,4 @@
         <card type="MONEY" amount="-10" id="card.chest.06" />
         <card type="MOVEREL" relative="-3" id="card.chest.07" />
     </deck>
-</board>
+</boardModel>

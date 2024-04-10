@@ -9,9 +9,9 @@ import java.io.IOException;
 
 public class SpelerCreator {
 
-    private Board board;
-    public SpelerCreator(Board board) {
-        this.board = board;
+    private BoardModel boardModel;
+    public SpelerCreator(BoardModel boardModel) {
+        this.boardModel = boardModel;
         try { start();
         } catch (IOException e) { System.err.println("Error loading SpelerCreator.fxml"); }
     }
@@ -20,7 +20,7 @@ public class SpelerCreator {
         FXMLLoader fxmlLoader = new FXMLLoader(Ugentopoly.class.getResource("fxmlFiles/SpelerCreator.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         SpelerCreatorController controller = fxmlLoader.getController();
-        controller.setBoard(board);
+        controller.setBoard(boardModel);
         stage.setTitle("Speler Toevoegen");
         stage.setScene(scene);
         stage.show();

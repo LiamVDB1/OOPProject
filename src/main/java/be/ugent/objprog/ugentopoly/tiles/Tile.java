@@ -2,8 +2,7 @@ package be.ugent.objprog.ugentopoly.tiles;
 
 import be.ugent.objprog.ugentopoly.Card;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
-import be.ugent.objprog.ugentopoly.Board;
-import javafx.scene.layout.GridPane;
+import be.ugent.objprog.ugentopoly.BoardModel;
 
 public abstract class Tile {
     protected int position;
@@ -14,14 +13,16 @@ public abstract class Tile {
     protected boolean LT;
     protected int gridPos;
 
-    protected Board bord;
+    protected BoardModel bord;
 
     protected Card card;
+
+    protected TileMidCard midCard;
 
     protected int gridPos1;
     protected int gridPos2;
 
-    public Tile(int position, String id, Board bord){
+    public Tile(int position, String id, BoardModel bord){
         this.position = position;
         this.id = id;
         this.bord = bord;
@@ -60,13 +61,14 @@ public abstract class Tile {
         return gridPos2;
     }
 
-    public abstract TileMidCard getMidCard();
+    public abstract void initializeCards();
 
-    public Card getCard(){
-        return card;
-    }
+    public Card getCard(){ return card; }
 
-    public Board getBord(){
+    public TileMidCard getMidCard(){ return midCard;}
+
+    public BoardModel getBord(){
         return bord;
     }
+
 }

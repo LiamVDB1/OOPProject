@@ -9,9 +9,9 @@ public class Speler {
     private boolean dubbelGegooid;
     private boolean failliet;
 
-    public Speler(String naam, Board board){
+    public Speler(String naam, BoardModel boardModel){
         this.naam = naam;
-        geld = board.getStartBalance();
+        geld = boardModel.getStartBalance();
         positie = 0;
         gevangenisBeurten = 0;
         inGevangenis = false;

@@ -1,16 +1,22 @@
 package be.ugent.objprog.ugentopoly;
 
+import be.ugent.objprog.dice.Dice;
 import be.ugent.objprog.ugentopoly.factories.*;
+import be.ugent.objprog.ugentopoly.fxmlControllers.UgentopolyController;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
-public class Board {
+public class BoardModel {
     //UI elementen
-    private final GridPane left;
     /*
     private final BorderPane board;
     private final GridPane top;
@@ -19,6 +25,9 @@ public class Board {
     private final GridPane right;
     private final GridPane bottom;
     */
+
+    private final Dice dice = new Dice();
+
     private final BoardView boardView;
 
     private final AnchorPane cardPane;
@@ -43,9 +52,8 @@ public class Board {
     //Spelers
     private List<Speler> spelers = new ArrayList<>();
 
-    public Board(BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow){
+    public BoardModel(BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow){
         // this.board = board; this.top = top; this.left = left; this.center = center; this.right = right; this.bottom = bottom;
-        this.left = left;
 
         boardView = new BoardView(board, top, left, center, right, bottom, cardPane, boardShow, tileShow);
 
@@ -64,21 +72,59 @@ public class Board {
             } else { posToParent.put(i, bottom);
             }
         }
+
+        initialize();
     }
 
-    public GridPane getLeft() { return left; }
+    public void initialize(){
+        //XML en Properties inladen
+        xmlSetup();
+        propertySetup();
 
-    public void setBalanceAndSalary(int balance, int salary){
-        startBalance = balance; startSalary = salary;
+        //Kaarten maken
+        setGridPositions();
+        makeCards();
+
+        //Start Game initaliseren
+        new StartGame(this);
     }
 
     public int getStartBalance() { return startBalance; }
 
     public int getStartSalary() { return startSalary; }
 
-    public void propertySetup(Properties properties){
-        for (Tile tile : tiles){ tile.setText(properties.getProperty(tile.getId())); }
+    public void xmlSetup(){
+        //XML File inladen
+        try (InputStream input = UgentopolyController.class.getResourceAsStream("/be/ugent/objprog/ugentopoly/ugentopoly.deel1.xml")) {
+            Document document = new SAXBuilder().build(input);
+
+            //Root element ophalen
+            Element root = document.getRootElement();
+
+            //Settings instellen
+            this.startBalance = root.getChild("settings").getAttribute("balance").getIntValue();
+            this.startSalary = root.getChild("settings").getAttribute("start").getIntValue();
+
+            //Areas instellen
+            setAreas(root.getChild("areas"));
+
+            //Tiles instellen
+            setTiles(root.getChild("tiles"));
+
+        } catch (IOException ex) { System.err.println("Error Loading the XML file - ugentopoly.deel1.xml");
+        } catch (JDOMException JE){ System.err.println("JDOMException - ugentopoly.deel1.xml");
+        }
     }
+
+    public void propertySetup(){
+        try (InputStream input = UgentopolyController.class.getResourceAsStream("/be/ugent/objprog/ugentopoly/ugentopoly.deel1.properties")){
+            Properties properties = new Properties();
+            properties.load(input);
+            for (Tile tile : tiles){ tile.setText(properties.getProperty(tile.getId())); }
+        } catch (IOException ex ){ System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
+        }
+    }
+
 
     public void setAreas(Element areas){
         List<Element> children = areas.getChildren("area");
@@ -136,15 +182,14 @@ public class Board {
             } else { gridPos = 10 - (i - 30); }
             tiles[i].setGridPos(gridPos);
         }
-        makeCards();
     }
 
     public void makeCards(){
         for (Tile tile : tiles){
+            tile.initializeCards();
             Card card = tile.getCard();
             GridPane parent = posToParent.get(tile.getPosition());
-            //boardView.placeCard(card, parent, tile.getGridPos1(), tile.getGridPos2());
-            parent.add(card, tile.getGridPos1(), tile.getGridPos2());
+            boardView.placeCard(card, parent, tile.getGridPos1(), tile.getGridPos2());
         }
     }
 

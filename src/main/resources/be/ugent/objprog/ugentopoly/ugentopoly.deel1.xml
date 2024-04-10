@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<board>
+<boardModel>
     <settings balance="1500" start="200" />
 
     <areas>
@@ -56,4 +56,4 @@
         <tile type="TAX" position="38" id="tile.tax2" amount="75"/>
         <tile type="STREET" position="39" area="area8" id="tile.street22" cost="400" rent0="50" rent1="200" rent2="600" rent3="1400" rent4="1700" rent5="2000"/>
     </tiles>
-</board>
+</boardModel>
