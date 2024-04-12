@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="main" prefHeight="400.0" prefWidth="600.0" stylesheets="@../cssFiles/spelercreator.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ugent.objprog.ugentopoly.fxmlControllers.SpelerCreatorController">
+   <children>
+      <Separator prefHeight="10.0" prefWidth="600.0" AnchorPane.topAnchor="97.0" />
+      <AnchorPane id="info" prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="100.0" prefWidth="475.0" text="Voeg een nieuwe speler toe" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ImageView fitHeight="90.0" fitWidth="100.0" layoutX="446.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="@../assets/Mr-Monopoly.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="60.0" text="Naam:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="50.0" />
+            <TextField fx:id="naam" layoutX="148.0" layoutY="48.0" onAction="#checkText" prefHeight="35.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="50.0" />
+            <ComboBox fx:id="pionChoice" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="110.0" />
+            <Label prefHeight="35.0" prefWidth="60.0" text="Pion:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="110.0" />
+            <ColorPicker layoutX="158.0" layoutY="171.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0" />
+            <Label layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="60.0" text="Kleur:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="170.0" />
+            <Button id="okButton" mnemonicParsing="false" onAction="#addSpeler" prefHeight="33.0" prefWidth="100.0" text="Ok" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="140.0" />
+            <Button id="cancelButton" mnemonicParsing="false" onAction="#cancel" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="30.0" />
+            <Label fx:id="errorNaam" layoutX="364.0" layoutY="51.0" prefHeight="35.0" text="Naam moet ingevuld zijn" textFill="RED" visible="false" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="50.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

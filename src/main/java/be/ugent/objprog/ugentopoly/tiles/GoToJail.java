@@ -1,26 +1,20 @@
 package be.ugent.objprog.ugentopoly.tiles;
 
-import be.ugent.objprog.ugentopoly.tileCards.GoToJailCard;
-import be.ugent.objprog.ugentopoly.tileMidCards.GoToJailMidCard;
-import be.ugent.objprog.ugentopoly.TileCard;
-import be.ugent.objprog.ugentopoly.tileMidCards.TileMidCard;
+import be.ugent.objprog.ugentopoly.Card;
+import be.ugent.objprog.ugentopoly.layout.tileCards.GoToJailCard;
+import be.ugent.objprog.ugentopoly.layout.tileMidCards.GoToJailMidCard;
+import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 import be.ugent.objprog.ugentopoly.Board;
-import javafx.scene.layout.GridPane;
 
 public class GoToJail extends Tile{
-    public GoToJail(int position, String id, GridPane Parent, Board bord){
-        super(position, id, Parent, bord);
+    public GoToJail(int position, String id, Board bord){
+        super(position, id, bord);
+        Card card = new GoToJailCard(this);
+        this.card = card;
     }
 
     @Override
     public TileMidCard getMidCard() {
         return new GoToJailMidCard(this);
-    }
-
-    @Override
-    public TileCard makeCard() {
-        TileCard card = new GoToJailCard(this, Parent, gridPos);
-        this.card = card;
-        return card;
     }
 }

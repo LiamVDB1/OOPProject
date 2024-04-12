@@ -9,5 +9,5 @@ import org.jdom2.Element;
 import java.util.Map;
 
 public interface TileFactory {
-    public Tile createTile(Element element, Map<String, Area> areaMap, Map<Integer, GridPane> posToParent, Board bord);
+    public Tile createTile(Element element, Map<String, Area> areaMap, Board bord);
 }

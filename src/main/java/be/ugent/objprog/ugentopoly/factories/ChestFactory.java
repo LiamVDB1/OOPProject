@@ -12,11 +12,10 @@ import java.util.Map;
 
 public class ChestFactory implements TileFactory{
     @Override
-    public Tile createTile(Element element, Map<String, Area> areaMap, Map<Integer, GridPane> posToParent, Board bord){
+    public Tile createTile(Element element, Map<String, Area> areaMap, Board bord){
         try {
             int position = element.getAttribute("position").getIntValue();
-            GridPane Parent = posToParent.get(position);
-            return new Chest(position, element.getAttributeValue("id"), Parent, bord);
+            return new Chest(position, element.getAttributeValue("id"), bord);
         } catch(DataConversionException e){
             System.out.println("Error in XML File, position not integer");
             return null;

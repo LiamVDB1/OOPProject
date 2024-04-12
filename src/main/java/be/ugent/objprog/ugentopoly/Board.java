@@ -3,12 +3,14 @@ package be.ugent.objprog.ugentopoly;
 import be.ugent.objprog.ugentopoly.factories.*;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import org.jdom2.Element;
 
 import java.util.*;
 
 public class Board {
     //UI elementen
+    private final GridPane left;
     /*
     private final BorderPane board;
     private final GridPane top;
@@ -17,6 +19,8 @@ public class Board {
     private final GridPane right;
     private final GridPane bottom;
     */
+    private final BoardView boardView;
+
     private final AnchorPane cardPane;
 
     private final AnchorPane boardShow;
@@ -30,12 +34,20 @@ public class Board {
     private Area[] areas;
     private Tile[] tiles;
 
+    //Vorige geklikte tile bijhouden
     private Tile prevTile;
 
+    //Map voor de positie van de tile naar de parent gridpane
     private final Map<Integer, GridPane> posToParent;
+
+    //Spelers
+    private List<Speler> spelers = new ArrayList<>();
 
     public Board(BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow){
         // this.board = board; this.top = top; this.left = left; this.center = center; this.right = right; this.bottom = bottom;
+        this.left = left;
+
+        boardView = new BoardView(board, top, left, center, right, bottom, cardPane, boardShow, tileShow);
 
         this.cardPane = cardPane; this.boardShow = boardShow; this.tileShow = tileShow;
 
@@ -54,9 +66,15 @@ public class Board {
         }
     }
 
+    public GridPane getLeft() { return left; }
+
     public void setBalanceAndSalary(int balance, int salary){
         startBalance = balance; startSalary = salary;
     }
+
+    public int getStartBalance() { return startBalance; }
+
+    public int getStartSalary() { return startSalary; }
 
     public void propertySetup(Properties properties){
         for (Tile tile : tiles){ tile.setText(properties.getProperty(tile.getId())); }
@@ -100,13 +118,13 @@ public class Board {
 
             TileFactory factory = factories.get(type);
             if (factory != null) {
-                Tile tile = factory.createTile(child, areaMap, posToParent, this);
+                Tile tile = factory.createTile(child, areaMap, this);
                 this.tiles[tile.getPosition()] = tile;
             }
         }
     }
 
-    public void boardFiller(){
+    public void setGridPositions(){
         // De waarden 10, 21 en 30 zijn voor de top, left, right en bottom. De speciale waarden van gridPos is omdat de tiles in een andere volgorde staan.
         // Het bord is altijd in 40 tiles, dus heb ik deze waarden gehardcode.
         for (int i = 0; i < tiles.length; i ++){
@@ -116,9 +134,17 @@ public class Board {
             } else if (i < 21){ gridPos = i - 10;
             } else if (i < 30){ gridPos = i - 21;
             } else { gridPos = 10 - (i - 30); }
-
             tiles[i].setGridPos(gridPos);
-            tiles[i].makeCard();
+        }
+        makeCards();
+    }
+
+    public void makeCards(){
+        for (Tile tile : tiles){
+            Card card = tile.getCard();
+            GridPane parent = posToParent.get(tile.getPosition());
+            //boardView.placeCard(card, parent, tile.getGridPos1(), tile.getGridPos2());
+            parent.add(card, tile.getGridPos1(), tile.getGridPos2());
         }
     }
 
@@ -155,5 +181,14 @@ public class Board {
         }
 
         prevTile = null;
+    }
+
+    public void addSpeler(Speler speler){
+        spelers.add(speler);
+    }
+
+    public void startSpel(){
+        Stage stage = (Stage) cardPane.getScene().getWindow();
+        stage.show();
     }
 }

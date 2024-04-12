@@ -1,17 +1,18 @@
 package be.ugent.objprog.ugentopoly.tiles;
 
-import be.ugent.objprog.ugentopoly.tileCards.TaxCard;
-import be.ugent.objprog.ugentopoly.tileMidCards.TaxMidCard;
-import be.ugent.objprog.ugentopoly.TileCard;
-import be.ugent.objprog.ugentopoly.tileMidCards.TileMidCard;
+import be.ugent.objprog.ugentopoly.layout.tileCards.TaxCard;
+import be.ugent.objprog.ugentopoly.layout.tileMidCards.TaxMidCard;
+import be.ugent.objprog.ugentopoly.Card;
+import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 import be.ugent.objprog.ugentopoly.Board;
-import javafx.scene.layout.GridPane;
 
 public class Tax extends Tile{
     int amount;
-    public Tax(int position, String id, int amount, GridPane Parent, Board bord){
-        super(position, id, Parent, bord);
+    public Tax(int position, String id, int amount, Board bord){
+        super(position, id, bord);
         this.amount = amount;
+        Card card =  new TaxCard(this, vertical, LT);
+        this.card = card;
     }
 
     public int getAmount(){
@@ -21,12 +22,5 @@ public class Tax extends Tile{
     @Override
     public TileMidCard getMidCard() {
         return new TaxMidCard(this);
-    }
-
-    @Override
-    public TileCard makeCard() {
-        TileCard card =  new TaxCard(this, Parent, gridPos, vertical, LT);
-        this.card = card;
-        return card;
     }
 }

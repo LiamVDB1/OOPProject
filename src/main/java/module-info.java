@@ -10,8 +10,10 @@ module be.ugent.objprog.ugentopoly {
     opens be.ugent.objprog.ugentopoly.factories to javafx.fxml;
     exports be.ugent.objprog.ugentopoly.tiles;
     opens be.ugent.objprog.ugentopoly.tiles to javafx.fxml;
-    exports be.ugent.objprog.ugentopoly.tileCards;
-    opens be.ugent.objprog.ugentopoly.tileCards to javafx.fxml;
-    exports be.ugent.objprog.ugentopoly.tileMidCards;
-    opens be.ugent.objprog.ugentopoly.tileMidCards to javafx.fxml;
+    exports be.ugent.objprog.ugentopoly.layout.tileCards;
+    opens be.ugent.objprog.ugentopoly.layout.tileCards to javafx.fxml;
+    exports be.ugent.objprog.ugentopoly.layout.tileMidCards;
+    opens be.ugent.objprog.ugentopoly.layout.tileMidCards to javafx.fxml;
+    exports be.ugent.objprog.ugentopoly.fxmlControllers;
+    opens be.ugent.objprog.ugentopoly.fxmlControllers to javafx.fxml;
 }

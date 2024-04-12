@@ -1,7 +1,7 @@
 package be.ugent.objprog.ugentopoly.tiles;
 
-import be.ugent.objprog.ugentopoly.TileCard;
-import be.ugent.objprog.ugentopoly.tileMidCards.TileMidCard;
+import be.ugent.objprog.ugentopoly.Card;
+import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 import be.ugent.objprog.ugentopoly.Board;
 import javafx.scene.layout.GridPane;
 
@@ -16,17 +16,19 @@ public abstract class Tile {
 
     protected Board bord;
 
-    protected TileCard card;
+    protected Card card;
 
-    GridPane Parent;
+    protected int gridPos1;
+    protected int gridPos2;
 
-    public Tile(int position, String id, GridPane Parent, Board bord){
+    public Tile(int position, String id, Board bord){
         this.position = position;
         this.id = id;
-        this.Parent = Parent;
         this.bord = bord;
-        vertical = Parent.getId().equals("left") || Parent.getId().equals("right");
-        LT = Parent.getId().equals("left") || Parent.getId().equals("top");
+        vertical = (position != 0 && position < 10) || (position > 20 && position < 30);
+        LT = position != 0 && position < 21;
+        //vertical = Parent.getId().equals("left") || Parent.getId().equals("right");
+        //LT = Parent.getId().equals("left") || Parent.getId().equals("top");
     }
 
     public int getPosition() {
@@ -42,13 +44,25 @@ public abstract class Tile {
 
     public void setGridPos(int gridPos){
         this.gridPos = gridPos;
+        if (vertical){
+            gridPos1 = 0;
+            gridPos2 = gridPos;
+        } else {
+            gridPos1 = gridPos;
+            gridPos2 = 0;
+        }
+    }
+
+    public int getGridPos1(){
+        return gridPos1;
+    }
+    public int getGridPos2(){
+        return gridPos2;
     }
 
     public abstract TileMidCard getMidCard();
 
-    public abstract TileCard makeCard();
-
-    public TileCard getCard(){
+    public Card getCard(){
         return card;
     }
 
