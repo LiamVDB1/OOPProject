@@ -13,7 +13,7 @@ public class ChanceMidCard extends TileMidCard {
     }
 
     public void initializeUI(){
-        ImageView image = makeImage("chance.png", 75, 30.0, 50.0, 50.0);
+        ImageView image = makeImage(chance.getImage(), 75, 30.0, 50.0, 50.0);
 
         Label name = makeLabel(chance.getText(), 200.0);
 

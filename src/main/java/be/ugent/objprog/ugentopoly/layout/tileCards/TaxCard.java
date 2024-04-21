@@ -8,12 +8,12 @@ public class TaxCard extends TileCardNormal {
     public TaxCard(Tax tax, boolean vertical, boolean LT){
         super(vertical, LT);
         this.tax = tax;
-        this.setOnMouseClicked(event -> tax.getBord().showTile(tax));
+        this.setOnMouseClicked(event -> tax.getBord().getController().showTile(tax));
         initializeUI();
     }
 
     public void initializeUI(){
-        Group image = MakeImage("tax.png", 46, 15.0);
+        Group image = MakeImage(tax.getImage(), 46, 15.0);
 
         Group name = makeName(tax.getText(), 88, 61, 0.0, 60.0);
 

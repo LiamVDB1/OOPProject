@@ -3,6 +3,7 @@ package be.ugent.objprog.ugentopoly.layout.tileMidCards;
 import be.ugent.objprog.ugentopoly.Card;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -30,14 +31,14 @@ public abstract class TileMidCard extends Card {
         return name;
     }
 
-    protected ImageView makeImage(String fileName, int fitWidth, double tAnchor, double lAnchor, double rAnchor){
-        ImageView image = everyImage(fileName);
+    protected ImageView makeImage(Image image, int fitWidth, double tAnchor, double lAnchor, double rAnchor){
+        ImageView imageView = everyImage(image);
 
-        image.setFitWidth(fitWidth);
-        AnchorPane.setTopAnchor(image, tAnchor);
-        AnchorPane.setLeftAnchor(image, lAnchor);
-        AnchorPane.setRightAnchor(image, rAnchor);
+        imageView.setFitWidth(fitWidth);
+        AnchorPane.setTopAnchor(imageView, tAnchor);
+        AnchorPane.setLeftAnchor(imageView, lAnchor);
+        AnchorPane.setRightAnchor(imageView, rAnchor);
 
-        return image;
+        return imageView;
     }
 }

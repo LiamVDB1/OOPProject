@@ -9,6 +9,7 @@ import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 public class Chance extends Tile{
     public Chance(int position, String id, BoardModel bord){
         super(position, id, bord);
+        imageCreate("chance.png");
     }
 
     @Override

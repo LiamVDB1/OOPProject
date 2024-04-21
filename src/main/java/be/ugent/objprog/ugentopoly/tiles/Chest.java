@@ -9,6 +9,7 @@ import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 public class Chest extends Tile{
     public Chest(int position, String id, BoardModel bord){
         super(position, id, bord);
+        imageCreate("chest.png");
     }
 
     @Override

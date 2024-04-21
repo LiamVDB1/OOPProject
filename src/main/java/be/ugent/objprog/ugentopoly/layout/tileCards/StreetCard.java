@@ -5,17 +5,20 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 
 public class StreetCard extends TileCardNormal {
     private Street street;
     public StreetCard(Street street, boolean vertical, boolean LT){
         super(vertical, LT);
         this.street = street;
-        this.setOnMouseClicked(event -> street.getBord().showTile(street));
+        this.setOnMouseClicked(event -> street.getBord().getController().showTile(street));
         initializeUI();
     }
     public void initializeUI(){
-        Pane colorPane = makeColorPane();
+        Rectangle colorPane = makeColorPane();
 
         String text = street.getText();
 
@@ -24,7 +27,7 @@ public class StreetCard extends TileCardNormal {
         this.getChildren().addAll(colorPane, name);
     }
 
-    public Pane makeColorPane(){
+    /*public Pane makeColorPane(){
         Pane colorPane = new Pane();
         if (vertical) {
             colorPane.setPrefSize(25, 61);
@@ -43,5 +46,26 @@ public class StreetCard extends TileCardNormal {
 
         colorPane.setStyle("-fx-background-color: " + street.getColor() + ";");
         return colorPane;
+    }*/
+    public Rectangle makeColorPane(){
+        Rectangle colorRectangle = new Rectangle();
+        if (vertical) {
+            colorRectangle.setWidth(24.5);
+            colorRectangle.setHeight(60);
+            AnchorPane.setLeftAnchor(colorRectangle, 123.0);
+            AnchorPane.setTopAnchor(colorRectangle, 0.5);
+            AnchorPane.setRightAnchor(colorRectangle, 0.5);
+            AnchorPane.setBottomAnchor(colorRectangle, 0.5);
+        } else {
+            colorRectangle.setWidth(60);
+            colorRectangle.setHeight(24.5);
+            AnchorPane.setLeftAnchor(colorRectangle, 0.5);
+            AnchorPane.setTopAnchor(colorRectangle, 123.0);
+            AnchorPane.setRightAnchor(colorRectangle, 0.5);
+            AnchorPane.setBottomAnchor(colorRectangle, 0.5);
+        }
+
+        colorRectangle.setFill(street.getColor());
+        return colorRectangle;
     }
 }

@@ -13,6 +13,7 @@ public class Railway extends Tile{
         super(position, id, bord);
         this.cost = cost;
         this.rent = rent;
+        imageCreate("railway.png");
     }
 
     public int getCost(){

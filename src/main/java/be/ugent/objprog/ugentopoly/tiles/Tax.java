@@ -11,6 +11,7 @@ public class Tax extends Tile{
     public Tax(int position, String id, int amount, BoardModel bord){
         super(position, id, bord);
         this.amount = amount;
+        imageCreate("tax.png");
     }
 
     public int getAmount(){

@@ -4,6 +4,7 @@ import be.ugent.objprog.ugentopoly.Card;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -69,21 +70,21 @@ public abstract class TileCardNormal extends Card {
     }
 
     //Double in plaats van double om null te kunnen gebruiken.
-    protected Group MakeImage(String fileName, int fitHeight, Double LTAnchor){
-        ImageView image = everyImage(fileName);
+    protected Group MakeImage(Image image, int fitHeight, Double LTAnchor){
+        ImageView imageView = everyImage(image);
 
-        Group imageGroup = new Group(image);
+        Group imageGroup = new Group(imageView);
 
         double otherAnchor = (61 - fitHeight)/2;
 
 
-        image.setFitHeight(fitHeight);
+        imageView.setFitHeight(fitHeight);
         if (vertical){
             AnchorPane.setTopAnchor(imageGroup, otherAnchor);
             AnchorPane.setLeftAnchor(imageGroup, LTAnchor);
             AnchorPane.setBottomAnchor(imageGroup, otherAnchor);
         } else {
-            image.setRotate(90);
+            imageView.setRotate(90);
             AnchorPane.setTopAnchor(imageGroup, LTAnchor);
             AnchorPane.setLeftAnchor(imageGroup, otherAnchor);
             AnchorPane.setRightAnchor(imageGroup, otherAnchor);

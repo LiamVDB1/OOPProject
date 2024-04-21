@@ -6,6 +6,8 @@ import be.ugent.objprog.ugentopoly.Card;
 import be.ugent.objprog.ugentopoly.layout.tileCards.StreetCard;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.StreetMidCard;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Street extends Tile {
     private int cost;
@@ -23,8 +25,8 @@ public class Street extends Tile {
         return area;
     }
 
-    public String getColor(){
-        return getArea().getColor();
+    public Color getColor(){
+        return Color.valueOf(getArea().getColor());
     }
 
     public int getCost(){
@@ -39,5 +41,10 @@ public class Street extends Tile {
     public void initializeCards() {
         this.card = new StreetCard(this, vertical, LT);
         this.midCard = new StreetMidCard(this);
+    }
+    public Rectangle getImage(){
+        Rectangle rectangle = new Rectangle();
+        rectangle.setFill(getColor());
+        return rectangle;
     }
 }

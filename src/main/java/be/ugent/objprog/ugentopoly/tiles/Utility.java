@@ -11,6 +11,11 @@ public class Utility extends Tile{
     public Utility(int position, String id, int cost, BoardModel bord){
         super(position, id, bord);
         this.cost = cost;
+        if (getNr() == 1){
+            imageCreate("utility1.png");
+        } else {
+            imageCreate("utility2.png");
+        }
     }
 
     @Override

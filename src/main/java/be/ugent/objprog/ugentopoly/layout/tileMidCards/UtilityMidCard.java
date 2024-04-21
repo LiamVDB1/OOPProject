@@ -16,8 +16,8 @@ public class UtilityMidCard extends TileMidCard {
 
     public void initializeUI(){
         ImageView image;
-        if (utilityNr == '1'){ image = makeImage("utility1.png", 150, 60.0, 12.5, 12.5);
-        } else { image = makeImage("utility2.png", 150, 40.0, 12.5, 12.5); }
+        if (utilityNr == '1'){ image = makeImage(utility.getImage(), 150, 60.0, 12.5, 12.5);
+        } else { image = makeImage(utility.getImage(), 150, 40.0, 12.5, 12.5); }
 
         Label name = makeLabel(utility.getText(), 170.0);
 

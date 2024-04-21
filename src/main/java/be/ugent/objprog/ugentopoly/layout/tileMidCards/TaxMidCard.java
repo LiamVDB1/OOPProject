@@ -13,7 +13,7 @@ public class TaxMidCard extends TileMidCard {
     }
 
     public void initializeUI(){
-        ImageView image = makeImage("tax.png", 125, 30.0, 25.0, 25.0);
+        ImageView image = makeImage(tax.getImage(), 125, 30.0, 25.0, 25.0);
 
         Label name = makeLabel(tax.getText(), 175.0);
 

@@ -2,7 +2,11 @@
     -fx-font-family: Helvetica;
     -fx-background-color: rgb(89, 202, 187);
 }
-#main GridPane {
+#middle {
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+}
+#middle GridPane {
     -fx-background-color: rgb(255, 255, 255);
 }
 #spelerToevoegen {
@@ -10,4 +14,8 @@
 }
 #startSpel {
     -fx-background-color: rgb(0, 149, 255);
+}
+
+.template {
+    -fx-background-color: rgb(200, 200, 200);
 }

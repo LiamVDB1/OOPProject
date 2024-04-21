@@ -9,19 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public abstract class Card extends AnchorPane{
-    protected ImageView everyImage(String fileName){
-        try (InputStream input = this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/" + fileName)){
-            if (input == null) {throw new NullPointerException();}
-            Image image = new Image(input);
-            ImageView imageView = new ImageView(image);
-
-            imageView.setPreserveRatio(true);
-
-            return imageView;
-        } catch (IOException e) { System.err.println("Error " + fileName + " not in assets folder");
-        } catch (NullPointerException e){ System.err.println("Error " + fileName + " not found in asserts folder");
-        }
-        return null;
+    protected ImageView everyImage(Image image){
+        ImageView imageView = new ImageView(image);
+        imageView.setPreserveRatio(true);
+        return imageView;
     }
 
     protected Label everyLabel(String text){

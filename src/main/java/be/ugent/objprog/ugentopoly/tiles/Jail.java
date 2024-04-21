@@ -9,6 +9,7 @@ import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 public class Jail extends Tile{
     public Jail(int position, String id, BoardModel bord){
         super(position, id, bord);
+        imageCreate("jail.png");
     }
 
     @Override

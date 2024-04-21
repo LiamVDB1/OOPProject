@@ -1,9 +1,9 @@
 package be.ugent.objprog.ugentopoly;
 
-import be.ugent.objprog.dice.Dice;
 import be.ugent.objprog.ugentopoly.factories.*;
 import be.ugent.objprog.ugentopoly.fxmlControllers.UgentopolyController;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
+import javafx.beans.InvalidationListener;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.jdom2.Document;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-public class BoardModel {
+public class BoardModel implements javafx.beans.Observable {
     //UI elementen
     /*
     private final BorderPane board;
@@ -26,14 +26,8 @@ public class BoardModel {
     private final GridPane bottom;
     */
 
-    private final Dice dice = new Dice();
-
     private final BoardView boardView;
-
-    private final AnchorPane cardPane;
-
-    private final AnchorPane boardShow;
-    private final AnchorPane tileShow;
+    private final UgentopolyController ugentopolyController;
 
     //Settings van het bord bijhouden
     private int startBalance;
@@ -52,12 +46,11 @@ public class BoardModel {
     //Spelers
     private List<Speler> spelers = new ArrayList<>();
 
-    public BoardModel(BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow){
+    public BoardModel(UgentopolyController ugentopolyController, BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow){
         // this.board = board; this.top = top; this.left = left; this.center = center; this.right = right; this.bottom = bottom;
 
-        boardView = new BoardView(board, top, left, center, right, bottom, cardPane, boardShow, tileShow);
-
-        this.cardPane = cardPane; this.boardShow = boardShow; this.tileShow = tileShow;
+        this.ugentopolyController = ugentopolyController;
+        boardView = new BoardView(this, board, top, left, center, right, bottom, cardPane, boardShow, tileShow);
 
         this.prevTile = null;
 
@@ -88,6 +81,19 @@ public class BoardModel {
         //Start Game initaliseren
         new StartGame(this);
     }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+
+    }
+
+    public UgentopolyController getController() { return ugentopolyController; }
+    public List<Speler> getSpelers() { return spelers; }
 
     public int getStartBalance() { return startBalance; }
 
@@ -194,38 +200,15 @@ public class BoardModel {
     }
 
     public void showTile(Tile tile){
-        if (prevTile != null){
-            prevTile.getCard().getStyleClass().remove("selected");
-        }
-        if (tile != null){
-            if (tile == prevTile){
-                showBoard();
-            } else {
-                cardPane.getChildren().clear();
-                cardPane.getChildren().add(tile.getMidCard());
+        boardView.showTile(prevTile, tile);
+    }
 
-                if (! boardShow.getStyleClass().contains("invisible")){
-                    boardShow.getStyleClass().add("invisible");
-                    tileShow.getStyleClass().remove("invisible");
-                }
-
-                tile.getCard().getStyleClass().add("selected");
-                prevTile = tile;
-            }
-        }
+    public void setPrevTile(Tile tile){
+        prevTile = tile;
     }
 
     public void showBoard(){
-        if (prevTile != null){
-            prevTile.getCard().getStyleClass().remove("selected");
-        }
-
-        if (boardShow.getStyleClass().contains("invisible")){
-            tileShow.getStyleClass().add("invisible");
-            boardShow.getStyleClass().remove("invisible");
-        }
-
-        prevTile = null;
+        boardView.showBoard(prevTile);
     }
 
     public void addSpeler(Speler speler){
@@ -233,7 +216,11 @@ public class BoardModel {
     }
 
     public void startSpel(){
-        Stage stage = (Stage) cardPane.getScene().getWindow();
+        Stage stage = (Stage) boardView.getSpelBord().getScene().getWindow();
         stage.show();
+    }
+
+    public Tile getTile(int position) {
+        return tiles[position];
     }
 }

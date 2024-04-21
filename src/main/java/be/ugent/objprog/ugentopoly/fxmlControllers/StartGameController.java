@@ -2,23 +2,28 @@ package be.ugent.objprog.ugentopoly.fxmlControllers;
 
 import be.ugent.objprog.ugentopoly.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
 public class StartGameController {
 
-    private BoardModel boardModel;
+    private StartGameModel model;
 
-    public void setBoard(BoardModel boardModel) {
-        this.boardModel = boardModel;
+    @FXML private GridPane grid;
+    @FXML private Label errorMessage;
+
+    public void setModel(BoardModel boardModel) {
+        this.model = new StartGameModel(boardModel, grid, errorMessage);
     }
 
     @FXML
     public void spelerToevoegen(){
-        new SpelerCreator(boardModel);
+        model.spelerToevoegen();
     }
 
     @FXML
     public void startSpel(){
-        boardModel.startSpel();
+        model.startSpel();
     }
 
 }

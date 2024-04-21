@@ -16,4 +16,6 @@ module be.ugent.objprog.ugentopoly {
     opens be.ugent.objprog.ugentopoly.layout.tileMidCards to javafx.fxml;
     exports be.ugent.objprog.ugentopoly.fxmlControllers;
     opens be.ugent.objprog.ugentopoly.fxmlControllers to javafx.fxml;
+    exports be.ugent.objprog.ugentopoly.layout;
+    opens be.ugent.objprog.ugentopoly.layout to javafx.fxml;
 }

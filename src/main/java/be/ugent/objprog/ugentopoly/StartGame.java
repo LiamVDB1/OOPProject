@@ -9,7 +9,9 @@ import java.io.IOException;
 
 public class StartGame {
 
-    BoardModel boardModel;
+    private BoardModel boardModel;
+    private StartGameModel model;
+
     public StartGame(BoardModel boardModel) {
         this.boardModel = boardModel;
         try { start();
@@ -20,7 +22,7 @@ public class StartGame {
         FXMLLoader fxmlLoader = new FXMLLoader(Ugentopoly.class.getResource("fxmlFiles/StartGame.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         StartGameController controller = fxmlLoader.getController();
-        controller.setBoard(boardModel);
+        controller.setModel(boardModel);
         stage.setTitle("Start een nieuw spel");
         stage.setScene(scene);
         stage.show();

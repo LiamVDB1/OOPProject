@@ -3,6 +3,7 @@ package be.ugent.objprog.ugentopoly.fxmlControllers;
 import be.ugent.objprog.dice.Dice;
 import be.ugent.objprog.ugentopoly.BoardModel;
 import be.ugent.objprog.ugentopoly.StartGame;
+import be.ugent.objprog.ugentopoly.tiles.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -34,11 +35,14 @@ public class UgentopolyController{
     @FXML AnchorPane boardShow;
     public void initialize() {
         //Bord initaliseren
-        boardModel = new BoardModel(this.borderPane, this.top, this.left, this.center, this.right, this.bottom, this.cardPane, this.boardShow, this.tileShow);
+        boardModel = new BoardModel(this, this.borderPane, this.top, this.left, this.center, this.right, this.bottom, this.cardPane, this.boardShow, this.tileShow);
     }
 
     @FXML
     public void toBoard(){
         boardModel.showBoard();
+    }
+    public void showTile(Tile tile){
+        boardModel.showTile(tile);
     }
 }

@@ -13,7 +13,7 @@ public class GoToJailMidCard extends TileMidCard {
     }
 
     public void initializeUI(){
-        ImageView image = makeImage("go_to_jail.png", 100, 30.0, 30.0, 45.0);
+        ImageView image = makeImage(goToJail.getImage(), 100, 30.0, 30.0, 45.0);
 
         Label naam = makeLabel(goToJail.getText(), 200.0);
 

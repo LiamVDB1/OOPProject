@@ -8,12 +8,12 @@ public class RailwayCard extends TileCardNormal {
     public RailwayCard(Railway railway, boolean vertical, boolean LT){
         super(vertical, LT);
         this.railway = railway;
-        this.setOnMouseClicked(event -> railway.getBord().showTile(railway));
+        this.setOnMouseClicked(event -> railway.getBord().getController().showTile(railway));
         initializeUI();
     }
 
     public void initializeUI(){
-        Group image = MakeImage("railway.png", 46, 15.0);
+        Group image = MakeImage(railway.getImage(), 46, 15.0);
 
         Group name = makeName(railway.getText(), 83, 61, 0.0, 65.0);
 

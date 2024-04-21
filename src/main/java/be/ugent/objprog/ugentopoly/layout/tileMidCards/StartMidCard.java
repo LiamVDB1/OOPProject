@@ -14,7 +14,7 @@ public class StartMidCard extends TileMidCard {
     }
 
     public void initializeUI(){
-        ImageView image = makeImage("start.png", 125, 20.0, 25.0, 25.0);
+        ImageView image = makeImage(start.getImage(), 125, 20.0, 25.0, 25.0);
 
         Label name = makeLabel(start.getText(), 210.0);
 

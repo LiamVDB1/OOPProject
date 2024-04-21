@@ -4,6 +4,7 @@ import be.ugent.objprog.ugentopoly.Card;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -49,14 +50,14 @@ public abstract class TileCardCorner extends Card {
 
     }
 
-    protected Group MakeImage(String fileName, int fitHeight, int rotate){
-        ImageView image = everyImage(fileName);
+    protected Group MakeImage(Image image, int fitHeight, int rotate){
+        ImageView imageView = everyImage(image);
 
-        Group imageGroup = new Group(image);
+        Group imageGroup = new Group(imageView);
 
-        image.setRotate(rotate);
+        imageView.setRotate(rotate);
 
-        image.setFitHeight(fitHeight);
+        imageView.setFitHeight(fitHeight);
 
         AnchorPane.setTopAnchor(imageGroup, 0.0);
         AnchorPane.setRightAnchor(imageGroup, 0.0);

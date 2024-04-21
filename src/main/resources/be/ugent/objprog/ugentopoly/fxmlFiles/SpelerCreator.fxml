@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 
 <AnchorPane id="main" prefHeight="400.0" prefWidth="600.0" stylesheets="@../cssFiles/spelercreator.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ugent.objprog.ugentopoly.fxmlControllers.SpelerCreatorController">
    <children>
@@ -29,10 +30,10 @@
             <TextField fx:id="naam" layoutX="148.0" layoutY="48.0" onAction="#checkText" prefHeight="35.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="50.0" />
             <ComboBox fx:id="pionChoice" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="110.0" />
             <Label prefHeight="35.0" prefWidth="60.0" text="Pion:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="110.0" />
-            <ColorPicker layoutX="158.0" layoutY="171.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0" />
+            <ColorPicker fx:id="colorPicker" layoutX="158.0" layoutY="171.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0" />
             <Label layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="60.0" text="Kleur:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="170.0" />
             <Button id="okButton" mnemonicParsing="false" onAction="#addSpeler" prefHeight="33.0" prefWidth="100.0" text="Ok" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="140.0" />
-            <Button id="cancelButton" mnemonicParsing="false" onAction="#cancel" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="30.0" />
+            <Button id="cancelButton" mnemonicParsing="false" onAction="#close" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="30.0" />
             <Label fx:id="errorNaam" layoutX="364.0" layoutY="51.0" prefHeight="35.0" text="Naam moet ingevuld zijn" textFill="RED" visible="false" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="50.0" />
          </children>
       </AnchorPane>

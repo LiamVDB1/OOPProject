@@ -18,6 +18,7 @@ public class Ugentopoly extends Application {
         stage.setTitle("Ugentopoly");
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.show();
     }
     public static void main(String[] args) {
         launch();

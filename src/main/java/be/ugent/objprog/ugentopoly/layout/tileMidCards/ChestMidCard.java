@@ -13,7 +13,7 @@ public class ChestMidCard extends TileMidCard {
     }
 
     public void initializeUI(){
-        ImageView image = makeImage("chest.png", 125, 30.0, 25.0, 25.0);
+        ImageView image = makeImage(chest.getImage(), 125, 30.0, 25.0, 25.0);
 
         Label name = makeLabel(chest.getText(), 180.0);
 

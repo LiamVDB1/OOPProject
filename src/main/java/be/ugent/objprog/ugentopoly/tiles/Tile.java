@@ -3,11 +3,18 @@ package be.ugent.objprog.ugentopoly.tiles;
 import be.ugent.objprog.ugentopoly.Card;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 import be.ugent.objprog.ugentopoly.BoardModel;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public abstract class Tile {
     protected int position;
     protected String id;
     protected String text;
+    protected Image image; //In de initializatie van elke klasse gezet
+    protected Node graphic;
 
     protected boolean vertical;
     protected boolean LT;
@@ -42,6 +49,20 @@ public abstract class Tile {
 
     public void setText(String text){ this.text = text; }
     public String getText(){ return text;}
+
+    public void imageCreate(String fileName){
+        try (InputStream input = this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/" + fileName)){
+            if (input == null) {throw new NullPointerException();}
+            this.image = new Image(input);
+            this.graphic = image;
+            // Moet hier een ImageView worden => Alles veranderen
+        } catch (IOException e) { System.err.println("Error " + fileName + " not in assets folder");
+        } catch (NullPointerException e){ System.err.println("Error " + fileName + " not found in assets folder");
+        }
+    }
+
+    public Image getImage(){ return image; }
+    public Object getGraphic(){ return this.graphic; }
 
     public void setGridPos(int gridPos){
         this.gridPos = gridPos;

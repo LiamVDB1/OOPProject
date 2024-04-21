@@ -9,6 +9,7 @@ import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 public class FreeParking extends Tile{
     public FreeParking(int position, String id, BoardModel bord){
         super(position, id, bord);
+        imageCreate("free_parking.png");
     }
 
     @Override

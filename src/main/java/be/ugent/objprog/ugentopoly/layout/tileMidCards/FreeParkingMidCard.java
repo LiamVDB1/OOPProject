@@ -14,7 +14,7 @@ public class FreeParkingMidCard extends TileMidCard {
     }
 
     public void initializeUI(){
-        ImageView image = makeImage("free_parking.png", 125, 30.0, 25.0, 25.0);
+        ImageView image = makeImage(freeParking.getImage(), 125, 30.0, 25.0, 25.0);
 
         Label name = makeLabel(freeParking.getText(), 190.0);
 

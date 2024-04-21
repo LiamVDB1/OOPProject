@@ -6,9 +6,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.paint.Color;
+
+import java.util.List;
+import java.util.Objects;
 
 public class SpelerCreatorController {
     private BoardModel boardModel;
+    private StartGameModel model;
 
     @FXML TextField naam;
     @FXML ComboBox<ChoiceItem> pionChoice;
@@ -19,22 +24,29 @@ public class SpelerCreatorController {
         setupComboBox();
 
         pionChoice.getItems().addAll(
-                new ChoiceItem("WINA", new Image(this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/token1.png"))),
-                new ChoiceItem("VTK", new Image(this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/token2.png"))),
-                new ChoiceItem("Chemica",  new Image(this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/token3.png"))),
-                new ChoiceItem("Filologica", new Image(this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/token4.png"))),
-                new ChoiceItem("Geologica", new Image(this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/token5.png"))),
-                new ChoiceItem("VBK", new Image(this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/token6.png"))),
-                new ChoiceItem("VEK", new Image(this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/token7.png"))),
-                new ChoiceItem("VLK", new Image(this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/token8.png")))
+                ChoiceItem.WINA,
+                ChoiceItem.VTK,
+                ChoiceItem.CHEMICA,
+                ChoiceItem.FILOLOGICA,
+                ChoiceItem.GEOLOGICA,
+                ChoiceItem.VBK,
+                ChoiceItem.VEK,
+                ChoiceItem.VLK
         );
-        pionChoice.setValue(pionChoice.getItems().get(0));
+        //pionChoice.setValue(pionChoice.getItems().get(0)); Overbodig, want dit gebeurt in removeChoices
+        colorPicker.setValue(Color.TEAL);
     }
 
     public void setBoard(BoardModel boardModel) {
         this.boardModel = boardModel;
     }
-
+    public void setModel(StartGameModel model) {
+        this.model = model;
+    }
+    public void removeChoices(List<ChoiceItem> items){
+        pionChoice.getItems().removeAll(items);
+        pionChoice.setValue(pionChoice.getItems().get(0));
+    }
     private void setupComboBox(){
         //Zorgen dat Images in de combobox getoond worden
         pionChoice.setCellFactory(o -> new ListCell<ChoiceItem>() {
@@ -50,8 +62,8 @@ public class SpelerCreatorController {
                     setGraphic(null);
                     setText(null);
                 } else {
-                    setText(item.text());
-                    imageView.setImage(item.image());
+                    setText(item.getText());
+                    imageView.setImage(item.getImage());
                     setGraphic(imageView);
                 }
             }
@@ -69,33 +81,39 @@ public class SpelerCreatorController {
                     setGraphic(null);
                     setText(null);
                 } else {
-                    setText(item.text());
-                    imageView.setImage(item.image());
+                    setText(item.getText());
+                    imageView.setImage(item.getImage());
                     setGraphic(imageView);
                 }
             }
         });
     }
     @FXML
-    public void cancel(){
+    public void close(){
         Stage stage = (Stage) pionChoice.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    public void checkText(){
+    public boolean checkText(){
         if(naam.getText().isEmpty()){
             naam.getStyleClass().add("wrongText");
             errorNaam.setVisible(true);
+            return false;
         } else {
             if (naam.getStyleClass().contains("wrongText")) { naam.getStyleClass().remove("wrongText"); }
             if (errorNaam.isVisible()){ errorNaam.setVisible(false); }
+            return true;
         }
     }
 
     @FXML
     public void addSpeler(){
-        checkText();
+        if (checkText()){
+            model.addSpeler(naam.getText(), pionChoice.getValue(), colorPicker.getValue());
+            pionChoice.getItems().remove(pionChoice.getValue());
+            close();
+        }
     }
 }
 

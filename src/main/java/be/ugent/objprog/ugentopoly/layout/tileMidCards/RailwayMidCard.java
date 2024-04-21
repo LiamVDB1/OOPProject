@@ -14,7 +14,7 @@ public class RailwayMidCard extends TileMidCard {
     }
 
     public void initalizeUI(){
-        ImageView image = makeImage("railway.png", 100, 30.0, 37.5, 37.5);
+        ImageView image = makeImage(railway.getImage(), 100, 30.0, 37.5, 37.5);
 
         Label naam = makeLabel(railway.getText(), 140.0);
 
