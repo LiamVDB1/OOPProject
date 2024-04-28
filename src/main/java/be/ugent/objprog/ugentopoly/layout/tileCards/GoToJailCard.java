@@ -15,9 +15,9 @@ public class GoToJailCard extends TileCardCorner {
     }
 
     public void initializeUI(){
-        Group image = MakeImage(goToJail.getImage(), 85,45);
+        Group image = makeImage(goToJail.getImage(), 85,45);
 
-        Group name = MakeName(goToJail.getText(), 100, 45);
+        Group name = makeName(goToJail.getText(), 100, 45);
 
         this.setRotate(rot);
 

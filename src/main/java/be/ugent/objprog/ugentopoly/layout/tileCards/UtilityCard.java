@@ -14,8 +14,8 @@ public class UtilityCard extends TileCardNormal {
 
     public void initializeUI(){
         Group image;
-        if (utility.getNr() == 1) { image = MakeImage(utility.getImage(), 33, 5.7);
-        } else { image = MakeImage(utility.getImage(), 51, 20.5);
+        if (utility.getNr() == 1) { image = makeImage(utility.getImage(), 33, 5.7);
+        } else { image = makeImage(utility.getImage(), 51, 20.5);
         }
 
         this.getChildren().addAll(image);

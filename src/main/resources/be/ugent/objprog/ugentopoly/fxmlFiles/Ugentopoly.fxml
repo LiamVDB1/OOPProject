@@ -2,10 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -150,43 +146,6 @@
       </BorderPane>
    </center>
    <right>
-      <AnchorPane id="infoTab" prefHeight="845.0" prefWidth="300.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane id="spelerStats" prefHeight="384.0" prefWidth="282.0" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="61.0">
-               <children>
-                  <Label prefWidth="215.0" text="Balance: 1400" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                  <Label prefWidth="55.0" text="Positie: " wrapText="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="30.0" />
-                  <Label prefWidth="160.0" text="Ga direct naar de Overpoort" wrapText="true" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0" />
-                  <ListView prefHeight="300.0" prefWidth="266.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="70.0" />
-                  <ImageView fitHeight="55.0" layoutX="143.0" layoutY="-43.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
-                     <image>
-                        <Image url="@../assets/token1.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <AnchorPane id="log" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="280.0" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="450.0">
-               <children>
-                  <TextArea editable="false" layoutX="20.0" layoutY="20.0" prefHeight="266.0" prefWidth="266.0" text="BLABLALBLALBLALBLALBLALBLBLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL&#10;BLABLALBLALBLALBLALBLALBL" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0" />
-                  <Label alignment="CENTER" prefWidth="266.0" text="Log" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane id="log" layoutX="20.0" layoutY="760.0" prefHeight="80.0" prefWidth="280.0" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="755.0">
-               <children>
-                  <ImageView fitHeight="66.0" fitWidth="50.4458" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
-                     <image>
-                        <Image url="@../assets/token1.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" prefHeight="48.0" prefWidth="206.0" text="Spelernaam" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="23.0" />
-                  <Label alignment="CENTER" prefWidth="206.0" text="Nu aan de beurt:" textAlignment="CENTER" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-               </children>
-            </AnchorPane>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="65.0" style="-fx-background-color: RED;" text="Button" AnchorPane.leftAnchor="17.5" AnchorPane.topAnchor="10.0" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="65.0" style="-fx-background-color: BLUE;" text="Button" AnchorPane.leftAnchor="82.5" AnchorPane.topAnchor="10.0" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="65.0" style="-fx-background-color: GREEN;" text="Button" AnchorPane.leftAnchor="147.5" AnchorPane.topAnchor="10.0" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="65.0" style="-fx-background-color: BLACK;" text="Button" AnchorPane.leftAnchor="212.5" AnchorPane.rightAnchor="17.5" AnchorPane.topAnchor="10.0" />
-         </children>
-      </AnchorPane>
+      <AnchorPane id="infoTab" fx:id="infoTab" prefHeight="845.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

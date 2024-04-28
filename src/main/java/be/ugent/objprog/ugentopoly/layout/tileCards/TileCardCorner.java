@@ -11,7 +11,7 @@ import javafx.scene.layout.GridPane;
 
 import java.util.Map;
 
-public abstract class TileCardCorner extends Card {
+public abstract class TileCardCorner extends Card implements TileCards {
     protected GridPane Parent;
     protected int gridPos;
     protected Map<Integer, Integer> rotCorner;
@@ -35,7 +35,7 @@ public abstract class TileCardCorner extends Card {
         return label;
     }
 
-    protected Group MakeName(String text, int width, int rotate){
+    protected Group makeName(String text, int width, int rotate){
         Label name = everyLabel(text);
         Group nameGroup = new Group(name);
 
@@ -50,7 +50,7 @@ public abstract class TileCardCorner extends Card {
 
     }
 
-    protected Group MakeImage(Image image, int fitHeight, int rotate){
+    protected Group makeImage(Image image, int fitHeight, int rotate){
         ImageView imageView = everyImage(image);
 
         Group imageGroup = new Group(imageView);
@@ -63,5 +63,19 @@ public abstract class TileCardCorner extends Card {
         AnchorPane.setRightAnchor(imageGroup, 0.0);
 
         return imageGroup;
+    }
+
+    @Override
+    public void setPion(ImageView image, double spelerAnchor){
+        Group imageGroup = new Group(image);
+        image.setRotate(0);
+        AnchorPane.setTopAnchor(imageGroup, 30.0);
+        AnchorPane.setLeftAnchor(imageGroup, spelerAnchor);
+        this.getChildren().add(imageGroup);
+    }
+
+    @Override
+    public void removePion(ImageView imageView) {
+        this.getChildren().remove(imageView);
     }
 }

@@ -2,10 +2,8 @@ package be.ugent.objprog.ugentopoly.tiles;
 
 import be.ugent.objprog.ugentopoly.Area;
 import be.ugent.objprog.ugentopoly.BoardModel;
-import be.ugent.objprog.ugentopoly.Card;
 import be.ugent.objprog.ugentopoly.layout.tileCards.StreetCard;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.StreetMidCard;
-import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -19,6 +17,7 @@ public class Street extends Tile {
         this.cost = cost;
         this.area = area;
         this.rent = rent;
+        this.graphic = rectangleCreator();
     }
 
     public Area getArea() {
@@ -42,7 +41,7 @@ public class Street extends Tile {
         this.card = new StreetCard(this, vertical, LT);
         this.midCard = new StreetMidCard(this);
     }
-    public Rectangle getImage(){
+    public Rectangle rectangleCreator() {
         Rectangle rectangle = new Rectangle();
         rectangle.setFill(getColor());
         return rectangle;

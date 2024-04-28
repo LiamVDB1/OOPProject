@@ -14,7 +14,7 @@ public class StartGameModel implements Observable {
     private List<InvalidationListener> listeners;
     private BoardModel boardModel;
     private StartGameView view;
-    private List<ChoiceItem> removeChoices;
+    private List<Pion> removeChoices;
 
     public StartGameModel(BoardModel boardModel, GridPane grid, Label errorMessage) {
         this.boardModel = boardModel;
@@ -36,7 +36,7 @@ public class StartGameModel implements Observable {
         new SpelerCreator(boardModel, this, removeChoices);
     }
 
-    public void addSpeler(String naam, ChoiceItem pion, Color color){
+    public void addSpeler(String naam, Pion pion, Color color){
         if (boardModel.getSpelers().size() <= 4) {
             Speler speler = new Speler(naam, pion, color, boardModel);
             removeChoices.add(pion);

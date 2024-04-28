@@ -13,7 +13,7 @@ public class ChestCard extends TileCardNormal {
     }
 
     public void initializeUI(){
-        Group image = MakeImage(chest.getImage(), 41, 15.0);
+        Group image = makeImage(chest.getImage(), 41, 15.0);
 
         Group name = makeName(chest.getText(), 78, 61, 0.0, 70.0);
 

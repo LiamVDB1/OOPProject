@@ -15,9 +15,9 @@ public class FreeParkingCard extends TileCardCorner {
     }
 
     public void initializeUI(){
-        Group image = MakeImage(freeParking.getImage(), 80,45);
+        Group image = makeImage(freeParking.getImage(), 80,45);
 
-        Group name = MakeName(freeParking.getText(), 90, 45);
+        Group name = makeName(freeParking.getText(), 90, 45);
 
         this.setRotate(rot);
 

@@ -9,6 +9,7 @@ public class Start extends Tile {
     public Start(int position, String id, BoardModel bord) {
         super(position, id, bord);
         imageCreate("start.png");
+        getBord().setStartPosition(position);
     }
 
     @Override

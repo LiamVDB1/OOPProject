@@ -13,7 +13,7 @@ public class TaxCard extends TileCardNormal {
     }
 
     public void initializeUI(){
-        Group image = MakeImage(tax.getImage(), 46, 15.0);
+        Group image = makeImage(tax.getImage(), 46, 15.0);
 
         Group name = makeName(tax.getText(), 88, 61, 0.0, 60.0);
 

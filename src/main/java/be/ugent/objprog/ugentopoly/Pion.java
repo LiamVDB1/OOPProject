@@ -2,7 +2,7 @@ package be.ugent.objprog.ugentopoly;
 
 import javafx.scene.image.Image;
 
-public enum ChoiceItem {
+public enum Pion {
 
     WINA("WINA",  "token1.png"),
     VTK("VTK", "token2.png"),
@@ -16,7 +16,7 @@ public enum ChoiceItem {
     private final String text;
     private final Image image;
 
-    ChoiceItem(String text, String imagePath){
+    Pion(String text, String imagePath){
         this.text = text;
         this.image = loadImage(imagePath);
     }

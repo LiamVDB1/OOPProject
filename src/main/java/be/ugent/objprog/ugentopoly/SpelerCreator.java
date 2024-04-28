@@ -12,8 +12,8 @@ public class SpelerCreator {
 
     private BoardModel boardModel;
     private StartGameModel model;
-    private List<ChoiceItem> removeChoices;
-    public SpelerCreator(BoardModel boardModel, StartGameModel model, List<ChoiceItem> removeChoices) {
+    private List<Pion> removeChoices;
+    public SpelerCreator(BoardModel boardModel, StartGameModel model, List<Pion> removeChoices) {
         this.boardModel = boardModel;
         this.model = model;
         this.removeChoices = removeChoices;

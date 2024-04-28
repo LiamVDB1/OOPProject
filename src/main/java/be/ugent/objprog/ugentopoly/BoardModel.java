@@ -40,17 +40,24 @@ public class BoardModel implements javafx.beans.Observable {
     //Vorige geklikte tile bijhouden
     private Tile prevTile;
 
+    //Vorige InfoTab bijhouden
+
+    private AnchorPane prevSpelerInfo;
+
     //Map voor de positie van de tile naar de parent gridpane
     private final Map<Integer, GridPane> posToParent;
 
     //Spelers
     private List<Speler> spelers = new ArrayList<>();
+    private Speler currentSpeler;
 
-    public BoardModel(UgentopolyController ugentopolyController, BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow){
+    private int startPosition;
+
+    public BoardModel(UgentopolyController ugentopolyController, BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow, AnchorPane infoTab){
         // this.board = board; this.top = top; this.left = left; this.center = center; this.right = right; this.bottom = bottom;
 
         this.ugentopolyController = ugentopolyController;
-        boardView = new BoardView(this, board, top, left, center, right, bottom, cardPane, boardShow, tileShow);
+        boardView = new BoardView(this, board, top, left, center, right, bottom, cardPane, boardShow, tileShow, infoTab);
 
         this.prevTile = null;
 
@@ -190,6 +197,14 @@ public class BoardModel implements javafx.beans.Observable {
         }
     }
 
+    public void setStartPosition(int startPosition){
+        this.startPosition = startPosition;
+    }
+
+    public int getStartPosition(){
+        return startPosition;
+    }
+
     public void makeCards(){
         for (Tile tile : tiles){
             tile.initializeCards();
@@ -212,15 +227,53 @@ public class BoardModel implements javafx.beans.Observable {
     }
 
     public void addSpeler(Speler speler){
+        speler.setSpelerIndex(spelers.size());
         spelers.add(speler);
     }
 
     public void startSpel(){
         Stage stage = (Stage) boardView.getSpelBord().getScene().getWindow();
         stage.show();
+        currentSpeler = spelers.get(0);
+        setupInfoBoard();
+        setupPions();
     }
 
     public Tile getTile(int position) {
         return tiles[position];
+    }
+
+    public void showSpelerInfo(Speler speler) {
+        boardView.showSpelerInfo(prevSpelerInfo, speler.getSpelerInfo());
+        prevSpelerInfo = speler.getSpelerInfo();
+    }
+
+    public void setupInfoBoard(){
+        spelers.forEach(speler -> {
+            boardView.placeButton(speler.getSpelerButton(), speler.getSpelerIndex(), speler.getWhiteText());
+            boardView.placeSpelerInfo(speler.getSpelerInfo());
+            boardView.placeCurrentSpelerLayout(speler.getCurrentSpelerLayout());
+        });
+        showSpelerInfo(spelers.get(0));
+    }
+
+    public void setupPions(){
+        spelers.forEach(speler -> {
+            boardView.placePion(speler.getPionImage(), speler.getCurrentTile().getTileCard(), speler.getSpelerIndex());
+        });
+        boardView.showCurrentSpeler(null, currentSpeler.getCurrentSpelerLayout());
+    }
+
+    public void movePion(Speler speler, int steps){
+        boardView.removePion(speler.getPionImage(), speler.getCurrentTile().getTileCard());
+        speler.movePion(steps);
+        boardView.placePion(speler.getPionImage(), speler.getCurrentTile().getTileCard(), speler.getSpelerIndex());
+    }
+
+    public void moveSpeler(int steps){
+        Speler oldSpeler = currentSpeler;
+        movePion(currentSpeler, steps);
+        currentSpeler = spelers.get((currentSpeler.getSpelerIndex() + 1) % spelers.size());
+        boardView.showCurrentSpeler(oldSpeler.getCurrentSpelerLayout(), currentSpeler.getCurrentSpelerLayout());
     }
 }

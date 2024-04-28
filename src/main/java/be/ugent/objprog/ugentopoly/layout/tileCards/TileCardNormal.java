@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public abstract class TileCardNormal extends Card {
+public abstract class TileCardNormal extends Card implements TileCards {
     protected boolean vertical;
     protected boolean LT;
 
@@ -70,7 +70,7 @@ public abstract class TileCardNormal extends Card {
     }
 
     //Double in plaats van double om null te kunnen gebruiken.
-    protected Group MakeImage(Image image, int fitHeight, Double LTAnchor){
+    protected Group makeImage(Image image, int fitHeight, Double LTAnchor){
         ImageView imageView = everyImage(image);
 
         Group imageGroup = new Group(imageView);
@@ -91,5 +91,25 @@ public abstract class TileCardNormal extends Card {
         }
 
         return imageGroup;
+    }
+
+    @Override
+    public void setPion(ImageView imageView, double spelerAnchor){
+        Group imageGroup = new Group(imageView);
+        if (vertical){
+            imageView.setRotate(0);
+            AnchorPane.setTopAnchor(imageGroup, 5.0);
+            AnchorPane.setLeftAnchor(imageGroup, spelerAnchor);
+        } else {
+            imageView.setRotate(90);
+            AnchorPane.setTopAnchor(imageGroup, spelerAnchor);
+            AnchorPane.setLeftAnchor(imageGroup, 5.0);
+        }
+        this.getChildren().add(imageGroup);
+    }
+
+    @Override
+    public void removePion(ImageView image){
+        this.getChildren().remove(image);
     }
 }

@@ -3,20 +3,18 @@ package be.ugent.objprog.ugentopoly.fxmlControllers;
 import be.ugent.objprog.ugentopoly.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
 import java.util.List;
-import java.util.Objects;
 
 public class SpelerCreatorController {
     private BoardModel boardModel;
     private StartGameModel model;
 
     @FXML TextField naam;
-    @FXML ComboBox<ChoiceItem> pionChoice;
+    @FXML ComboBox<Pion> pionChoice;
     @FXML ColorPicker colorPicker;
     @FXML Label errorNaam;
 
@@ -24,14 +22,14 @@ public class SpelerCreatorController {
         setupComboBox();
 
         pionChoice.getItems().addAll(
-                ChoiceItem.WINA,
-                ChoiceItem.VTK,
-                ChoiceItem.CHEMICA,
-                ChoiceItem.FILOLOGICA,
-                ChoiceItem.GEOLOGICA,
-                ChoiceItem.VBK,
-                ChoiceItem.VEK,
-                ChoiceItem.VLK
+                Pion.WINA,
+                Pion.VTK,
+                Pion.CHEMICA,
+                Pion.FILOLOGICA,
+                Pion.GEOLOGICA,
+                Pion.VBK,
+                Pion.VEK,
+                Pion.VLK
         );
         //pionChoice.setValue(pionChoice.getItems().get(0)); Overbodig, want dit gebeurt in removeChoices
         colorPicker.setValue(Color.TEAL);
@@ -43,20 +41,20 @@ public class SpelerCreatorController {
     public void setModel(StartGameModel model) {
         this.model = model;
     }
-    public void removeChoices(List<ChoiceItem> items){
+    public void removeChoices(List<Pion> items){
         pionChoice.getItems().removeAll(items);
         pionChoice.setValue(pionChoice.getItems().get(0));
     }
     private void setupComboBox(){
         //Zorgen dat Images in de combobox getoond worden
-        pionChoice.setCellFactory(o -> new ListCell<ChoiceItem>() {
+        pionChoice.setCellFactory(o -> new ListCell<Pion>() {
             private final ImageView imageView = new ImageView();
             {
                 imageView.setPreserveRatio(true);
                 imageView.setFitHeight(20);
             }
             @Override
-            protected void updateItem(ChoiceItem item, boolean empty) {
+            protected void updateItem(Pion item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setGraphic(null);
@@ -68,14 +66,14 @@ public class SpelerCreatorController {
                 }
             }
         });
-        pionChoice.setButtonCell(new ListCell<ChoiceItem>(){
+        pionChoice.setButtonCell(new ListCell<Pion>(){
             private final ImageView imageView = new ImageView();
             {
                 imageView.setPreserveRatio(true);
                 imageView.setFitHeight(20);
             }
             @Override
-            protected void updateItem(ChoiceItem item, boolean empty) {
+            protected void updateItem(Pion item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setGraphic(null);

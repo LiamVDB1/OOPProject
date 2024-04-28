@@ -39,7 +39,7 @@ public class StartGameView implements InvalidationListener {
         playerCount ++;
     }
     public void makeSpeler(Speler speler){
-        boolean whiteText = ! (ColorLuminance.calculateLuminance(speler.getColor()) > 0.4);
+        boolean whiteText = speler.getWhiteText();
         GridPosition gridPosition = Positions.get(playerCount);
         //Template removen
         grid.getChildren().removeIf(node -> node.getStyleClass().contains("template") && GridPane.getRowIndex(node) == gridPosition.rowIndex() && GridPane.getColumnIndex(node) == gridPosition.columnIndex());

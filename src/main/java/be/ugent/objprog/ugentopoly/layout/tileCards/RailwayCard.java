@@ -13,7 +13,7 @@ public class RailwayCard extends TileCardNormal {
     }
 
     public void initializeUI(){
-        Group image = MakeImage(railway.getImage(), 46, 15.0);
+        Group image = makeImage(railway.getImage(), 46, 15.0);
 
         Group name = makeName(railway.getText(), 83, 61, 0.0, 65.0);
 

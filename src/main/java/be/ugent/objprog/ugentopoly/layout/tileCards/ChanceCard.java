@@ -14,7 +14,7 @@ public class ChanceCard extends TileCardNormal {
     }
 
     public void initializeUI(){
-        Group image = MakeImage(chance.getImage(), 46, 30.0);
+        Group image = makeImage(chance.getImage(), 46, 30.0);
 
         Group name = makeName(chance.getText(), 118, 61, 0.0, 30.0);
 

@@ -2,11 +2,7 @@ package be.ugent.objprog.ugentopoly.layout.tileCards;
 
 import be.ugent.objprog.ugentopoly.tiles.Street;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class StreetCard extends TileCardNormal {
@@ -48,24 +44,21 @@ public class StreetCard extends TileCardNormal {
         return colorPane;
     }*/
     public Rectangle makeColorPane(){
-        Rectangle colorRectangle = new Rectangle();
+        Rectangle colorRectangle = street.rectangleCreator();
         if (vertical) {
             colorRectangle.setWidth(24.5);
             colorRectangle.setHeight(60);
             AnchorPane.setLeftAnchor(colorRectangle, 123.0);
             AnchorPane.setTopAnchor(colorRectangle, 0.5);
-            AnchorPane.setRightAnchor(colorRectangle, 0.5);
-            AnchorPane.setBottomAnchor(colorRectangle, 0.5);
         } else {
             colorRectangle.setWidth(60);
             colorRectangle.setHeight(24.5);
             AnchorPane.setLeftAnchor(colorRectangle, 0.5);
             AnchorPane.setTopAnchor(colorRectangle, 123.0);
-            AnchorPane.setRightAnchor(colorRectangle, 0.5);
-            AnchorPane.setBottomAnchor(colorRectangle, 0.5);
         }
+        AnchorPane.setRightAnchor(colorRectangle, 0.5);
+        AnchorPane.setBottomAnchor(colorRectangle, 0.5);
 
-        colorRectangle.setFill(street.getColor());
         return colorRectangle;
     }
 }

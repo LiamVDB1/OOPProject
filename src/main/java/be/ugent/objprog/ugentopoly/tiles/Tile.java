@@ -1,10 +1,12 @@
 package be.ugent.objprog.ugentopoly.tiles;
 
 import be.ugent.objprog.ugentopoly.Card;
+import be.ugent.objprog.ugentopoly.layout.tileCards.TileCards;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 import be.ugent.objprog.ugentopoly.BoardModel;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,8 +37,6 @@ public abstract class Tile {
         this.bord = bord;
         vertical = (position != 0 && position < 10) || (position > 20 && position < 30);
         LT = position != 0 && position < 21;
-        //vertical = Parent.getId().equals("left") || Parent.getId().equals("right");
-        //LT = Parent.getId().equals("left") || Parent.getId().equals("top");
     }
 
     public int getPosition() {
@@ -53,16 +53,19 @@ public abstract class Tile {
     public void imageCreate(String fileName){
         try (InputStream input = this.getClass().getResourceAsStream("/be/ugent/objprog/ugentopoly/assets/" + fileName)){
             if (input == null) {throw new NullPointerException();}
-            this.image = new Image(input);
-            this.graphic = image;
-            // Moet hier een ImageView worden => Alles veranderen
+            Image image = new Image(input);
+            this.image = image;
+
+            ImageView imageView = new ImageView(image);
+            imageView.setPreserveRatio(true);
+            this.graphic = imageView;
         } catch (IOException e) { System.err.println("Error " + fileName + " not in assets folder");
         } catch (NullPointerException e){ System.err.println("Error " + fileName + " not found in assets folder");
         }
     }
 
     public Image getImage(){ return image; }
-    public Object getGraphic(){ return this.graphic; }
+    public Node getGraphic(){ return this.graphic; }
 
     public void setGridPos(int gridPos){
         this.gridPos = gridPos;
@@ -85,6 +88,8 @@ public abstract class Tile {
     public abstract void initializeCards();
 
     public Card getCard(){ return card; }
+
+    public TileCards getTileCard(){ return (TileCards) card;}
 
     public TileMidCard getMidCard(){ return midCard;}
 
