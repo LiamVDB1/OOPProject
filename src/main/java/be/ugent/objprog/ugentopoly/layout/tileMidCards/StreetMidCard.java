@@ -21,17 +21,17 @@ public class StreetMidCard extends TileMidCard {
 
         Label name = makeLabel(street.getText(), 80.0);
 
-        Label kostPrijs = makeLabel("KostPrijs: € " + street.getCost(), 150.0);
+        Label kostPrijs = makeLabel("KostPrijs: € " + street.getCost(), 140.0);
 
-        Label huur = makeLabel("Huur: € "+ street.getRent(), 200.0);
+        Label huur = makeLabel("BasisHuur: € "+ street.getHuur(), 180.0);
 
-        this.getChildren().addAll(colorRectangle, name, kostPrijs, huur);
+        Label huurDouble = makeLabel("Volledige Straat: \n€ " + street.getHuur() * 2, 220);
+
+        this.getChildren().addAll(colorRectangle, name, kostPrijs, huur, huurDouble);
     }
 
     public Rectangle makeColorRectangle(){
-        Rectangle colorRectangle = street.rectangleCreator();
-        colorRectangle.setWidth(175);
-        colorRectangle.setHeight(50);
+        Rectangle colorRectangle = street.rectangleCreator(50, 175);
 
         AnchorPane.setTopAnchor(colorRectangle, 0.0);
         AnchorPane.setLeftAnchor(colorRectangle, 0.0);

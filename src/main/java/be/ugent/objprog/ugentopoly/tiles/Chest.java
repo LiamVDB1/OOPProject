@@ -17,4 +17,9 @@ public class Chest extends Tile{
         this.card = new ChestCard(this, vertical, LT);
         this.midCard = new ChestMidCard(this);
     }
+
+    @Override
+    public void action() {
+        //TODO
+    }
 }

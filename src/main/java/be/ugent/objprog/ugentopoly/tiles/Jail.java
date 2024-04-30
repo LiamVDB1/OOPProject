@@ -16,5 +16,11 @@ public class Jail extends Tile{
     public void initializeCards() {
         this.card = new JailCard(this);
         this.midCard = new JailMidCard(this);
+        this.boardModel.setJailPosition(this.position);
+    }
+
+    @Override
+    public void action() {
+        //Niks gebeurt, je Visit de gevangenis gewoon.
     }
 }

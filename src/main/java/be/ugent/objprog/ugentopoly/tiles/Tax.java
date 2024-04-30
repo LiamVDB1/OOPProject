@@ -23,4 +23,9 @@ public class Tax extends Tile{
         this.card = new TaxCard(this, vertical, LT);
         this.midCard = new TaxMidCard(this);
     }
+
+    @Override
+    public void action() {
+        boardModel.payBonusPot(amount, boardModel.getCurrentSpeler(), this);
+    }
 }

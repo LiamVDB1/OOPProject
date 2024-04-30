@@ -5,39 +5,50 @@ import be.ugent.objprog.ugentopoly.Speler;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class SpelerInfo extends Card implements InvalidationListener {
+public class SpelerInfo extends Card {
     private Speler speler;
+    private Label saldo;
+    private Label positie2;
+    private ListView<Tile> listView;
     public SpelerInfo(Speler speler) {
         this.speler = speler;
-        speler.addListener(this);
         this.getStyleClass().add("infoTabPane");
         initialize();
     }
     public void initialize(){
-        Label saldo = labelWAnchors("Saldo: " + speler.getSaldo(), 5.0, 5.0, null, null);
+        saldo = labelWAnchors("Saldo: " + speler.getSaldo(), 5.0, 5.0, null, null);
 
         Label positie1 = labelWAnchors("Positie: ", 30.0, 5.0, null, null);
 
-        Label positie2 = labelWAnchors(speler.getPositieNaam(), 30.0, 60.0, null, null);
+        positie2 = labelWAnchors(speler.getPositieNaam(), 30.0, 60.0, null, null);
 
         ImageView image = imageViewWAnchors(speler.getPion().getImage(), 5.0, null, 25.0, null);
         image.setFitHeight(55);
 
-        ListView<Tile> listView = new ListView<Tile>();
+        listView = new ListView<>();
         setupListView(listView);
 
         this.getChildren().addAll(saldo, positie1, positie2, image, listView);
     }
 
-    @Override
-    public void invalidated(Observable observable) {
-        //listView.updateItems(speler.getProperties());
+    public void updateListView(){
+        listView.getItems().clear();
+        listView.getItems().addAll(speler.getProperties());
+    }
+
+    public void updateSaldo(){
+        this.saldo.setText("Saldo: " + speler.getSaldo());
+    }
+
+    public void updatePositie(){
+        this.positie2.setText(speler.getPositieNaam());
     }
 
     public void setupListView(ListView<Tile> listView){
@@ -46,6 +57,7 @@ public class SpelerInfo extends Card implements InvalidationListener {
         AnchorPane.setLeftAnchor(listView, 5.0);
         AnchorPane.setRightAnchor(listView, 5.0);
         AnchorPane.setBottomAnchor(listView, 10.0);
+        listView.setFixedCellSize(25.0);
 
         listView.setCellFactory(o -> new ListCell<Tile>() {
             @Override

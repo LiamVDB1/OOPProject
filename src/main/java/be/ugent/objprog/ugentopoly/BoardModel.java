@@ -2,6 +2,7 @@ package be.ugent.objprog.ugentopoly;
 
 import be.ugent.objprog.ugentopoly.factories.*;
 import be.ugent.objprog.ugentopoly.fxmlControllers.UgentopolyController;
+import be.ugent.objprog.ugentopoly.tiles.Eigendom;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
 import javafx.beans.InvalidationListener;
 import javafx.scene.layout.*;
@@ -50,8 +51,12 @@ public class BoardModel implements javafx.beans.Observable {
     //Spelers
     private List<Speler> spelers = new ArrayList<>();
     private Speler currentSpeler;
+    private Speler prevSpeler;
 
     private int startPosition;
+    private int jailPosition;
+    private int laatsteWorp;
+    private int bonusPot;
 
     public BoardModel(UgentopolyController ugentopolyController, BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow, AnchorPane infoTab){
         // this.board = board; this.top = top; this.left = left; this.center = center; this.right = right; this.bottom = bottom;
@@ -59,8 +64,7 @@ public class BoardModel implements javafx.beans.Observable {
         this.ugentopolyController = ugentopolyController;
         boardView = new BoardView(this, board, top, left, center, right, bottom, cardPane, boardShow, tileShow, infoTab);
 
-        this.prevTile = null;
-
+        bonusPot = 0;
         areas = new Area[8]; tiles = new Tile[40];
 
         posToParent = new HashMap<>();
@@ -104,7 +108,9 @@ public class BoardModel implements javafx.beans.Observable {
 
     public int getStartBalance() { return startBalance; }
 
-    public int getStartSalary() { return startSalary; }
+    public Speler getCurrentSpeler() { return currentSpeler; }
+    public int getLaatsteWorp() { return laatsteWorp; }
+    public int getBonusPot() { return bonusPot; }
 
     public void xmlSetup(){
         //XML File inladen
@@ -200,6 +206,9 @@ public class BoardModel implements javafx.beans.Observable {
     public void setStartPosition(int startPosition){
         this.startPosition = startPosition;
     }
+    public void setJailPosition(int jailPosition){
+        this.jailPosition = jailPosition;
+    }
 
     public int getStartPosition(){
         return startPosition;
@@ -266,14 +275,69 @@ public class BoardModel implements javafx.beans.Observable {
 
     public void movePion(Speler speler, int steps){
         boardView.removePion(speler.getPionImage(), speler.getCurrentTile().getTileCard());
+        int oldPosition = speler.getPositie();
         speler.movePion(steps);
+        if (speler.getPositie() == startPosition){
+            speler.updateSaldo(startSalary * 2);
+        } else if ((oldPosition < startPosition || oldPosition > speler.getPositie()) && speler.getPositie() > startPosition){
+            speler.updateSaldo(startSalary);
+        }
         boardView.placePion(speler.getPionImage(), speler.getCurrentTile().getTileCard(), speler.getSpelerIndex());
+        currentSpeler.getCurrentTile().action();
     }
 
-    public void moveSpeler(int steps){
-        Speler oldSpeler = currentSpeler;
-        movePion(currentSpeler, steps);
-        currentSpeler = spelers.get((currentSpeler.getSpelerIndex() + 1) % spelers.size());
-        boardView.showCurrentSpeler(oldSpeler.getCurrentSpelerLayout(), currentSpeler.getCurrentSpelerLayout());
+    public void moveSpeler(int steps, boolean doubleThrow){
+        prevSpeler = currentSpeler;
+        this.laatsteWorp = steps;
+        if (doubleThrow){
+            movePion(currentSpeler, steps);
+        } else {
+            movePion(currentSpeler, steps);
+            currentSpeler = spelers.get((currentSpeler.getSpelerIndex() + 1) % spelers.size());
+            boardView.showCurrentSpeler(prevSpeler.getCurrentSpelerLayout(), currentSpeler.getCurrentSpelerLayout());
+        }
     }
+
+    public void showBuyProperty(Eigendom eigendom){
+        showTile(eigendom);
+        boardView.showBuying(eigendom);
+    }
+
+    public void buyEigendom(Eigendom eigendom){
+        prevSpeler.addProperty(eigendom);
+        prevSpeler.updateSaldo(-eigendom.getCost());
+        eigendom.setEigenaar(prevSpeler);
+    }
+
+    public void showBetaalHuur(Eigendom eigendom){
+        showTile(eigendom);
+        currentSpeler.updateSaldo(-eigendom.getHuur());
+        eigendom.getEigenaar().updateSaldo(eigendom.getHuur());
+        boardView.showBetaalHuur(eigendom, currentSpeler, eigendom.getEigenaar());
+    }
+
+    public void showFailliet(Speler speler){
+        //TODO
+    }
+
+    public void payBonusPot(int amount, Speler speler, Tile tile){
+        speler.updateSaldo(-amount);
+        showTile(tile);
+        boardView.showTaxPaid(amount, speler);
+        bonusPot += amount;
+    }
+
+    public void giveBonusPot(Speler speler, Tile tile){
+        speler.updateSaldo(bonusPot);
+        showTile(tile);
+        boardView.showGaveBonusPot(speler);
+        bonusPot = 0;
+    }
+
+    public void goToJail(Speler speler){
+        speler.setPosition(jailPosition);
+        showTile(tiles[jailPosition]);
+        boardView.showJail(speler);
+    }
+
 }

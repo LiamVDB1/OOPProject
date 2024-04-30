@@ -12,7 +12,7 @@ public class StartCard extends TileCardCorner {
         super();
         this.start = start;
         this.rot = rotCorner.get(start.getPosition());
-        this.setOnMouseClicked(event -> start.getBord().getController().showTile(start));
+        this.setOnMouseClicked(event -> start.getBoardModel().getController().showTile(start));
         initializeUI();
     }
 

@@ -10,7 +10,7 @@ public class FreeParkingCard extends TileCardCorner {
         super();
         this.freeParking = freeParking;
         this.rot = rotCorner.get(freeParking.getPosition());
-        this.setOnMouseClicked(event -> freeParking.getBord().getController().showTile(freeParking));
+        this.setOnMouseClicked(event -> freeParking.getBoardModel().getController().showTile(freeParking));
         initializeUI();
     }
 

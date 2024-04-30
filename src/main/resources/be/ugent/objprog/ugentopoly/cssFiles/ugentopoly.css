@@ -46,3 +46,11 @@
     -fx-border-color: BLACK;
     -fx-border-width: 2;
 }
+#buyButton {
+    -fx-background-color: rgb(0, 255, 0);
+    -fx-font-size: 18;
+}
+#skipButton {
+    -fx-background-color: rgb(255, 0, 0);
+    -fx-font-size: 18;
+}

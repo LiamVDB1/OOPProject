@@ -20,7 +20,7 @@ public class RailwayMidCard extends TileMidCard {
 
         Label kostprijs = makeLabel("Kostprijs: € " + railway.getCost(), 190.0);
 
-        Label huur = makeLabel("Huur: € " + railway.getRent(), 225.0);
+        Label huur = makeLabel("Huur: € " + railway.getHuur(), 225.0);
 
         this.getChildren().addAll(image, naam, huur, kostprijs);
     }

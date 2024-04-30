@@ -8,7 +8,7 @@ public class RailwayCard extends TileCardNormal {
     public RailwayCard(Railway railway, boolean vertical, boolean LT){
         super(vertical, LT);
         this.railway = railway;
-        this.setOnMouseClicked(event -> railway.getBord().getController().showTile(railway));
+        this.setOnMouseClicked(event -> railway.getBoardModel().getController().showTile(railway));
         initializeUI();
     }
 

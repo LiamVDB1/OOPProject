@@ -9,7 +9,7 @@ public class ChanceCard extends TileCardNormal {
     public ChanceCard(Chance chance, boolean vertical, boolean LT){
         super(vertical, LT);
         this.chance = chance;
-        this.setOnMouseClicked(event -> chance.getBord().getController().showTile(chance));
+        this.setOnMouseClicked(event -> chance.getBoardModel().getController().showTile(chance));
         initializeUI();
     }
 

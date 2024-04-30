@@ -22,7 +22,7 @@ public abstract class Tile {
     protected boolean LT;
     protected int gridPos;
 
-    protected BoardModel bord;
+    protected BoardModel boardModel;
 
     protected Card card;
 
@@ -31,10 +31,10 @@ public abstract class Tile {
     protected int gridPos1;
     protected int gridPos2;
 
-    public Tile(int position, String id, BoardModel bord){
+    public Tile(int position, String id, BoardModel boardModel){
         this.position = position;
         this.id = id;
-        this.bord = bord;
+        this.boardModel = boardModel;
         vertical = (position != 0 && position < 10) || (position > 20 && position < 30);
         LT = position != 0 && position < 21;
     }
@@ -57,6 +57,7 @@ public abstract class Tile {
             this.image = image;
 
             ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(20);
             imageView.setPreserveRatio(true);
             this.graphic = imageView;
         } catch (IOException e) { System.err.println("Error " + fileName + " not in assets folder");
@@ -93,8 +94,9 @@ public abstract class Tile {
 
     public TileMidCard getMidCard(){ return midCard;}
 
-    public BoardModel getBord(){
-        return bord;
+    public BoardModel getBoardModel(){
+        return boardModel;
     }
 
+    public abstract void action();
 }

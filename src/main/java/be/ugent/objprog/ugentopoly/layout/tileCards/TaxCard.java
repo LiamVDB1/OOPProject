@@ -8,7 +8,7 @@ public class TaxCard extends TileCardNormal {
     public TaxCard(Tax tax, boolean vertical, boolean LT){
         super(vertical, LT);
         this.tax = tax;
-        this.setOnMouseClicked(event -> tax.getBord().getController().showTile(tax));
+        this.setOnMouseClicked(event -> tax.getBoardModel().getController().showTile(tax));
         initializeUI();
     }
 

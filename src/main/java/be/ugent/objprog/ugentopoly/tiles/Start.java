@@ -9,7 +9,7 @@ public class Start extends Tile {
     public Start(int position, String id, BoardModel bord) {
         super(position, id, bord);
         imageCreate("start.png");
-        getBord().setStartPosition(position);
+        getBoardModel().setStartPosition(position);
     }
 
     @Override
@@ -25,5 +25,10 @@ public class Start extends Tile {
         Image startArrow = this.image;
         this.image = graphic;
         return startArrow;
+    }
+
+    @Override
+    public void action() {
+        //Niks, functionaliteit al toegevoegd bij movePion, ook voor landing op start.
     }
 }

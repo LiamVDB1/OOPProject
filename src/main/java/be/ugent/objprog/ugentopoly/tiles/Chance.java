@@ -17,4 +17,9 @@ public class Chance extends Tile{
         this.card = new ChanceCard(this, vertical, LT);
         this.midCard = new ChanceMidCard(this);
     }
+
+    @Override
+    public void action() {
+        //TODO
+    }
 }

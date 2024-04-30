@@ -8,7 +8,7 @@ public class UtilityCard extends TileCardNormal {
     public UtilityCard(Utility utility, boolean vertical, boolean LT){
         super(vertical, LT);
         this.utility = utility;
-        this.setOnMouseClicked(event -> utility.getBord().getController().showTile(utility));
+        this.setOnMouseClicked(event -> utility.getBoardModel().getController().showTile(utility));
         initializeUI();
     }
 

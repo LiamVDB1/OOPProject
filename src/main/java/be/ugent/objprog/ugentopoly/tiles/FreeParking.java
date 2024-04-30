@@ -17,4 +17,9 @@ public class FreeParking extends Tile{
         this.card = new FreeParkingCard(this);
         this.midCard = new FreeParkingMidCard(this);
     }
+
+    @Override
+    public void action() {
+        boardModel.giveBonusPot(boardModel.getCurrentSpeler(), this);
+    }
 }

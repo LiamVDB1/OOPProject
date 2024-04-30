@@ -8,7 +8,7 @@ public class ChestCard extends TileCardNormal {
     public ChestCard(Chest chest, boolean vertical, boolean LT){
         super(vertical, LT);
         this.chest = chest;
-        this.setOnMouseClicked(event -> chest.getBord().getController().showTile(chest));
+        this.setOnMouseClicked(event -> chest.getBoardModel().getController().showTile(chest));
         initializeUI();
     }
 

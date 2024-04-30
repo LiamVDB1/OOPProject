@@ -1,5 +1,6 @@
 package be.ugent.objprog.ugentopoly;
 
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,5 +54,13 @@ public abstract class Card extends AnchorPane{
         AnchorPane.setRightAnchor(imageView, rightAnchor);
         AnchorPane.setBottomAnchor(imageView, bottomAnchor);
         return imageView;
+    }
+
+    protected Node nodeWAnchors(Node node, Double topAnchor, Double leftAnchor, Double rightAnchor, Double bottomAnchor){
+        AnchorPane.setTopAnchor(node, topAnchor);
+        AnchorPane.setLeftAnchor(node, leftAnchor);
+        AnchorPane.setRightAnchor(node, rightAnchor);
+        AnchorPane.setBottomAnchor(node, bottomAnchor);
+        return node;
     }
 }

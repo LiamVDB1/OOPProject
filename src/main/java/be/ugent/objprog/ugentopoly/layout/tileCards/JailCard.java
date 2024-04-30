@@ -10,7 +10,7 @@ public class JailCard extends TileCardCorner {
         super();
         this.jail = jail;
         this.rot = rotCorner.get(jail.getPosition());
-        this.setOnMouseClicked(event -> jail.getBord().getController().showTile(jail));
+        this.setOnMouseClicked(event -> jail.getBoardModel().getController().showTile(jail));
         initializeUI();
     }
 

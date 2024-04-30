@@ -17,4 +17,9 @@ public class GoToJail extends Tile{
         this.card = new GoToJailCard(this);
         this.midCard = new GoToJailMidCard(this);
     }
+
+    @Override
+    public void action() {
+        boardModel.goToJail(boardModel.getCurrentSpeler());
+    }
 }

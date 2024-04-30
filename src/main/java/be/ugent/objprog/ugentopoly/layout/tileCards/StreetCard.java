@@ -10,7 +10,7 @@ public class StreetCard extends TileCardNormal {
     public StreetCard(Street street, boolean vertical, boolean LT){
         super(vertical, LT);
         this.street = street;
-        this.setOnMouseClicked(event -> street.getBord().getController().showTile(street));
+        this.setOnMouseClicked(event -> street.getBoardModel().getController().showTile(street));
         initializeUI();
     }
     public void initializeUI(){
@@ -44,7 +44,7 @@ public class StreetCard extends TileCardNormal {
         return colorPane;
     }*/
     public Rectangle makeColorPane(){
-        Rectangle colorRectangle = street.rectangleCreator();
+        Rectangle colorRectangle = street.rectangleCreator(null, null);
         if (vertical) {
             colorRectangle.setWidth(24.5);
             colorRectangle.setHeight(60);
