@@ -20,6 +20,6 @@ public class Chance extends Tile{
 
     @Override
     public void action() {
-        //TODO
+        boardModel.getChanceCard(this);
     }
 }

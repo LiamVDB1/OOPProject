@@ -20,6 +20,6 @@ public class Chest extends Tile{
 
     @Override
     public void action() {
-        //TODO
+        boardModel.getChestCard(this);
     }
 }

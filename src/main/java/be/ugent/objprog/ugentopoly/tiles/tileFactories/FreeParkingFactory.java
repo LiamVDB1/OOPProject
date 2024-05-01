@@ -1,4 +1,4 @@
-package be.ugent.objprog.ugentopoly.factories;
+package be.ugent.objprog.ugentopoly.tiles.tileFactories;
 
 import be.ugent.objprog.ugentopoly.Area;
 import be.ugent.objprog.ugentopoly.BoardModel;

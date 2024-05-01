@@ -50,6 +50,7 @@ public class BoardView implements InvalidationListener {
         temp(10, 100.0);
         temp(20, 150.0);
         temp(30, 200.0);
+        temp(40, 250.0);
     }
 
     public void initialize(){
@@ -67,7 +68,7 @@ public class BoardView implements InvalidationListener {
     }
 
     public void showTile(Tile prevTile, Tile tile){
-        model.getController().setShowBoardEnabled(true);
+        model.getController().setShowBoardEnabledAndTileEnabled(true);
         buyOrSkip.setVisible(false);
         if (prevTile != null){
             prevTile.getCard().getStyleClass().remove("selected");
@@ -197,7 +198,11 @@ public class BoardView implements InvalidationListener {
     public void showBuying(Eigendom eigendom){
         buyOrSkip.setVisible(true);
         buyOrSkip.setTile(eigendom);
-        model.getController().setShowBoardEnabled(false);
+        model.getController().setShowBoardEnabledAndTileEnabled(false);
+    }
+
+    public void setEigendomColor(Eigendom eigendom, Color color){
+        //TODO goeie methode vinden om dit mooi te implementeren
     }
 
     public void showBetaalHuur(Eigendom eigendom, Speler fromSpeler, Speler toSpeler){
@@ -231,7 +236,65 @@ public class BoardView implements InvalidationListener {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Gevangenis");
         alert.setHeaderText(speler.getNaam() + " is naar de gevangenis gestuurd!");
-        alert.setContentText(speler.getNaam() + " is naar de gevangenis gestuurd, gooi 3 maal dubbel om eruit te geraken");
+        alert.setContentText(speler.getNaam() + " is naar de gevangenis gestuurd, gooi Dubbel om eruit te geraken");
+        alert.showAndWait();
+        model.getController().showBoard();
+    }
+
+    public void escapedJail(Speler speler, boolean outOfJailCard){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Gevangenis");
+        alert.setHeaderText(speler.getNaam() + " is ontsnapt uit de gevangenis!");
+        if (outOfJailCard){
+            alert.setContentText(speler.getNaam() + " is ontsnapt uit de gevangenis met zijn getOutOfJailCard, en kan weer verder spelen!");
+        } else {
+            alert.setContentText(speler.getNaam() + " is ontsnapt uit de gevangenis, en kan weer verder spelen!");
+        }
+        alert.showAndWait();
+        model.getController().showBoard();
+    }
+
+    public void showMoneyDeck(Speler speler, String text){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Geld Kaart");
+        alert.setHeaderText(speler.getNaam() + " heeft een geld kaart getrokken!");
+        alert.setContentText(text);
+        alert.showAndWait();
+        model.getController().showBoard();
+    }
+
+    public void showRelMoveCard(Speler speler, String text){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Relatieve move");
+        alert.setHeaderText(speler.getNaam() + " heeft een relatieve move kaart getrokken!");
+        alert.setContentText(text);
+        alert.showAndWait();
+        model.getController().showBoard();
+    }
+
+    public void showMoveCard(Speler speler, String text){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Move kaart");
+        alert.setHeaderText(speler.getNaam() + " heeft een move kaart getrokken!");
+        alert.setContentText(text);
+        alert.showAndWait();
+        model.getController().showBoard();
+    }
+
+    public void showPlayersMoneyDeck(Speler speler, String text){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Geld Kaart");
+        alert.setHeaderText(speler.getNaam() + "heeft een geld kaart getrokken!");
+        alert.setContentText(text);
+        alert.showAndWait();
+        model.getController().showBoard();
+    }
+
+    public void showJailDeck(Speler speler, String text){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Gevangenis Kaart");
+        alert.setHeaderText(speler.getNaam() + " heeft een get out of Jail kaart getrokken!");
+        alert.setContentText(text);
         alert.showAndWait();
         model.getController().showBoard();
     }

@@ -1,22 +1,24 @@
-package be.ugent.objprog.ugentopoly.factories;
+package be.ugent.objprog.ugentopoly.tiles.tileFactories;
 
 import be.ugent.objprog.ugentopoly.Area;
 import be.ugent.objprog.ugentopoly.BoardModel;
-import be.ugent.objprog.ugentopoly.tiles.Jail;
+import be.ugent.objprog.ugentopoly.tiles.Railway;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
 import org.jdom2.DataConversionException;
 import org.jdom2.Element;
 
 import java.util.Map;
 
-public class JailFactory implements TileFactory{
+public class RailwayFactory implements TileFactory{
     @Override
     public Tile createTile(Element element, Map<String, Area> areaMap, BoardModel bord){
         try {
             int position = element.getAttribute("position").getIntValue();
-            return new Jail(position, element.getAttributeValue("id"), bord);
+            int cost =  element.getAttribute("cost").getIntValue();
+            int rent = element.getAttribute("rent").getIntValue();
+            return new Railway(position, element.getAttributeValue("id"), cost, rent, bord);
         } catch(DataConversionException e){
-            System.out.println("Error in XML File, position not integer");
+            System.out.println("Error in XML File, Convertion to Integer");
             return null;
         }
     }

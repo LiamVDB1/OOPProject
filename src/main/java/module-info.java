@@ -6,8 +6,8 @@ module be.ugent.objprog.ugentopoly {
 
     opens be.ugent.objprog.ugentopoly to javafx.fxml;
     exports be.ugent.objprog.ugentopoly;
-    exports be.ugent.objprog.ugentopoly.factories;
-    opens be.ugent.objprog.ugentopoly.factories to javafx.fxml;
+    exports be.ugent.objprog.ugentopoly.tiles.tileFactories;
+    opens be.ugent.objprog.ugentopoly.tiles.tileFactories to javafx.fxml;
     exports be.ugent.objprog.ugentopoly.tiles;
     opens be.ugent.objprog.ugentopoly.tiles to javafx.fxml;
     exports be.ugent.objprog.ugentopoly.layout.tileCards;

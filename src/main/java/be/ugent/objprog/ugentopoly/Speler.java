@@ -1,5 +1,6 @@
 package be.ugent.objprog.ugentopoly;
 
+import be.ugent.objprog.ugentopoly.deckTypes.JailType;
 import be.ugent.objprog.ugentopoly.layout.CurrentSpelerLayout;
 import be.ugent.objprog.ugentopoly.layout.SpelerInfo;
 import be.ugent.objprog.ugentopoly.tiles.Railway;
@@ -21,8 +22,8 @@ public class Speler {
     private BoardModel boardModel;
     private int saldo;
     private int positie;
-    private int gevangenisBeurten;
-    private boolean inGevangenis;
+    private JailType outOfJailKaart;
+    private boolean inJail;
     private List<Tile> properties;
     private List<InvalidationListener> listeners;
     private int spelerIndex;
@@ -31,13 +32,12 @@ public class Speler {
     private boolean whiteText;
     private List<Railway>  railways;
     private List<Utility> utilities;
-    private int dubbelGegooidCounter;
+    private int dubbelThrowCounter;
     public Speler(String naam, Pion pion, Color color, BoardModel boardModel){
         this.naam = naam; this.pion = pion; this.color = color; this.boardModel = boardModel;
         saldo = boardModel.getStartBalance();
         positie = boardModel.getStartPosition();
-        gevangenisBeurten = 0;
-        inGevangenis = false;
+        inJail = false;
         properties = new ArrayList<>();
         listeners = new ArrayList<>();
         spelerInfo = new SpelerInfo(this);
@@ -48,7 +48,7 @@ public class Speler {
         pionImage.setFitWidth(34);
         railways = new ArrayList<>();
         utilities = new ArrayList<>();
-        dubbelGegooidCounter = 0;
+        dubbelThrowCounter = 0;
     }
 
     public Color getColor(){
@@ -70,8 +70,12 @@ public class Speler {
     public String getPositieNaam(){
         return getCurrentTile().getText();
     }
-    public int getDubbelGegooidCounter(){
-        return dubbelGegooidCounter;
+    public int getDubbelThrowCounter(){
+        return dubbelThrowCounter;
+    }
+
+    public JailType getOutOfJailKaart(){
+        return outOfJailKaart;
     }
 
     public List<Tile> getProperties(){
@@ -84,17 +88,29 @@ public class Speler {
         return railways;
     }
 
+    public boolean getInJail(){
+        return inJail;
+    }
+
     public void addProperty(Tile tile){
         if (tile != null) {
             properties.add(tile);
             spelerInfo.updateListView();
         }
     }
-    public void addDubbelGegooid(){
-        dubbelGegooidCounter++;
+    public void addDubbelThrow(){
+        dubbelThrowCounter++;
     }
-    public void notDubbelGeGooid(){
-        dubbelGegooidCounter = 0;
+    public void notDubbelThrow(){
+        dubbelThrowCounter = 0;
+    }
+
+    public void addOutOfJailKaart(JailType outOfJailKaart){
+        this.outOfJailKaart = outOfJailKaart;
+    }
+
+    public void useOutOfJailKaart(){
+        outOfJailKaart = null;
     }
 
     public void updateSaldo(int amount){
@@ -152,5 +168,13 @@ public class Speler {
     public void movePion(int steps){
         positie = (positie + steps) % 40; // altijd 40 tiles.
         spelerInfo.updatePositie();
+    }
+
+    public void goToJail(){
+        this.inJail = true;
+    }
+
+    public void leaveJail(){
+        this.inJail = false;
     }
 }

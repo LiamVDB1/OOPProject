@@ -29,9 +29,12 @@ public class UgentopolyController{
     private @FXML AnchorPane infoTab;
 
     private boolean isShowBoardEnabled;
+    private boolean isShowTileEnabled;
     public void initialize() {
         //Bord initaliseren
         boardModel = new BoardModel(this, this.borderPane, this.top, this.left, this.center, this.right, this.bottom, this.cardPane, this.boardShow, this.tileShow, this.infoTab);
+        isShowBoardEnabled = true;
+        isShowTileEnabled = true;
     }
 
     @FXML
@@ -41,7 +44,9 @@ public class UgentopolyController{
         }
     }
     public void showTile(Tile tile){
-        boardModel.showTile(tile);
+        if (isShowTileEnabled){
+            boardModel.showTile(tile);
+        }
     }
 
     public void showSpelerInfo(Speler speler) { boardModel.showSpelerInfo(speler); }
@@ -50,17 +55,18 @@ public class UgentopolyController{
         boardModel.moveSpeler(list.get(0) + list.get(1), list.get(0) == list.get(1));
     }
 
-    public void setShowBoardEnabled(boolean showBoardEnabled) {
-        isShowBoardEnabled = showBoardEnabled;
+    public void setShowBoardEnabledAndTileEnabled(boolean enabled) {
+        isShowBoardEnabled = enabled;
+        isShowTileEnabled = enabled;
     }
 
     public void skipEigendom(){
-        isShowBoardEnabled = true;
+        setShowBoardEnabledAndTileEnabled(true);
         showBoard();
     }
     public void buyEigendom(Eigendom eigendom){
+        setShowBoardEnabledAndTileEnabled(true);
         boardModel.buyEigendom(eigendom);
-        isShowBoardEnabled = true;
         showBoard();
     }
 }

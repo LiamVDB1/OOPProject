@@ -1,6 +1,9 @@
 package be.ugent.objprog.ugentopoly;
 
-import be.ugent.objprog.ugentopoly.factories.*;
+import be.ugent.objprog.ugentopoly.deckTypes.DeckType;
+import be.ugent.objprog.ugentopoly.deckTypes.JailType;
+import be.ugent.objprog.ugentopoly.deckTypes.deckFactories.*;
+import be.ugent.objprog.ugentopoly.tiles.tileFactories.*;
 import be.ugent.objprog.ugentopoly.fxmlControllers.UgentopolyController;
 import be.ugent.objprog.ugentopoly.tiles.Eigendom;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
@@ -15,6 +18,7 @@ import org.jdom2.input.SAXBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.Random;
 
 public class BoardModel implements javafx.beans.Observable {
     //UI elementen
@@ -26,6 +30,8 @@ public class BoardModel implements javafx.beans.Observable {
     private final GridPane right;
     private final GridPane bottom;
     */
+
+    private static final Random RG = new Random();
 
     private final BoardView boardView;
     private final UgentopolyController ugentopolyController;
@@ -53,6 +59,10 @@ public class BoardModel implements javafx.beans.Observable {
     private Speler currentSpeler;
     private Speler prevSpeler;
 
+    private List<DeckType> chanceDeck;
+    private List<DeckType> chestDeck;
+    private Map<String, DeckFactory> deckTypeFactories;
+
     private int startPosition;
     private int jailPosition;
     private int laatsteWorp;
@@ -76,11 +86,22 @@ public class BoardModel implements javafx.beans.Observable {
             } else { posToParent.put(i, bottom);
             }
         }
+        chanceDeck = new ArrayList<>();
+        chestDeck = new ArrayList<>();
 
         initialize();
     }
 
     public void initialize(){
+        //Deck Factories, moet gebruikt woren in 2 methoden. Daarom dat ik ze globaal aanmaak
+        deckTypeFactories = Map.of(
+                "JAIL", new JailTypeFactory(),
+                "MONEY", new MoneyTypeFactory(),
+                "MOVEREL", new MoveRelTypeFactory(),
+                "MOVE", new MoveTypeFactory(),
+                "PLAYERS_MONEY", new PlayersMoneyTypeFactory()
+        );
+
         //XML en Properties inladen
         xmlSetup();
         propertySetup();
@@ -114,7 +135,7 @@ public class BoardModel implements javafx.beans.Observable {
 
     public void xmlSetup(){
         //XML File inladen
-        try (InputStream input = UgentopolyController.class.getResourceAsStream("/be/ugent/objprog/ugentopoly/ugentopoly.deel1.xml")) {
+        try (InputStream input = UgentopolyController.class.getResourceAsStream("/be/ugent/objprog/ugentopoly/ugentopoly.xml")) {
             Document document = new SAXBuilder().build(input);
 
             //Root element ophalen
@@ -130,17 +151,29 @@ public class BoardModel implements javafx.beans.Observable {
             //Tiles instellen
             setTiles(root.getChild("tiles"));
 
-        } catch (IOException ex) { System.err.println("Error Loading the XML file - ugentopoly.deel1.xml");
-        } catch (JDOMException JE){ System.err.println("JDOMException - ugentopoly.deel1.xml");
+            //Kaarten instellen
+            for (Element deck : root.getChildren("deck")) {
+                // Voor 2 verschillenden soorten is het beter om een if else te gebruiken i.p.v. met factories te werken.
+                if (deck.getAttributeValue("type").equals("CHANCE")){
+                    setDeck(deck, chanceDeck);
+                } else if (deck.getAttributeValue("type").equals("CHEST")){
+                    setDeck(deck, chestDeck);
+                }
+            }
+
+        } catch (IOException ex) { System.err.println("Error Loading the XML file - ugentopoly.xml");
+        } catch (JDOMException JE){ System.err.println("JDOMException - ugentopoly.xml");
         }
     }
 
     public void propertySetup(){
-        try (InputStream input = UgentopolyController.class.getResourceAsStream("/be/ugent/objprog/ugentopoly/ugentopoly.deel1.properties")){
+        try (InputStream input = UgentopolyController.class.getResourceAsStream("/be/ugent/objprog/ugentopoly/ugentopoly.properties")){
             Properties properties = new Properties();
             properties.load(input);
             for (Tile tile : tiles){ tile.setText(properties.getProperty(tile.getId())); }
-        } catch (IOException ex ){ System.err.println("Error Loading the Properties File - ugentopoly.deel1.properties");
+            for (DeckType card: chanceDeck){ card.setText(properties.getProperty(card.getId())); }
+            for (DeckType card: chestDeck){ card.setText(properties.getProperty(card.getId())); }
+        } catch (IOException ex ){ System.err.println("Error Loading the Properties File - ugentopoly.properties");
         }
     }
 
@@ -185,6 +218,18 @@ public class BoardModel implements javafx.beans.Observable {
             if (factory != null) {
                 Tile tile = factory.createTile(child, areaMap, this);
                 this.tiles[tile.getPosition()] = tile;
+            }
+        }
+    }
+
+    public void setDeck(Element deck, List<DeckType> deckList){
+        List<Element> children = deck.getChildren("card");
+        for (Element child: children){
+            String type = child.getAttributeValue("type");
+            DeckFactory factory = deckTypeFactories.get(type);
+            if (factory != null){
+                DeckType deckType = factory.createDeckType(this, child);
+                deckList.add(deckType);
             }
         }
     }
@@ -273,28 +318,57 @@ public class BoardModel implements javafx.beans.Observable {
         boardView.showCurrentSpeler(null, currentSpeler.getCurrentSpelerLayout());
     }
 
-    public void movePion(Speler speler, int steps){
+    public void movePion(Speler speler, int oldPosition, int newPosition, boolean collect){
         boardView.removePion(speler.getPionImage(), speler.getCurrentTile().getTileCard());
-        int oldPosition = speler.getPositie();
-        speler.movePion(steps);
-        if (speler.getPositie() == startPosition){
-            speler.updateSaldo(startSalary * 2);
-        } else if ((oldPosition < startPosition || oldPosition > speler.getPositie()) && speler.getPositie() > startPosition){
-            speler.updateSaldo(startSalary);
+        speler.setPosition(newPosition);
+        if (collect){
+            if (newPosition == startPosition){
+                speler.updateSaldo(startSalary * 2);
+            } else if ((oldPosition < startPosition || oldPosition > newPosition) && newPosition > startPosition){
+                speler.updateSaldo(startSalary);
+            }
         }
         boardView.placePion(speler.getPionImage(), speler.getCurrentTile().getTileCard(), speler.getSpelerIndex());
         currentSpeler.getCurrentTile().action();
     }
 
+    public void movePionSteps(Speler speler, int steps){
+        int oldPosition = speler.getPositie();
+        int newPosition = (oldPosition + steps + 40) % 40;
+        movePion(speler, oldPosition, newPosition, true);
+    }
+
+    private void changeCurrentSpeler(Speler oldSpeler){
+        currentSpeler = spelers.get((oldSpeler.getSpelerIndex() + 1) % spelers.size());
+        boardView.showCurrentSpeler(oldSpeler.getCurrentSpelerLayout(), currentSpeler.getCurrentSpelerLayout());
+    }
+
     public void moveSpeler(int steps, boolean doubleThrow){
-        prevSpeler = currentSpeler;
-        this.laatsteWorp = steps;
-        if (doubleThrow){
-            movePion(currentSpeler, steps);
+        this.prevSpeler = currentSpeler;
+        if (currentSpeler.getInJail()){
+            if (doubleThrow){
+                currentSpeler.leaveJail();
+                boardView.escapedJail(currentSpeler, false);
+                movePionSteps(currentSpeler, steps);
+            }
+            changeCurrentSpeler(currentSpeler);
         } else {
-            movePion(currentSpeler, steps);
-            currentSpeler = spelers.get((currentSpeler.getSpelerIndex() + 1) % spelers.size());
-            boardView.showCurrentSpeler(prevSpeler.getCurrentSpelerLayout(), currentSpeler.getCurrentSpelerLayout());
+            this.laatsteWorp = steps;
+            if (doubleThrow) {
+                currentSpeler.addDubbelThrow();
+                movePionSteps(currentSpeler, steps);
+                if (currentSpeler.getDubbelThrowCounter() == 3) {
+                    goToJail(currentSpeler);
+                    changeCurrentSpeler(currentSpeler);
+                }
+                if (currentSpeler.getInJail()){
+                    changeCurrentSpeler(currentSpeler);
+                }
+            } else {
+                currentSpeler.notDubbelThrow();
+                movePionSteps(currentSpeler, steps);
+                changeCurrentSpeler(currentSpeler);
+            }
         }
     }
 
@@ -306,6 +380,7 @@ public class BoardModel implements javafx.beans.Observable {
     public void buyEigendom(Eigendom eigendom){
         prevSpeler.addProperty(eigendom);
         prevSpeler.updateSaldo(-eigendom.getCost());
+        boardView.setEigendomColor(eigendom, prevSpeler.getColor());
         eigendom.setEigenaar(prevSpeler);
     }
 
@@ -335,9 +410,58 @@ public class BoardModel implements javafx.beans.Observable {
     }
 
     public void goToJail(Speler speler){
-        speler.setPosition(jailPosition);
-        showTile(tiles[jailPosition]);
-        boardView.showJail(speler);
+        if (currentSpeler.getOutOfJailKaart() != null){
+            currentSpeler.useOutOfJailKaart();
+            boardView.escapedJail(speler, true);
+        } else {
+            movePion(speler, speler.getPositie(), jailPosition, false);
+            speler.goToJail();
+            showTile(tiles[jailPosition]);
+            boardView.showJail(speler);
+        }
     }
 
+    public  void getChanceCard(Tile tile){
+        showTile(tile);
+        int index = RG.nextInt(chanceDeck.size());
+        DeckType card = chanceDeck.get(index);
+        card.action();
+    }
+
+    public void getChestCard(Tile tile){
+        showTile(tile);
+        int index = RG.nextInt(chestDeck.size());
+        DeckType card = chestDeck.get(index);
+        card.action();
+    }
+
+    public void moneyDeckCard(DeckType card, int amount){
+        currentSpeler.updateSaldo(amount);
+        boardView.showMoneyDeck(currentSpeler, card.getText());
+    }
+
+    public void moveRelDeckCard(DeckType card, int steps){
+        boardView.showRelMoveCard(currentSpeler, card.getText());
+        movePionSteps(currentSpeler, steps);
+    }
+
+    public void moveDeckCard(DeckType card, boolean collect, int position){
+        boardView.showMoveCard(currentSpeler,  card.getText());
+        movePion(currentSpeler, currentSpeler.getPositie(), position, collect);
+    }
+
+    public void playersMoneyDeckCard(DeckType card, int amount){
+        for (Speler speler : spelers){
+            if (speler != currentSpeler){
+                speler.updateSaldo(- amount);
+            }
+        }
+        currentSpeler.updateSaldo(amount * spelers.size() - 1);
+        boardView.showPlayersMoneyDeck(currentSpeler, card.getText());
+    }
+
+    public void jailDeckCard(JailType card){
+        boardView.showJailDeck(currentSpeler, card.getText());
+        currentSpeler.addOutOfJailKaart(card);
+    }
 }
