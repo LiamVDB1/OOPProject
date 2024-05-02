@@ -42,10 +42,10 @@ public abstract class Eigendom extends Tile{
     @Override
     public void action() {
         if (eigenaar == null){
-            boardModel.showBuyProperty(this);
+            boardModel.showBuyEigendom(this);
         }
         else if (eigenaar != boardModel.getCurrentSpeler()){
-            boardModel.showBetaalHuur(this);
+            boardModel.betaalHuur(this);
         }
     }
 }

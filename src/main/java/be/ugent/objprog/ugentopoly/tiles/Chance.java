@@ -3,8 +3,6 @@ package be.ugent.objprog.ugentopoly.tiles;
 import be.ugent.objprog.ugentopoly.BoardModel;
 import be.ugent.objprog.ugentopoly.layout.tileCards.ChanceCard;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.ChanceMidCard;
-import be.ugent.objprog.ugentopoly.Card;
-import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 
 public class Chance extends Tile{
     public Chance(int position, String id, BoardModel bord){
@@ -20,6 +18,6 @@ public class Chance extends Tile{
 
     @Override
     public void action() {
-        boardModel.getChanceCard(this);
+        boardModel.takeChanceCard(this);
     }
 }

@@ -123,7 +123,7 @@ public class Speler {
         saldo += amount;
         spelerInfo.updateSaldo();
         if (saldo < 0){
-            boardModel.showFailliet(this);
+            boardModel.failliet(this);
         }
     }
 

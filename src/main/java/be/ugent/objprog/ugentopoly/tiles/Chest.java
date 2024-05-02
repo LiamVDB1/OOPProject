@@ -1,10 +1,8 @@
 package be.ugent.objprog.ugentopoly.tiles;
 
 import be.ugent.objprog.ugentopoly.BoardModel;
-import be.ugent.objprog.ugentopoly.Card;
 import be.ugent.objprog.ugentopoly.layout.tileCards.ChestCard;
 import be.ugent.objprog.ugentopoly.layout.tileMidCards.ChestMidCard;
-import be.ugent.objprog.ugentopoly.layout.tileMidCards.TileMidCard;
 
 public class Chest extends Tile{
     public Chest(int position, String id, BoardModel bord){
@@ -20,6 +18,6 @@ public class Chest extends Tile{
 
     @Override
     public void action() {
-        boardModel.getChestCard(this);
+        boardModel.takeChestCard(this);
     }
 }

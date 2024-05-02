@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.Random;
-
+//Het model, waar de logica van het spel in zit.
 public class BoardModel {
 
     private static final Random RG = new Random();
@@ -84,6 +84,7 @@ public class BoardModel {
         initialize();
     }
 
+    //Initialize Section
     public void initialize(){
         //Deck Factories, moet gebruikt woren in 2 methoden. Daarom dat ik ze globaal aanmaak
         deckTypeFactories = Map.of(
@@ -105,15 +106,6 @@ public class BoardModel {
         //Start Game initaliseren
         new StartGame(this);
     }
-
-    public UgentopolyController getController() { return ugentopolyController; }
-    public List<Speler> getSpelers() { return spelers; }
-
-    public int getStartBalance() { return startBalance; }
-
-    public Speler getCurrentSpeler() { return currentSpeler; }
-    public int getLaatsteWorp() { return laatsteWorp; }
-    public int getBonusPot() { return bonusPot; }
 
     public void xmlSetup(){
         //XML File inladen
@@ -230,17 +222,6 @@ public class BoardModel {
         }
     }
 
-    public void setStartPosition(int startPosition){
-        this.startPosition = startPosition;
-    }
-    public void setJailPosition(int jailPosition){
-        this.jailPosition = jailPosition;
-    }
-
-    public int getStartPosition(){
-        return startPosition;
-    }
-
     public void makeCards(){
         for (Tile tile : tiles){
             tile.initializeCards();
@@ -250,27 +231,34 @@ public class BoardModel {
         }
     }
 
+    //Getters and Setters Section
+    public UgentopolyController getController() { return ugentopolyController; }
+    public List<Speler> getSpelers() { return spelers; }
+    public int getStartBalance() { return startBalance; }
+    public Speler getCurrentSpeler() { return currentSpeler; }
+    public int getLaatsteWorp() { return laatsteWorp; }
+    public int getBonusPot() { return bonusPot; }
+    public Tile getTile(int position) {
+        return tiles[position];
+    }
+    public int getStartPosition(){
+        return startPosition;
+    }
+
+    public void setStartPosition(int startPosition){
+        this.startPosition = startPosition;
+    }
+    public void setJailPosition(int jailPosition){
+        this.jailPosition = jailPosition;
+    }
     public void setLog(LogLayout log){
         this.log = log;
     }
-
-    public void showTile(Tile tile){
-        boardView.showTile(prevTile, tile);
-    }
-
     public void setPrevTile(Tile tile){
         prevTile = tile;
     }
 
-    public void showBoard(){
-        boardView.showBoard(prevTile);
-    }
-
-    public void addSpeler(Speler speler){
-        speler.setSpelerIndex(spelers.size());
-        spelers.add(speler);
-    }
-
+    //Start Spel Section
     public void startSpel(){
         Stage stage = (Stage) boardView.getSpelBord().getScene().getWindow();
         stage.show();
@@ -281,16 +269,14 @@ public class BoardModel {
         log.updateLog("Het is de beurt aan " + currentSpeler.getNaam());
         boardView.startSpelAlert();
     }
-
-    public Tile getTile(int position) {
-        return tiles[position];
+    public void addSpeler(Speler speler){
+        speler.setSpelerIndex(spelers.size());
+        spelers.add(speler);
     }
-
     public void showSpelerInfo(Speler speler) {
         boardView.showSpelerInfo(prevSpelerInfo, speler.getSpelerInfo());
         prevSpelerInfo = speler.getSpelerInfo();
     }
-
     public void setupInfoBoard(){
         spelers.forEach(speler -> {
             boardView.placeButton(speler.getSpelerButton(), speler.getSpelerIndex(), speler.getWhiteText());
@@ -299,12 +285,51 @@ public class BoardModel {
         });
         showSpelerInfo(spelers.get(0));
     }
-
     public void setupPions(){
         spelers.forEach(speler -> {
             boardView.placePion(speler.getPionImage(), speler.getCurrentTile().getTileCard(), speler.getSpelerIndex());
         });
         boardView.showCurrentSpeler(null, currentSpeler.getCurrentSpelerLayout());
+    }
+
+    //Board Logica
+    public void showTile(Tile tile){
+        boardView.showTile(prevTile, tile);
+    }
+
+    public void showBoard(){
+        boardView.showBoard(prevTile);
+    }
+
+    public void moveSpeler(int steps, boolean doubleThrow){
+        log.updateLog(currentSpeler.getNaam() + " gooit " + steps);
+        this.laatsteWorp = steps;
+        this.prevSpeler = currentSpeler;
+        if (currentSpeler.getInJail()){
+            if (doubleThrow){
+                currentSpeler.leaveJail();
+                boardView.escapedJail(currentSpeler, false);
+                movePionSteps(currentSpeler, steps);
+            }
+            changeCurrentSpeler(currentSpeler);
+        } else {
+            if (doubleThrow) {
+                currentSpeler.addDubbelThrow();
+                movePionSteps(currentSpeler, steps);
+                if (currentSpeler.getDubbelThrowCounter() == 3) {
+                    goToJail(currentSpeler);
+                    changeCurrentSpeler(currentSpeler);
+                    log.updateLog("3 maal dubbel gegooid, " + currentSpeler.getNaam() + " gaat naar de gevangenis");
+                }
+                if (currentSpeler.getInJail()){
+                    changeCurrentSpeler(currentSpeler);
+                }
+            } else {
+                currentSpeler.notDubbelThrow();
+                movePionSteps(currentSpeler, steps);
+                changeCurrentSpeler(currentSpeler);
+            }
+        }
     }
 
     public void movePion(Speler speler, int oldPosition, int newPosition, boolean collect){
@@ -336,37 +361,19 @@ public class BoardModel {
         log.updateLog("Het is de beurt aan " + currentSpeler.getNaam());
     }
 
-    public void moveSpeler(int steps, boolean doubleThrow){
-        log.updateLog(currentSpeler.getNaam() + " gooit " + steps);
-        this.laatsteWorp = steps;
-        this.prevSpeler = currentSpeler;
-        if (currentSpeler.getInJail()){
-            if (doubleThrow){
-                currentSpeler.leaveJail();
-                boardView.escapedJail(currentSpeler, false);
-                movePionSteps(currentSpeler, steps);
-            }
-            changeCurrentSpeler(currentSpeler);
+    public void goToJail(Speler speler){
+        if (currentSpeler.hasOutOfJailKaart()){
+            currentSpeler.useOutOfJailKaart();
+            boardView.escapedJail(speler, true);
         } else {
-            if (doubleThrow) {
-                currentSpeler.addDubbelThrow();
-                movePionSteps(currentSpeler, steps);
-                if (currentSpeler.getDubbelThrowCounter() == 3) {
-                    goToJail(currentSpeler);
-                    changeCurrentSpeler(currentSpeler);
-                }
-                if (currentSpeler.getInJail()){
-                    changeCurrentSpeler(currentSpeler);
-                }
-            } else {
-                currentSpeler.notDubbelThrow();
-                movePionSteps(currentSpeler, steps);
-                changeCurrentSpeler(currentSpeler);
-            }
+            movePion(speler, speler.getPositie(), jailPosition, false);
+            speler.goToJail();
+            showTile(tiles[jailPosition]);
+            boardView.showToJail(speler);
         }
     }
 
-    public void showBuyProperty(Eigendom eigendom){
+    public void showBuyEigendom(Eigendom eigendom){
         showTile(eigendom);
         boardView.showBuying(eigendom);
     }
@@ -378,7 +385,7 @@ public class BoardModel {
         log.updateLog(prevSpeler.getNaam() + " koopt " + eigendom.getText() + " voor " + eigendom.getCost());
     }
 
-    public void showBetaalHuur(Eigendom eigendom){
+    public void betaalHuur(Eigendom eigendom){
         showTile(eigendom);
         currentSpeler.updateSaldo(-eigendom.getHuur());
         eigendom.getEigenaar().updateSaldo(eigendom.getHuur());
@@ -394,31 +401,20 @@ public class BoardModel {
 
     public void giveBonusPot(Speler speler, Tile tile){
         speler.updateSaldo(bonusPot);
+        bonusPot = 0;
         showTile(tile);
         boardView.showGaveBonusPot(speler);
-        bonusPot = 0;
     }
 
-    public void goToJail(Speler speler){
-        if (currentSpeler.hasOutOfJailKaart()){
-            currentSpeler.useOutOfJailKaart();
-            boardView.escapedJail(speler, true);
-        } else {
-            movePion(speler, speler.getPositie(), jailPosition, false);
-            speler.goToJail();
-            showTile(tiles[jailPosition]);
-            boardView.showJail(speler);
-        }
-    }
-
-    public  void getChanceCard(Tile tile){
+    //Deck kaarten Logica
+    public  void takeChanceCard(Tile tile){
         showTile(tile);
         int index = RG.nextInt(chanceDeck.size());
         DeckType card = chanceDeck.get(index);
         card.action();
     }
 
-    public void getChestCard(Tile tile){
+    public void takeChestCard(Tile tile){
         showTile(tile);
         int index = RG.nextInt(chestDeck.size());
         DeckType card = chestDeck.get(index);
@@ -456,7 +452,8 @@ public class BoardModel {
         currentSpeler.addOutOfJailKaart(card, deckList);
     }
 
-    public void showFailliet(Speler speler){
+    //Einde Spel Logica
+    public void failliet(Speler speler){
         boardView.showFailliet(speler);
         Speler winner = spelers.stream().max(Comparator.comparing(Speler::getSaldo)).orElse(null);
         log.updateLog(speler.getNaam() + " is failliet");
