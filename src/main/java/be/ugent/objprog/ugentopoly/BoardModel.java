@@ -7,7 +7,7 @@ import be.ugent.objprog.ugentopoly.tiles.tileFactories.*;
 import be.ugent.objprog.ugentopoly.fxmlControllers.UgentopolyController;
 import be.ugent.objprog.ugentopoly.tiles.Eigendom;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
-import javafx.beans.InvalidationListener;
+import be.ugent.objprog.ugentopoly.layout.LogLayout;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.jdom2.Document;
@@ -20,16 +20,7 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.Random;
 
-public class BoardModel implements javafx.beans.Observable {
-    //UI elementen
-    /*
-    private final BorderPane board;
-    private final GridPane top;
-    private final GridPane left;
-    private final StackPane center;
-    private final GridPane right;
-    private final GridPane bottom;
-    */
+public class BoardModel {
 
     private static final Random RG = new Random();
 
@@ -41,8 +32,8 @@ public class BoardModel implements javafx.beans.Observable {
     private int startSalary;
 
     //Areas en Tiles bijhouden, met posities.
-    private Area[] areas;
-    private Tile[] tiles;
+    private final Area[] areas;
+    private final Tile[] tiles;
 
     //Vorige geklikte tile bijhouden
     private Tile prevTile;
@@ -55,28 +46,28 @@ public class BoardModel implements javafx.beans.Observable {
     private final Map<Integer, GridPane> posToParent;
 
     //Spelers
-    private List<Speler> spelers = new ArrayList<>();
+    private final List<Speler> spelers;
     private Speler currentSpeler;
     private Speler prevSpeler;
 
-    private List<DeckType> chanceDeck;
-    private List<DeckType> chestDeck;
+    private final List<DeckType> chanceDeck;
+    private final List<DeckType> chestDeck;
     private Map<String, DeckFactory> deckTypeFactories;
 
     private int startPosition;
     private int jailPosition;
     private int laatsteWorp;
     private int bonusPot;
+    private LogLayout log;
 
-    public BoardModel(UgentopolyController ugentopolyController, BorderPane board, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow, AnchorPane infoTab){
-        // this.board = board; this.top = top; this.left = left; this.center = center; this.right = right; this.bottom = bottom;
-
+    public BoardModel(UgentopolyController ugentopolyController, BorderPane board, GridPane top, GridPane left, AnchorPane endGame, AnchorPane endGameInfo, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow, AnchorPane infoTab){
         this.ugentopolyController = ugentopolyController;
-        boardView = new BoardView(this, board, top, left, center, right, bottom, cardPane, boardShow, tileShow, infoTab);
+        boardView = new BoardView(this, board, endGame, endGameInfo, cardPane, boardShow, tileShow, infoTab);
 
         bonusPot = 0;
         areas = new Area[8]; tiles = new Tile[40];
 
+        //Bord layout gaat altijd hetzelfde blijven. Daarom gehardcode
         posToParent = new HashMap<>();
         for (int i = 0; i < 40; i++){
             if (i == 0){ posToParent.put(i, bottom);
@@ -88,6 +79,7 @@ public class BoardModel implements javafx.beans.Observable {
         }
         chanceDeck = new ArrayList<>();
         chestDeck = new ArrayList<>();
+        spelers = new ArrayList<>();
 
         initialize();
     }
@@ -112,16 +104,6 @@ public class BoardModel implements javafx.beans.Observable {
 
         //Start Game initaliseren
         new StartGame(this);
-    }
-
-    @Override
-    public void addListener(InvalidationListener invalidationListener) {
-
-    }
-
-    @Override
-    public void removeListener(InvalidationListener invalidationListener) {
-
     }
 
     public UgentopolyController getController() { return ugentopolyController; }
@@ -228,7 +210,7 @@ public class BoardModel implements javafx.beans.Observable {
             String type = child.getAttributeValue("type");
             DeckFactory factory = deckTypeFactories.get(type);
             if (factory != null){
-                DeckType deckType = factory.createDeckType(this, child);
+                DeckType deckType = factory.createDeckType(this, child, deckList);
                 deckList.add(deckType);
             }
         }
@@ -268,6 +250,10 @@ public class BoardModel implements javafx.beans.Observable {
         }
     }
 
+    public void setLog(LogLayout log){
+        this.log = log;
+    }
+
     public void showTile(Tile tile){
         boardView.showTile(prevTile, tile);
     }
@@ -291,6 +277,8 @@ public class BoardModel implements javafx.beans.Observable {
         currentSpeler = spelers.get(0);
         setupInfoBoard();
         setupPions();
+        log.updateLog("Het spel is gestart");
+        log.updateLog("Het is de beurt aan " + currentSpeler.getNaam());
     }
 
     public Tile getTile(int position) {
@@ -324,12 +312,15 @@ public class BoardModel implements javafx.beans.Observable {
         if (collect){
             if (newPosition == startPosition){
                 speler.updateSaldo(startSalary * 2);
+                log.updateLog(speler.getNaam() + " is geland op de Start en krijgt  $" + startSalary * 2);
             } else if ((oldPosition < startPosition || oldPosition > newPosition) && newPosition > startPosition){
                 speler.updateSaldo(startSalary);
+                log.updateLog(speler.getNaam() + " is gepasseerd de Start en krijgt $" + startSalary);
             }
         }
         boardView.placePion(speler.getPionImage(), speler.getCurrentTile().getTileCard(), speler.getSpelerIndex());
         currentSpeler.getCurrentTile().action();
+        log.updateLog(speler.getNaam() + " gaat naar " + speler.getCurrentTile().getText());
     }
 
     public void movePionSteps(Speler speler, int steps){
@@ -341,9 +332,12 @@ public class BoardModel implements javafx.beans.Observable {
     private void changeCurrentSpeler(Speler oldSpeler){
         currentSpeler = spelers.get((oldSpeler.getSpelerIndex() + 1) % spelers.size());
         boardView.showCurrentSpeler(oldSpeler.getCurrentSpelerLayout(), currentSpeler.getCurrentSpelerLayout());
+        log.updateLog("Het is de beurt aan " + currentSpeler.getNaam());
     }
 
     public void moveSpeler(int steps, boolean doubleThrow){
+        log.updateLog(currentSpeler.getNaam() + " gooit " + steps);
+        this.laatsteWorp = steps;
         this.prevSpeler = currentSpeler;
         if (currentSpeler.getInJail()){
             if (doubleThrow){
@@ -353,7 +347,6 @@ public class BoardModel implements javafx.beans.Observable {
             }
             changeCurrentSpeler(currentSpeler);
         } else {
-            this.laatsteWorp = steps;
             if (doubleThrow) {
                 currentSpeler.addDubbelThrow();
                 movePionSteps(currentSpeler, steps);
@@ -380,8 +373,8 @@ public class BoardModel implements javafx.beans.Observable {
     public void buyEigendom(Eigendom eigendom){
         prevSpeler.addProperty(eigendom);
         prevSpeler.updateSaldo(-eigendom.getCost());
-        boardView.setEigendomColor(eigendom, prevSpeler.getColor());
         eigendom.setEigenaar(prevSpeler);
+        log.updateLog(prevSpeler.getNaam() + " koopt " + eigendom.getText() + " voor " + eigendom.getCost());
     }
 
     public void showBetaalHuur(Eigendom eigendom){
@@ -389,10 +382,6 @@ public class BoardModel implements javafx.beans.Observable {
         currentSpeler.updateSaldo(-eigendom.getHuur());
         eigendom.getEigenaar().updateSaldo(eigendom.getHuur());
         boardView.showBetaalHuur(eigendom, currentSpeler, eigendom.getEigenaar());
-    }
-
-    public void showFailliet(Speler speler){
-        //TODO
     }
 
     public void payBonusPot(int amount, Speler speler, Tile tile){
@@ -410,7 +399,7 @@ public class BoardModel implements javafx.beans.Observable {
     }
 
     public void goToJail(Speler speler){
-        if (currentSpeler.getOutOfJailKaart() != null){
+        if (currentSpeler.hasOutOfJailKaart()){
             currentSpeler.useOutOfJailKaart();
             boardView.escapedJail(speler, true);
         } else {
@@ -460,8 +449,17 @@ public class BoardModel implements javafx.beans.Observable {
         boardView.showPlayersMoneyDeck(currentSpeler, card.getText());
     }
 
-    public void jailDeckCard(JailType card){
+    public void jailDeckCard(JailType card, List<DeckType> deckList){
         boardView.showJailDeck(currentSpeler, card.getText());
-        currentSpeler.addOutOfJailKaart(card);
+        deckList.remove(card);
+        currentSpeler.addOutOfJailKaart(card, deckList);
+    }
+
+    public void showFailliet(Speler speler){
+        boardView.showFailliet(speler);
+        Speler winner = spelers.stream().max(Comparator.comparing(Speler::getSaldo)).orElse(null);
+        log.updateLog(speler.getNaam() + " is failliet");
+        log.updateLog(winner.getNaam() + " heeft gewonnen!");
+        boardView.showWinner(winner);
     }
 }

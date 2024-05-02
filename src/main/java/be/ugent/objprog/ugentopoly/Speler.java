@@ -1,5 +1,6 @@
 package be.ugent.objprog.ugentopoly;
 
+import be.ugent.objprog.ugentopoly.deckTypes.DeckType;
 import be.ugent.objprog.ugentopoly.deckTypes.JailType;
 import be.ugent.objprog.ugentopoly.layout.CurrentSpelerLayout;
 import be.ugent.objprog.ugentopoly.layout.SpelerInfo;
@@ -12,7 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Speler {
     private String naam;
@@ -22,7 +25,7 @@ public class Speler {
     private BoardModel boardModel;
     private int saldo;
     private int positie;
-    private JailType outOfJailKaart;
+    private Map<JailType, List<DeckType>> outOfJailKaartMap;
     private boolean inJail;
     private List<Tile> properties;
     private List<InvalidationListener> listeners;
@@ -49,6 +52,7 @@ public class Speler {
         railways = new ArrayList<>();
         utilities = new ArrayList<>();
         dubbelThrowCounter = 0;
+        outOfJailKaartMap = new HashMap<>();
     }
 
     public Color getColor(){
@@ -74,8 +78,8 @@ public class Speler {
         return dubbelThrowCounter;
     }
 
-    public JailType getOutOfJailKaart(){
-        return outOfJailKaart;
+    public boolean hasOutOfJailKaart(){
+        return outOfJailKaartMap.size() > 0;
     }
 
     public List<Tile> getProperties(){
@@ -105,12 +109,14 @@ public class Speler {
         dubbelThrowCounter = 0;
     }
 
-    public void addOutOfJailKaart(JailType outOfJailKaart){
-        this.outOfJailKaart = outOfJailKaart;
+    public void addOutOfJailKaart(JailType outOfJailKaart, List<DeckType> deckList){
+        this.outOfJailKaartMap.put(outOfJailKaart, deckList);
     }
 
     public void useOutOfJailKaart(){
-        outOfJailKaart = null;
+        JailType outOfJailKaart = this.outOfJailKaartMap.keySet().iterator().next();
+        outOfJailKaartMap.get(outOfJailKaart).add(outOfJailKaart);
+        outOfJailKaartMap.remove(outOfJailKaart);
     }
 
     public void updateSaldo(int amount){

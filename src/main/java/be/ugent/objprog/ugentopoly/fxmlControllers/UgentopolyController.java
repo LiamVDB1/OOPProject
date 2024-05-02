@@ -28,11 +28,14 @@ public class UgentopolyController{
     private @FXML AnchorPane boardShow;
     private @FXML AnchorPane infoTab;
 
+    private @FXML AnchorPane endGame;
+    private @FXML AnchorPane endGameInfo;
+
     private boolean isShowBoardEnabled;
     private boolean isShowTileEnabled;
     public void initialize() {
         //Bord initaliseren
-        boardModel = new BoardModel(this, this.borderPane, this.top, this.left, this.center, this.right, this.bottom, this.cardPane, this.boardShow, this.tileShow, this.infoTab);
+        boardModel = new BoardModel(this, this.borderPane, this.top, this.left,this.endGame, this.endGameInfo, this.right, this.bottom, this.cardPane, this.boardShow, this.tileShow, this.infoTab);
         isShowBoardEnabled = true;
         isShowTileEnabled = true;
     }

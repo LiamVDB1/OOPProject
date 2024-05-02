@@ -4,7 +4,7 @@ import be.ugent.objprog.ugentopoly.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-
+import javafx.stage.Stage;
 public class StartGameController {
 
     private StartGameModel model;
@@ -24,6 +24,8 @@ public class StartGameController {
     @FXML
     public void startSpel(){
         model.startSpel();
+        Stage stage = (Stage) errorMessage.getScene().getWindow();
+        stage.close();
     }
 
 }

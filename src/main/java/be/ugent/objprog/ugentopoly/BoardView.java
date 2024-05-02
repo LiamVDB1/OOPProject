@@ -3,6 +3,7 @@ package be.ugent.objprog.ugentopoly;
 import be.ugent.objprog.ugentopoly.layout.BuyOrSkipLayout;
 import be.ugent.objprog.ugentopoly.layout.DiceLayout;
 import be.ugent.objprog.ugentopoly.layout.LogLayout;
+import be.ugent.objprog.ugentopoly.layout.WinnerLayout;
 import be.ugent.objprog.ugentopoly.layout.tileCards.TileCards;
 import be.ugent.objprog.ugentopoly.tiles.Eigendom;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
@@ -20,37 +21,23 @@ import javafx.scene.text.TextAlignment;
 
 import java.util.Map;
 
-public class BoardView implements InvalidationListener {
+public class BoardView {
     private final BoardModel model;
     private final BorderPane spelBord;
-    private final StackPane center;
-    //UI elementen
-    /*
-    private final GridPane top;
-    private final GridPane left;
-    private final GridPane right;
-    private final GridPane bottom
-    */
     private final AnchorPane cardPane;
     private final AnchorPane boardShow;
     private final AnchorPane tileShow;
+    private final AnchorPane endGame;
+    private final AnchorPane endGameInfo;
     private final AnchorPane infoTab;
     private BuyOrSkipLayout buyOrSkip;
 
-    public BoardView(BoardModel model, BorderPane spelBord, GridPane top, GridPane left, StackPane center, GridPane right, GridPane bottom, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow, AnchorPane infoTab) {
+    public BoardView(BoardModel model, BorderPane spelBord, AnchorPane endGame, AnchorPane endGameInfo, AnchorPane cardPane, AnchorPane boardShow, AnchorPane tileShow, AnchorPane infoTab) {
         this.model = model;
         this.spelBord = spelBord;
-        this.center = center;
-        //this.top = top; this.left = left; this.right = right; this.bottom = bottom;
-
         this.cardPane = cardPane; this.boardShow = boardShow; this.tileShow = tileShow; this.infoTab = infoTab;
+        this.endGame = endGame; this.endGameInfo = endGameInfo;
         initialize();
-        temp(1, 0.0);
-        temp(5, 50.0);
-        temp(10, 100.0);
-        temp(20, 150.0);
-        temp(30, 200.0);
-        temp(40, 250.0);
     }
 
     public void initialize(){
@@ -101,11 +88,6 @@ public class BoardView implements InvalidationListener {
         }
     }
 
-    @Override
-    public void invalidated(Observable observable) {
-        //
-    }
-
     public void setDice(){
         DiceLayout diceLayout = new DiceLayout(model.getController());
         boardShow.getChildren().add(diceLayout);
@@ -119,6 +101,7 @@ public class BoardView implements InvalidationListener {
         AnchorPane.setLeftAnchor(logLayout, 7.5);
         AnchorPane.setRightAnchor(logLayout, 7.5);
         infoTab.getChildren().add(logLayout);
+        model.setLog(logLayout);
     }
 
     public void setBuyOrSkip(){
@@ -201,10 +184,6 @@ public class BoardView implements InvalidationListener {
         model.getController().setShowBoardEnabledAndTileEnabled(false);
     }
 
-    public void setEigendomColor(Eigendom eigendom, Color color){
-        //TODO goeie methode vinden om dit mooi te implementeren
-    }
-
     public void showBetaalHuur(Eigendom eigendom, Speler fromSpeler, Speler toSpeler){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Huur Betaald");
@@ -246,7 +225,7 @@ public class BoardView implements InvalidationListener {
         alert.setTitle("Gevangenis");
         alert.setHeaderText(speler.getNaam() + " is ontsnapt uit de gevangenis!");
         if (outOfJailCard){
-            alert.setContentText(speler.getNaam() + " is ontsnapt uit de gevangenis met zijn getOutOfJailCard, en kan weer verder spelen!");
+            alert.setContentText(speler.getNaam() + " moet niet naar de gevangenis door een get out of Jail kaart!");
         } else {
             alert.setContentText(speler.getNaam() + " is ontsnapt uit de gevangenis, en kan weer verder spelen!");
         }
@@ -299,11 +278,20 @@ public class BoardView implements InvalidationListener {
         model.getController().showBoard();
     }
 
-    public void temp(int amount, double leftAnchor){
-        Button button = new Button();
-        button.setText("Move" + amount);
-        button.setOnAction(e -> model.moveSpeler(amount, false));
-        AnchorPane.setTopAnchor(button, leftAnchor);
-        boardShow.getChildren().add(button);
+    public void showFailliet(Speler speler){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Failliet");
+        alert.setHeaderText(speler.getNaam() + " is failliet!");
+        alert.setContentText(speler.getNaam() + " is failliet en hierdoor is het spel gedaan.");
+        alert.showAndWait();
+        model.getController().showBoard();
+    }
+
+    public void showWinner(Speler speler) {
+        this.endGameInfo.getChildren().add(new WinnerLayout(speler.getNaam(), speler.getPion().getImage(), speler.getSaldo()));
+        this.endGame.setVisible(true);
+        model.getController().setShowBoardEnabledAndTileEnabled(false);
+        boardShow.setVisible(false);
+        tileShow.setVisible(false);
     }
 }
