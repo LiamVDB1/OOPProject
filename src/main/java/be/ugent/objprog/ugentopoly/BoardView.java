@@ -7,15 +7,12 @@ import be.ugent.objprog.ugentopoly.layout.WinnerLayout;
 import be.ugent.objprog.ugentopoly.layout.tileCards.TileCards;
 import be.ugent.objprog.ugentopoly.tiles.Eigendom;
 import be.ugent.objprog.ugentopoly.tiles.Tile;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
@@ -128,6 +125,14 @@ public class BoardView {
         AnchorPane.setLeftAnchor(button, buttonLeftAnchor.get(spelerIndex));
         AnchorPane.setTopAnchor(button, 10.0);
         infoTab.getChildren().add(button);
+    }
+
+    public void startSpelAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Spel Start");
+        alert.setHeaderText("Het spel is gestart!");
+        alert.setContentText("Het spel is gestart, veel plezier!\nOm te beginnen klik op de dobbelstenen om deze te gooien.");
+        alert.showAndWait();
     }
 
     public void placeSpelerInfo(AnchorPane anchorPane){

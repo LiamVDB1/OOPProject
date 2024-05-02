@@ -279,6 +279,7 @@ public class BoardModel {
         setupPions();
         log.updateLog("Het spel is gestart");
         log.updateLog("Het is de beurt aan " + currentSpeler.getNaam());
+        boardView.startSpelAlert();
     }
 
     public Tile getTile(int position) {
