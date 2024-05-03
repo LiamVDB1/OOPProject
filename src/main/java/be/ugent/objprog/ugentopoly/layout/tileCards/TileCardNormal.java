@@ -29,8 +29,6 @@ public abstract class TileCardNormal extends Card implements TileCards {
         }
 
         if (! LT){ this.setRotate(180); }
-
-
     }
 
     public boolean getVertical(){

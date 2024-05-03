@@ -55,6 +55,7 @@ public class Speler {
         outOfJailKaartMap = new HashMap<>();
     }
 
+    //Getters en Setters Section
     public Color getColor(){
         return color;
     }
@@ -77,11 +78,6 @@ public class Speler {
     public int getDubbelThrowCounter(){
         return dubbelThrowCounter;
     }
-
-    public boolean hasOutOfJailKaart(){
-        return outOfJailKaartMap.size() > 0;
-    }
-
     public List<Tile> getProperties(){
         return properties;
     }
@@ -91,11 +87,39 @@ public class Speler {
     public List<Railway> getRailways(){
         return railways;
     }
-
     public boolean getInJail(){
         return inJail;
     }
+    public int getSpelerIndex(){
+        return spelerIndex;
+    }
+    public SpelerInfo getSpelerInfo(){
+        return spelerInfo;
+    }
+    public CurrentSpelerLayout getCurrentSpelerLayout(){
+        return currentSpelerLayout;
+    }
+    public boolean getWhiteText(){
+        return whiteText;
+    }
+    public ImageView getPionImage(){
+        return pionImage;
+    }
+    public Button getSpelerButton(){
+        Button button = new Button(naam);
+        button.setStyle("-fx-background-color: " + ColorHelper.toHexString(color) + ";");
+        button.setOnAction(e -> boardModel.getController().showSpelerInfo(this));
+        return button;
+    }
 
+    public void setSpelerIndex(int index){
+        spelerIndex = index;
+    }
+    public void setPosition(int positie){
+        this.positie = positie;
+        spelerInfo.updatePositie();
+
+    }
     public void addProperty(Tile tile){
         if (tile != null) {
             properties.add(tile);
@@ -105,6 +129,18 @@ public class Speler {
     public void addDubbelThrow(){
         dubbelThrowCounter++;
     }
+    public void addRailway(Railway railway){
+        railways.add(railway);
+    }
+    public void addUtility(Utility utility){
+        utilities.add(utility);
+    }
+
+    //Game logica
+    public boolean hasOutOfJailKaart(){
+        return outOfJailKaartMap.size() > 0;
+    }
+
     public void notDubbelThrow(){
         dubbelThrowCounter = 0;
     }
@@ -125,55 +161,6 @@ public class Speler {
         if (saldo < 0){
             boardModel.failliet(this);
         }
-    }
-
-    public void addRailway(Railway railway){
-        railways.add(railway);
-    }
-
-    public void addUtility(Utility utility){
-        utilities.add(utility);
-    }
-
-    public void setSpelerIndex(int index){
-        spelerIndex = index;
-    }
-
-    public int getSpelerIndex(){
-        return spelerIndex;
-    }
-
-    public Button getSpelerButton(){
-        Button button = new Button(naam);
-        button.setStyle("-fx-background-color: " + ColorHelper.toHexString(color) + ";");
-        button.setOnAction(e -> boardModel.getController().showSpelerInfo(this));
-        return button;
-    }
-
-    public SpelerInfo getSpelerInfo(){
-        return spelerInfo;
-    }
-    public CurrentSpelerLayout getCurrentSpelerLayout(){
-        return currentSpelerLayout;
-    }
-
-    public boolean getWhiteText(){
-        return whiteText;
-    }
-
-    public ImageView getPionImage(){
-        return pionImage;
-    }
-
-    public void setPosition(int positie){
-        this.positie = positie;
-        spelerInfo.updatePositie();
-
-    }
-
-    public void movePion(int steps){
-        positie = (positie + steps) % 40; // altijd 40 tiles.
-        spelerInfo.updatePositie();
     }
 
     public void goToJail(){
